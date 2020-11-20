@@ -4,7 +4,7 @@ date: 2019-12-18 22:54:52
 tags:
   - SystemDesign
 ---
-![](https://raw.githubusercontent.com/was48i/mPOST/master/AWS/01/00.jpg)
+![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/01/00.jpg)
 Just recently I was asked what it would take to **make a web service massively scalable**. My answer was lengthy and maybe it is also for other people interesting. So I share it with you here in my blog and split it into parts to make it easier to read. New parts are released on a regular basis. Have fun and your comments are always welcomed!
 ## Clones
 Public servers of a scalable web service are hidden **behind a load balancer**. This load balancer **evenly distributes** load (requests from your users) onto your group/cluster of application servers. That means that if, for example, user Steve interacts with your service, he may be served at his first request by server 2, then with his second request by server 9 and then maybe again by server 2 on his third request. 

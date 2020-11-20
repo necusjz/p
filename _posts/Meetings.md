@@ -30,7 +30,7 @@ J: Great! **So, that wraps up everything for today.** Thanks very much for all y
 ## Negotiating agreement
 > Well, that's an interesting proposal, but...
 
-![](https://raw.githubusercontent.com/was48i/mPOST/master/Speaking/01.jpg)
+![](https://raw.githubusercontent.com/was48i/mPOST/master/SPEAKING/01.jpg)
 ### Track 50
 Janette: And that, basically, is why I called you, Stuart. We don't have enough SAP specialists for this job ourselves.
 Stuart: I see. So, what exactly do you need?
