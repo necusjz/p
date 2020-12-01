@@ -16,7 +16,7 @@ tags:
 
 ## 如何判断 SRP
 在一个社交产品中，我们用下面的 UserInfo 类来记录用户的信息。你觉得，UserInfo 类的设计是否满足单一职责原则呢：
-```
+```java
 public class UserInfo 
 {
     private long userId;
@@ -54,7 +54,7 @@ public class UserInfo
 
 ## 类的职责是否越单一越好
 为了满足单一职责原则，是不是把类拆得越细就越好呢？答案是否定的。我们还是通过一个例子来解释一下。Serialization 类实现了一个简单协议的序列化和反序列功能，具体代码如下：
-```
+```java
 /**
  * Protocol format: identifier-string;{gson string}
  * For example: UEUEUE;{"a":"A","b":"B"}
@@ -90,7 +90,7 @@ public class Serialization
 ```
 
 如果我们想让类的职责更加单一，我们对 Serialization 类进一步拆分，拆分成一个只负责序列化工作的 Serializer 类和另一个只负责反序列化工作的 Deserializer 类。拆分后的具体代码如下所示：
-```
+```java
 public class Serializer 
 {
     private static final String IDENTIFIER_STRING = "UEUEUE;";

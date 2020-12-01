@@ -9,7 +9,7 @@ tags:
 对容器的操作就像`直接操作应用`一样简单和快速。
 ### 新建容器
 可以使用 **docker create** 命令新建一个容器，新建的容器处于停止状态，可以使用 docker start 命令来启动他。
-```
+```bash
 $ docker create -it ubuntu:latest
 ```
 容器是整个 Docker 技术栈的核心，支持的选项十分复杂。主要包括如下几大类：
@@ -20,31 +20,31 @@ $ docker create -it ubuntu:latest
 <!--more-->
 ### 启动容器
 使用 **docker start** 命令来启动一个已经创建的容器：
-```
+```bash
 $ docker start af
 ```
 此时，通过 docker ps 命令可以查看到一个运行中的容器。
 ### 新建并启动容器
 也可以直接`新建并启动`容器，所需要的命令为 **docker run**。等价于先执行 docker create 命令，再执行 docker start 命令。
-```
+```bash
 $ docker run -it ubuntu:18.04 /bin/bash
 ```
 > 对于容器来说，当其中的应用退出后，容器的使命完成，也就没有继续运行的必要了。
 
 ### 守护态运行
 更多的时候，需要让容器在后台以守护态（daemonized）形式运行，可以通过添加 `-d` 参数来实现。
-```
+```bash
 $ docker run -d ubuntu /bin/bash -c "while true; do echo hello world; sleep 1; done"
 ```
 ### 查看容器输出
 要获取容器的输出信息，可以通过 **docker logs** 命令。
-```
+```bash
 $ docker logs ce554267d7a4
 ```
 ## 停止容器
 ### 暂停容器
 可以使用 **docker pause** 命令来暂停一个运行中的容器：
-```
+```bash
 $ docker run --name test --rm -it ubuntu bash
 $ docker pause test
 ```
@@ -59,31 +59,31 @@ $ docker pause test
 ## 进入容器
 使用 `-d` 参数，容器启动后进入后台，用户无法看到其中的信息，也无法进行操作。此时，推荐使用官方的 **attach** 或 **exec** 命令。
 ### attach 命令
-```
+```bash
 $ docker attach nostalgic_hypatia
 ```
 使用 attach 命令有时候并不方便。当多个窗口同时 attach 到同一个容器的时候，所有窗口都会`同步显示`；当某个窗口因命令阻塞时，其他窗口也无法执行操作了。
 ### exec 命令
-```
+```bash
 $ docker exec -it 243c32535da7 /bin/bash
 ```
 可以在运行中容器内直接执行任意命令。会打开一个新的 bash 终端，在不影响容器内其他应用的前提下，用户可以与容器进行交互。
 > `-t` 选项让 Docker 分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上；`-i` 则让容器的标准输入保持打开。通过 exec 命令对容器执行操作是最为推荐的方式。
 
 ## 删除容器
-```
+```bash
 $ docker rm ce554267d7a4
 ```
 默认情况下，**docker rm** 命令只能删除已经处于终止或退出状态的容器，并不能删除还处于运行状态的容器。
 ## 导出和导入容器
 ### 导出容器
 导出一个已经创建的容器到一个文件，不管此时这个容器是否处于运行状态，可以使用 **docker export** 命令：
-```
+```bash
 $ docker export e81 > test_for_stop.tar
 ```
 ### 导入容器
 导出的文件又可以使用 **docker import** 命令导入变成镜像：
-```
+```bash
 $ docker import test_for_stop.tar test/ubuntu:v1.0
 ```
 既可以使用 docker load 命令来导入镜像存储文件到本地镜像库，也可以使用 docker import 命令来导入一个容器快照到本地镜像库，两者的区别在于：
@@ -93,38 +93,38 @@ $ docker import test_for_stop.tar test/ubuntu:v1.0
 ## 查看容器
 ### 查看容器详情
 查看容器详情可以使用 **docker inspect** 命令，会以 JSON 格式返回包括容器 ID、创建时间、路径、状态、镜像、配置等在内的各项信息。
-```
+```bash
 $ docker inspect test
 ```
 ### 查看容器内进程
 查看容器内进程可以使用 **docker top** 命令，会打印出包括 PID、用户、时间、命令等进程信息。
-```
+```bash
 $ docker top test
 ```
 ### 查看统计信息
 查看统计信息可以使用 **docker stats** 命令，会显示 CPU、内存、存储、网络等使用情况的统计信息。
-```
+```bash
 $ docker stats
 ```
 ## 其他容器命令
 ### 复制文件
 **docker cp** 命令支持在容器和主机时间复制文件：
-```
+```bash
 $ docker cp data test:/tmp/
 ```
 ### 查看变更
 **docker diff** 命令查看容器内文件系统的变更：
-```
+```bash
 $ docker diff test
 ```
 ### 查看端口映射
 **docker port** 命令可以查看容器的端口映射情况：
-```
+```bash
 $ docker port test
 ```
 ### 更新配置
 **docker update** 命令可以更新容器的一些运行时配置，例如，限制总配额为 1 秒，容器 test 所占用时间为 10%：
-```
+```bash
 $ docker update --cpu-quota 1000000 test
 $ docker update --cpu-period 100000 test
 ```

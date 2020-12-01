@@ -8,7 +8,7 @@ Dockerfile 是一个文本格式的配置文件，用户可以使用 Dockerfile 
 ## 基本结构
 Dockerfile 由一行行命令语句组成，并且支持以 `#` 开头的注释行。主体内容分为四部分：**基础镜像信息**、**维护者信息**、**镜像操作指令**、**容器启动时执行指令**。
 下面给出一个简单的示例：
-```
+```dockerfile
 # escape=\ (backslash)
 # This dockerfile uses the ubuntu:xeniel image
 # VERSION 2 - EDITION 1
@@ -56,7 +56,7 @@ LABEL 指令可以为生成的镜像添加元数据标签信息，用来**辅助
 #### ONBUILD
 指定当基于所生成镜像创建子镜像时，**自动执行**的操作指令。
 例如，使用如下的 Dockerfile 创建父镜像 ParentImage，指定 ONBUILD 指定：
-```
+```dockerfile
 # Dockerfile for ParentImage
 ...
 ONBUILD ADD . /app/src
@@ -64,12 +64,12 @@ ONBUILD RUN /usr/local/bin/python-build --dir /app/src
 ...
 ```
 使用 docker build 命令创建子镜像 ChildImage 时，会首先执行 ParentImage 中配置的 ONBUILD 指令：
-```
+```dockerfile
 # Dockerfile for ChildImage
 FROM ParentImage
 ```
 等价于在 ChildImage 的 Dockerfile 中添加如下指令：
-```
+```dockerfile
 # Automatically run the following when building ChildImage
 ADD . /app/src
 RUN /usr/local/bin/python-build --dir /app/src
@@ -128,7 +128,7 @@ COPY 与 ADD 指令功能类似，当**本地目录为源目录**时，推荐使
 编写完成 Dockerfile 之后，可以通过 docker build 命令来创建镜像。该命令将读取指定路径下的 Dockerfile，并**将该路径下所有数据作为 context** 发送给 Docker 服务端。
 逐条执行其中定义的指令，碰到 `ADD、COPY、RUN 指令`会生成一层新的镜像，最终如果创建镜像成功，会返回最终镜像的 ID。
 例如，上下文路径为：/tmp/docker_builder/，并且希望生成镜像标签为：builder／first_image:1.0.0，可以使用下面的命令：
-```
+```bash
 $ docker build -t builder/first_image:1.0.0 /tmp/docker_builder/
 ```
 ### 命令选项

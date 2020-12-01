@@ -15,7 +15,7 @@ KISS 原则的英文描述：
 ## 代码行数越少就越“简单”吗？
 下面这三段代码可以实现同样一个功能：检查输入的字符串 ipAddress 是否是合法的 IP 地址。
 <!--more-->
-```
+```java
 // 第一种实现方式: 使用正则表达式
 public boolean isValidIpAddressV1(String ipAddress) 
 {
@@ -126,7 +126,7 @@ public boolean isValidIpAddressV3(String ipAddress)
 
 ## 代码逻辑复杂就违背 KISS 原则吗？
 在回答这个问题之前，我们先来看下面这段代码：
-```
+```java
 // KMP algorithm: a, b 分别是主串和模式串；n, m 分别是主串和模式串的长度
 public static int kmp(char[] a, int n, char[] b, int m) 
 {

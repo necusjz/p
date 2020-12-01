@@ -97,7 +97,7 @@ The `calculation engine operators` and the `corresponding SQL statement` are imp
 ### Read-Only Procedures
 Read-only procedures must not contain any statements that modify the database and they may **only call other read-only procedures**. As read-only procedures are guaranteed to **be free of side effects**, they can be better optimized and execution can be better parallelized.
 The code sample below shows a simple read-only procedure:
-```
+```sql
 CREATE TYPE TT_TAB1 AS TABLE ("A" INTEGER, "B" INTEGER);
 CREATE TYPE TT_TAB2 AS TABLE ("A" INTEGER, "C" VARCHAR(50));
 CREATE TYPE TT_TAB3 AS TABLE ("A" INTEGER, "B" INTEGER, "C" VARCHAR(50));
@@ -120,14 +120,14 @@ END;
 ### Table Functions
 SQLScript is also used to write table functions. A table function contains read-only SQLScript code and **returns a single table** as its result value. The function call can be used instead of a table or view in SQL queries.
 In the following example a table function FUNC1 is used as the **data source** for a select operation:
-```
+```sql
 SELECT col1, col2 FROM FUNC1(5, 'AB') WHERE col1 > 3000;
 ```
 Table functions make it **possible to call complex logic** from client tools that can only invoke queries and which cannot call procedures.
 ### Scalar SQLScript Functions
 With SQLScript you can also write user-defined functions that **return one or more scalar values**. Like the **built-in SQL functions** they can be used in projection lists, group-by clauses and where conditions.
 The code sample shows the definition of a scalar function F1, which returns two scalar values Y1 and Y2:
-```
+```sql
 CREATE FUNCTION F1 (X1 DOUBLE, X2 DOUBLE)
 RETURNS Y1 DOUBLE, Y2 DOUBLE
 LANGUAGE SQLSCRIPT
@@ -138,7 +138,7 @@ BEGIN
 END;
 ```
 In the following example the function F1 is called twice, in the projection list and in the WHERE condition:
-```
+```sql
 SELECT A, F1(A, B).Y1 FROM T1
 WHERE B > F1(A, B).Y2;
 ```
@@ -171,7 +171,7 @@ However, using C++ also means that programming errors in the application code af
 ## R
 `R` is an open-source programming language and software environment for **statistical computing and graphs**. With over 4,000 add-on packages, R provides a wide range of **library functions**. It provides roughly the same functions as the combination of the most successful commercial packages, SAS and SPSS.
 SAP HANA provides interoperability with the **R runtime environment**, via a tight component integration, and support for functions written in R, which are encapsulated by a regular embedded procedure interface. **Table parameters** can be passed to R code, and a result is returned in the form of tables:
-```
+```sql
 -- prepare tables
 CREATE TABLE PRIME (NUMBER INTEGER);
 INSERT INTO PRIME VALUES(2);
@@ -195,7 +195,7 @@ SELECT * FROM PRIME_SQR;
 ## MDX
 MDX syntactically resembles SQL, but it **incorporates concepts like cube, dimensions, hierarchies and measures**, and can be used to connect a variety of analytics applications including SAP Business Objects BI tools and Microsoft Excel.
 The following is an example of an MDX query:
-```
+```sql
 SELECT {
     [Measures].[unit_sales],
     [Measures].[base_sales]
@@ -239,7 +239,7 @@ The CDS comprise a family of programming specifications:
 CDS support in SAP HANA allows application developers to **define the data models by creating CDS design-time files** that contain CDS definitions. CDS can be used to define various aspects of an application such as persisted data model, views, analytical models, search models, and the authorization models. SAP HANA internally **transforms the CDS definitions to the existing mechanisms** for data definition, to SQL, to database privileges, to calculation models executed by the calculation engine, or to L programs.
 The SQL `CREATE TABLE` statement now supports the **definition of CDS associations**, and in SQL queries you can **navigate such associations with path expressions**. The following code snippets from illustrate this feature.
 - SQL data definition with CDS association:
-```
+```sql
 CREATE TABLE Employees (
     id, name, ..., homeAddress_id INTEGER
 ) WITH ASSOCIATIONS (
@@ -247,7 +247,7 @@ CREATE TABLE Employees (
 )
 ```
 - SQL query with CDS infix filters and path expressions along association:
-```
+```sql
 SELECT name, address[kind='business'].town.country.name
 FROM Employees;
 ```

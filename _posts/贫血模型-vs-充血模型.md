@@ -15,7 +15,7 @@ MVC 三层架构中的 **M 表示 Model，V 表示 View，C 表示 Controller**�
 
 实际上，**你可能一直都在用贫血模型做开发，只是自己不知道而已**。不夸张地讲，据我了解，目前几乎所有的业务后端系统，都是基于贫血模型的。我举一个简单的例子来给你解释一下：
 <!--more-->
-```
+```java
 ////////// Controller+VO(View Object) //////////
 public class UserController 
 {

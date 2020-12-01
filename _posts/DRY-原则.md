@@ -12,7 +12,7 @@ DRY 原则的英文描述为：
 ## 实现逻辑重复
 我们先来看下面这样一段代码是否违反了 DRY 原则：
 <!--more-->
-```
+```java
 public class UserAuthenticator 
 {
     public void authenticate(String username, String password) 
@@ -91,7 +91,7 @@ public class UserAuthenticator
 ```
 
 在代码中，有两处非常明显的重复的代码片段：isValidUserName() 函数和 isValidPassword() 函数。**重复的代码被敲了两遍，或者简单 copy-paste 了一下，看起来明显违反 DRY 原则**。为了移除重复的代码，我们对上面的代码做下重构，将 isValidUserName() 函数和 isValidPassword() 函数，合并为一个更通用的函数 isValidUserNameOrPassword()。重构后的代码如下所示：
-```
+```java
 public class UserAuthenticatorV2 
 {
     public void authenticate(String userName, String password) 
@@ -124,7 +124,7 @@ public class UserAuthenticatorV2
 
 ## 功能语义重复
 现在我们再来看另外一个例子。在同一个项目代码中有下面两个函数：isValidIp() 和 checkIfIpValid()。尽管两个函数的命名不同，实现逻辑不同，但功能是相同的，都是用来判定 IP 地址是否合法的：
-```
+```java
 public boolean isValidIp(String ipAddress) 
 {
     if (StringUtils.isBlank(ipAddress)) 
@@ -179,7 +179,7 @@ public boolean checkIfIpValid(String ipAddress)
 
 ## 代码执行重复
 我们再来看第三个例子。其中，UserService 中 login() 函数用来校验用户登录是否成功。如果失败，就返回异常；如果成功，就返回用户信息。具体代码如下所示：
-```
+```java
 public class UserService 
 {
     private UserRepo userRepo; // 通过依赖注入或者IOC框架注入
@@ -233,7 +233,7 @@ public class UserRepo
 这样的优化是很有必要的。因为 checkIfUserExisted() 函数和 getUserByEmail() 函数都需要查询数据库，而数据库这类的 I/O 操作是比较耗时的。**我们在写代码的时候，应当尽量减少这类 I/O 操作**。
 
 按照刚刚的修改思路，**我们把代码重构一下，移除重复执行的代码**，只校验一次 email 和 password，并且只查询一次数据库。重构之后的代码如下所示：
-```
+```java
 public class UserService 
 {
     private UserRepo userRepo; // 通过依赖注入或者IOC框架注入

@@ -34,7 +34,7 @@ tags:
 
 ### 不该有直接依赖关系的类之间，不要有依赖
 这个例子实现了简化版的搜索引擎爬取网页的功能。代码中包含三个主要的类。其中，NetworkTransporter 类负责底层网络通信，根据请求获取数据；HtmlDownloader 类用来通过 URL 获取网页；Document 表示网页文档，后续的网页内容抽取、分词、索引都是以此为处理对象。具体的代码实现如下所示：
-```
+```java
 public class NetworkTransporter 
 {
     // 省略属性和其他方法...
@@ -76,7 +76,7 @@ public class Document
 作为一个底层网络通信类，我们希望它的功能尽可能通用，而不只是服务于下载 HTML，所以，我们不应该直接依赖太具体的发送对象 HtmlRequest。从这一点上讲，NetworkTransporter 类的设计违背迪米特法则，**依赖了不该有直接依赖关系的 HtmlRequest 类**。
 
 我这里有个形象的比喻。假如你现在要去商店买东西，你肯定不会直接把钱包给收银员，让收银员自己从里面拿钱，而是你从钱包里把钱拿出来交给收银员。这里的 HtmlRequest 对象就相当于钱包，HtmlRequest 里的 address 和 content 对象就相当于钱。我们**应该把 address 和 content 交给 NetworkTransporter**，而非是直接把 HtmlRequest 交给 NetworkTransporter。根据这个思路，NetworkTransporter 重构之后的代码如下所示：
-```
+```java
 public class NetworkTransporter 
 {
     // 省略属性和其他方法...
@@ -89,7 +89,7 @@ public class NetworkTransporter
 
 #### HtmlDownloader 类
 这个类的设计没有问题。不过，我们修改了 NetworkTransporter 的 send() 函数的定义，而这个类用到了 send() 函数，所以**我们需要对它做相应的修改**：
-```
+```java
 public class HtmlDownloader 
 {
     private NetworkTransporter transporter; // 通过构造函数或 IoC 注入
@@ -112,7 +112,7 @@ public class HtmlDownloader
 - 从业务含义上来讲，Document 网页文档没必要依赖 HtmlDownloader 类，违背了迪米特法则；
 
 虽然 Document 类的问题很多，但修改起来比较简单，只要一处改动就可以解决所有问题：
-```
+```java
 public class Document 
 {
     private Html html;
@@ -146,7 +146,7 @@ public class DocumentFactory
 
 ### 有依赖关系的类之间，尽量只依赖必要的接口
 下面这段代码非常简单，Serialization 类负责对象的序列化和反序列化：
-```
+```java
 public class Serialization 
 {
     public String serialize(Object object) 
@@ -168,7 +168,7 @@ public class Serialization
 单看这个类的设计，没有一点问题。不过，**如果我们把它放到一定的应用场景里，那就还有继续优化的空间**。假设在我们的项目中，有些类只用到了序列化操作，而另一些类只用到反序列化操作。只用到序列化操作的那部分类不应该依赖反序列化接口；同理，只用到反序列化操作的那部分类不应该依赖序列化接口。
 
 根据这个思路，我们应该将 Serialization 类拆分为两个更小粒度的类，一个只负责序列化（Serializer 类），一个只负责反序列化（Deserializer 类）。拆分之后，使用序列化操作的类只需要依赖 Serializer 类，使用反序列化操作的类只需要依赖 Deserializer 类：
-```
+```java
 public class Serializer 
 {
     public String serialize(Object object) 
@@ -193,7 +193,7 @@ public class Deserializer
 尽管拆分之后的代码**更能满足迪米特法则，但却违背了高内聚的设计思想**。如果我们修改了序列化的实现方式，比如从 JSON 换成了 XML，那反序列化的实现逻辑也需要一并修改。在未拆分的情况下，我们只需要修改一个类即可。在拆分之后，我们需要修改两个类。显然，**这种设计思路的代码改动范围变大了**。
 
 通过引入两个接口就能轻松解决这个问题：
-```
+```java
 public interface Serializable 
 {
     String serialize(Object object);

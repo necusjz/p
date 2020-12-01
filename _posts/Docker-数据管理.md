@@ -17,11 +17,11 @@ tags:
 <!--more-->
 ### 创建数据卷
 Docker 提供了 `volume` 子命令来管理数据卷，如下命令可以快速在本地创建一个数据卷：
-```
+```bash
 $ docker volume create -d local test
 ```
 查看创建的数据卷的位置：
-```
+```bash
 $ ls -l /var/lib/docker/volumes
 ```
 除了 create 外，**docker volume** 还支持 inspect、ls、prune、rm 等。
@@ -33,7 +33,7 @@ $ ls -l /var/lib/docker/volumes
 - tmpfs：临时数据卷，只存在于`内存`中。
 
 下面使用 /training/webapp 镜像创建一个 Web 容器，并创建一个数据卷挂载到容器的 /opt/webapp 目录：
-```
+```bash
 $ docker run -d -P --name web --mount type=bind, source=/webapp, destination=/opt/webapp training/webapp python app.py
 ```
 这个功能在进行`应用测试`的时候十分方便，本地目录的路径必须是绝对路径，容器内路径可以为相对路径。
@@ -41,11 +41,11 @@ $ docker run -d -P --name web --mount type=bind, source=/webapp, destination=/op
 
 ## 数据卷容器
 创建一个数据卷容器 dbdata，并在其中创建一个数据卷挂载到 /dbdata：
-```
+```bash
 $ docker run -it -v /dbdata --name dbdata ubuntu
 ```
 可以在其他容器中使用 `--volumes-from` 来挂载 dbdata 容器中的数据卷：
-```
+```bash
 $ docker run -it --volumes-from dbdata --name db1 ubuntu
 $ docker run -it --volumes-from dbdata --name db2 ubuntu
 ```
@@ -57,16 +57,16 @@ $ docker run -it --volumes-from dbdata --name db2 ubuntu
 可以利用数据卷容器对其中的数据**进行备份、恢复，以实现数据的迁移**。
 ### 备份
 使用下面的命令来备份 `dbdata` 数据卷容器内的数据卷：
-```
+```bash
 $ docker run --rm --volumes-from dbdata -v $(pwd):/backup busybox tar cvf /backup/backup.tar /dbdata
 ```
 ### 恢复
 首先创建一个带有数据卷的容器 `dbdata2`：
-```
+```bash
 $ docker run -v /dbdata --name dbdata2 ubuntu /bin/bash
 ```
 然后创建另一个临时容器，挂载 dbdata2 的数据卷，并解压备份文件到挂载的数据卷中：
-```
+```bash
 $ docker run --rm --volumes-from dbdata2 -v $(pwd):/backup busybox tar xvf /backup/backup.tar
 ```
 通过这些机制，即使容器在运行中出现故障，用户也不必担心数据发生丢失，只需要快速的重新创建容器即可。

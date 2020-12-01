@@ -13,7 +13,7 @@ tags:
 这个描述比较简略，如果我们详细表述一下，那就是，添加一个新的功能应该是，**在已有代码基础上扩展代码（新增模块、类、方法等），而非修改已有代码（修改模块、类、方法等）**。
 
 这是一段 API 接口监控告警的代码。其中，AlertRule 存储告警规则，可以自由设置。Notification 是告警通知类，支持邮件、短信、微信、手机等多种通知渠道。NotificationEmergencyLevel 表示通知的紧急程度，包括 SEVERE（严重）、URGENCY（紧急）、NORMAL（普通）、TRIVIAL（无关紧要），不同的紧急程度对应不同的发送渠道：
-```
+```java
 public class Alert 
 {
     private AlertRule rule;
@@ -44,7 +44,7 @@ public class Alert
 上面这段代码非常简单，业务逻辑主要集中在 check() 函数中。当接口的 TPS 超过某个预先设置的最大值时，以及当接口请求出错数大于某个最大允许值时，就会触发告警，通知接口的相关负责人或者团队。
 
 现在，如果我们需要添加一个功能，当每秒钟接口超时请求个数，超过某个预先设置的最大阈值时，我们也要触发告警发送通知。这个时候，我们该如何改动代码呢？主要的改动有两处：第一处是修改 check() 函数的入参，添加一个新的统计数据 timeoutCount，表示超时接口请求数；第二处是在 check() 函数中添加新的告警逻辑。具体的代码改动如下所示：
-```
+```java
 public class Alert 
 {
     //...省略AlertRule/Notification属性和构造函数...
@@ -80,7 +80,7 @@ public class Alert
 - 第二部分是引入 handler 的概念，**将 if 判断逻辑分散在各个 handler 中**；
 
 具体的代码实现如下所示：
-```
+```java
 public class Alert 
 {
     private List<AlertHandler> alertHandlers = new ArrayList<>();
@@ -157,7 +157,7 @@ public class ErrorAlertHandler extends AlertHandler
 ```
 
 上面的代码是对 Alert 的重构，我们再来看下，重构之后的 Alert 该如何使用呢？其中，ApplicationContext 是一个单例类，负责 Alert 的创建、组装（alertRule 和 notification 的依赖注入）、初始化（添加 handlers）工作：
-```
+```java
 public class ApplicationContext 
 {
     private AlertRule alertRule;
@@ -166,8 +166,8 @@ public class ApplicationContext
     
     public void initializeBeans() 
     {
-        alertRule = new AlertRule(/*.省略参数.*/); // 省略一些初始化代码
-        notification = new Notification(/*.省略参数.*/); // 省略一些初始化代码
+        alertRule = new AlertRule(/*省略参数*/); // 省略一些初始化代码
+        notification = new Notification(/*省略参数*/); // 省略一些初始化代码
         alert = new Alert();
         alert.addAlertHandler(new TpsAlertHandler(alertRule, notification));
         alert.addAlertHandler(new ErrorAlertHandler(alertRule, notification));
@@ -207,7 +207,7 @@ public class Demo
 - 在使用 Alert 类的时候，需要给 check() 函数的入参 apiStatInfo 对象设置 timeoutCount 的值；
 
 改动之后的代码如下所示：
-```
+```java
 public class Alert 
 { 
     // 代码未改动... 
@@ -247,8 +247,8 @@ public class ApplicationContext
     
     public void initializeBeans() 
     {
-        alertRule = new AlertRule(/*.省略参数.*/); // 省略一些初始化代码
-        notification = new Notification(/*.省略参数.*/); // 省略一些初始化代码
+        alertRule = new AlertRule(/*省略参数*/); // 省略一些初始化代码
+        notification = new Notification(/*省略参数*/); // 省略一些初始化代码
         alert = new Alert();
         alert.addAlertHandler(new TpsAlertHandler(alertRule, notification));
         alert.addAlertHandler(new ErrorAlertHandler(alertRule, notification));
@@ -297,7 +297,7 @@ public class Demo
 实际上，多态、依赖注入、基于接口而非实现编程，以及前面提到的抽象意识，说的都是同一种设计思路，只是从不同的角度、不同的层面来阐述而已。这也体现了“**很多设计原则、思想、模式都是相通的**”这一思想。
 
 比如，我们代码中通过 Kafka 来发送异步消息。对于这样一个功能的开发，我们要学会将其抽象成一组跟具体消息队列（Kafka）无关的异步消息接口。所有上层系统都依赖这组抽象的接口编程，并且通过依赖注入的方式来调用。当我们要替换新的消息队列的时候，比如将 Kafka 替换成 RocketMQ，可以很方便地拔掉老的消息队列实现，插入新的消息队列实现。具体代码如下所示：
-```
+```java
 // 这一部分体现了抽象意识
 public interface MessageQueue 
 { 

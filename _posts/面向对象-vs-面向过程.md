@@ -14,7 +14,7 @@ tags:
 
 首先，我们先来看，用面向过程这种编程风格写出来的代码是什么样子的。注意，下面的代码是用 C 语言这种面向过程的编程语言来编写的：
 <!--more-->
-```
+```cpp
 struct User 
 {
     char name[64];
@@ -24,23 +24,23 @@ struct User
 
 struct User parse_to_user(char* text) 
 {
-    // 将text(“小王&28&男”)解析成结构体struct User
+    // 将 text(“小王&28&男”) 解析成结构体 struct User
 }
 
 char* format_to_text(struct User user) 
 {
-    // 将结构体struct User格式化成文本（"小王\t28\t男"）
+    // 将结构体 struct User 格式化成文本 ("小王\t28\t男"）
 }
 
 void sort_users_by_age(struct User users[]) 
 {
-    // 按照年龄从小到大排序users
+    // 按照年龄从小到大排序 users
 }
 
 void format_user_file(char* origin_file_path, char* new_file_path) 
 {
     // open files...
-    struct User users[1024]; // 假设最大1024个用户
+    struct User users[1024]; // 假设最大 1024 个用户
     int count = 0;
     while(1) 
     {   // read until the file is empty
@@ -65,7 +65,7 @@ int main(char** args, int argv)
 ```
 
 然后，我们再来看，用面向对象这种编程风格写出来的代码是什么样子的。注意，下面的代码是用 Java 这种面向对象的编程语言来编写的：
-```
+```java
  public class User 
  {
     private String name;

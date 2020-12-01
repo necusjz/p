@@ -6,7 +6,7 @@ tags:
 ---
 ## 控制反转（IoC）
 控制反转的英文翻译是 Inversion of Control，缩写为 IoC。我们先通过一个例子来看一下，什么是控制反转：
-```
+```java
 public class UserServiceTest 
 {
     public static boolean doTest() 
@@ -31,7 +31,7 @@ public class UserServiceTest
 
 在上面的代码中，**所有的流程都由程序员来控制**。如果我们抽象出一个下面这样一个框架，我们再来看，如何利用框架来实现同样的功能。具体的代码实现如下所示：
 <!--more-->
-```
+```java
 public abstract class TestCase 
 {
     public void run() 
@@ -69,7 +69,7 @@ public class JunitApplication
 ```
 
 把这个简化版本的测试框架引入到工程中之后，我们只需要**在框架预留的扩展点，也就是 TestCase 类中的 doTest() 抽象函数中，填充具体的测试代码就可以实现之前的功能**了，完全不需要写负责执行流程的 main() 函数了。 具体的代码如下所示：
-```
+```java
 public class UserServiceTest extends TestCase 
 {
     @Override
@@ -91,7 +91,7 @@ JunitApplication.register(new UserServiceTest();
 依赖注入跟控制反转恰恰相反，它是**一种具体的编码技巧**。依赖注入的英文翻译是 Dependency Injection，缩写为 DI。对于这个概念，有一个非常形象的说法，那就是：依赖注入是一个标价 25 美元，实际上只值 5 美分的概念。也就是说，这个概念听起来很“高大上”，实际上，理解、应用起来非常简单。
 
 那到底什么是依赖注入呢？我们用一句话来概括就是：不通过 new() 的方式在类内部创建依赖类对象，而是**将依赖的类对象在外部创建好之后，通过构造函数、函数参数等方式传递（或注入）给类使用**。我们还是通过一个例子来解释一下。在这个例子中，Notification 类负责消息推送，依赖 MessageSender 类实现推送商品促销、验证码等消息给用户。我们分别用依赖注入和非依赖注入两种方式来实现一下。具体的实现代码如下所示：
-```
+```java
 // 非依赖注入实现方式
 public class Notification 
 {
@@ -142,7 +142,7 @@ Notification notification = new Notification(messageSender);
 ```
 
 通过依赖注入的方式来将依赖的类对象传递进来，这样就**提高了代码的扩展性，我们可以灵活地替换依赖的类**。这一点在我们之前讲“开闭原则”的时候也提到过。当然，上面代码还有继续优化的空间，我们还可以**把 MessageSender 定义成接口，基于接口而非实现编程**。改造后的代码如下所示：
-```
+```java
 public class Notification 
 {
     private MessageSender messageSender;
@@ -190,7 +190,7 @@ Notification notification = new Notification(messageSender);
 
 ## 依赖注入框架（DI Framework）
 在采用依赖注入实现的 Notification 类中，虽然我们不需要用类似 hard code 的方式，在类内部通过 new 来创建 MessageSender 对象，但是，这个**创建对象、组装（或注入）对象的工作仅仅是被移动到了更上层代码而已，还是需要我们程序员自己来实现**。具体代码如下所示：
-```
+```java
 public class Demo 
 {
     public static final void main(String args[]) 

@@ -20,7 +20,7 @@ tags:
 <!--more-->
 ### 把接口理解为一组 API 接口集合
 我们还是结合一个例子来讲解。微服务用户系统提供了一组跟用户相关的 API 给其他系统使用，比如：注册、登录、获取用户信息等。具体代码如下所示：
-```
+```java
 public interface UserService 
 {
     boolean register(String cellphone, String password);
@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService
 删除用户是一个非常慎重的操作，我们只希望通过后台管理系统来执行，所以这个接口只限于给后台管理系统使用。如果我们把它放到 UserService 中，那所有使用到 UserService 的系统，都可以调用这个接口。**不加限制地被其他业务系统调用，就有可能导致误删用户**。
 
 当然，**最好的解决方案是从架构设计的层面，通过接口鉴权的方式来限制接口的调用**。不过，如果暂时没有鉴权框架来支持，我们还可以**从代码设计的层面，尽量避免接口被误用**。我们参照接口隔离原则，调用者不应该强迫依赖它不需要的接口，将删除接口单独放到另外一个接口 RestrictedUserService 中，然后将 RestrictedUserService 只打包提供给后台管理系统来使用。具体的代码实现如下所示：
-```
+```java
 public interface UserService 
 {
     boolean register(String cellphone, String password);
@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService, RestrictedUserService
 
 ### 把接口理解为单个 API 接口或函数
 现在我们再换一种理解方式，把接口理解为单个接口或函数。那接口隔离原则就可以理解为：**函数的设计要功能单一，不要将多个不同的功能逻辑在一个函数中实现**。接下来，我们还是通过一个例子来解释一下：
-```
+```java
 public class Statistics 
 {
     private Long max;
@@ -86,7 +86,7 @@ public Statistics count(Collection<Long> dataSet)
 ```
 
 在上面的代码中，count() 函数的功能不够单一，**包含很多不同的统计功能，比如，求最大值、最小值、平均值等等**。按照接口隔离原则，我们应该把 count() 函数拆成几个更小粒度的函数，每个函数负责一个独立的统计功能。拆分之后的代码如下所示：
-```
+```java
 public Long max(Collection<Long> dataSet) { //... }
 public Long min(Collection<Long> dataSet) { //... } 
 public Long average(Collection<Long> dataSet) { //... }
@@ -101,7 +101,7 @@ public Long average(Collection<Long> dataSet) { //... }
 除了刚讲过的两种理解方式，我们还可以把接口理解为 OOP 中的接口概念，比如 Java 中的 `Interface`。
 
 假设我们的项目中用到了三个外部系统：Redis、MySQL、Kafka。每个系统都对应一系列配置信息，比如地址、端口、访问超时时间等。为了在内存中存储这些配置信息，供项目中的其他模块来使用，我们分别设计实现了三个 Configuration 类：RedisConfig、MysqlConfig、KafkaConfig。具体的代码实现如下所示：
-```
+```java
 public class RedisConfig 
 {
     private ConfigSource configSource; // 配置中心（比如 ZooKeeper）
@@ -140,7 +140,7 @@ public class MysqlConfig
 现在，我们有一个新的功能需求，希望支持 Redis 和 Kafka 配置信息的`热更新 (hot update)`。但是，因为某些原因，我们并不希望对 MySQL 的配置信息进行热更新。
 
 为了实现这样一个功能需求，我们设计实现了一个 ScheduledUpdater 类，以固定时间频率（periodInSeconds）来调用 RedisConfig、KafkaConfig 的 update() 方法更新配置信息。具体的代码实现如下所示：
-```
+```java
 public interface Updater 
 {
     void update();
@@ -217,7 +217,7 @@ public class Application
 ```
 
 刚刚的热更新的需求我们已经搞定了。现在，我们又有了一个新的监控功能需求。**通过命令行来查看 Zookeeper 中的配置信息是比较麻烦的**。所以，我们希望能有一种更加方便的配置信息查看方式。不过，出于某些原因，我们只想暴露 MySQL 和 Redis 的配置信息，不想暴露 Kafka 的配置信息。为了实现这样一个功能，我们还需要对上面的代码做进一步改造。改造之后的代码如下所示：
-```
+```java
 public interface Updater 
 {
     void update();
@@ -326,7 +326,7 @@ public class Application
 我们**设计了两个功能非常单一的接口：Updater 和 Viewer**。ScheduledUpdater 只依赖 Updater 这个跟热更新相关的接口，不需要被强迫去依赖不需要的 Viewer 接口，满足接口隔离原则。同理，SimpleHttpServer 只依赖跟查看信息相关的 Viewer 接口，不依赖不需要的 Updater 接口，也满足接口隔离原则。
 
 你可能会说，如果我们不遵守接口隔离原则，不设计 Updater 和 Viewer 两个小接口，而是设计一个大而全的 Config 接口，让 RedisConfig、KafkaConfig、MysqlConfig 都实现这个 Config 接口，并且将原来传递给 ScheduledUpdater 的 Updater 和传递给 SimpleHttpServer 的 Viewer，都替换为 Config，那会有什么问题呢？我们先来看一下，按照这个思路来实现的代码是什么样的：
-```
+```java
 public interface Config 
 {
     void update();
@@ -392,7 +392,7 @@ public class SimpleHttpServer
 这样的设计思路也是能工作的，但是对比前后两个设计思路，在同样的代码量、实现复杂度、同等可读性的情况下，第一种设计思路显然要比第二种好很多：
 1. 第一种设计思路更加灵活、易扩展、易复用
 因为 Updater、Viewer 职责更加单一，**单一就意味了通用、复用性好**。比如，我们现在又有一个新的需求，开发一个 Metrics 性能统计模块，并且希望将 Metrics 也通过 SimpleHttpServer 显示在网页上，以方便查看。这个时候，尽管 Metrics 跟 RedisConfig 等没有任何关系，但我们仍然可以让 Metrics 类实现非常通用的 Viewer 接口，复用 SimpleHttpServer 的代码实现。具体的代码如下所示：
-```
+```java
 public class ApiMetrics implements Viewer 
 {
     //...

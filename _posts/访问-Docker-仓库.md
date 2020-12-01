@@ -27,17 +27,17 @@ Docker Hub 是 Docker 官方提供的最大的公共镜像仓库，目前包括�
 访问 `https://hub.tenxcloud.com`，即可看到已存在的仓库和存储的镜像。
 ### 下载镜像
 要在镜像名称前添加注册服务器的具体地址，格式为：`index.tenxcloud.com/<namespace>/<repository>:<tag>`：
-```
+```bash
 $ docker pull index.tenxcloud.com/docker_library/node:latest
 ```
 下载后，可以更新镜像的标签，与官方标签保持一致，方便使用：
-```
+```bash
 $ docker tag index.tenxcloud.com/docker_library/node:latest node:latest
 ```
 ## 搭建本地私有仓库
 ### 使用 registry 镜像创建私有仓库
 可以通过官方提供的 registry 镜像，来简单搭建一套本地私有仓库环境：
-```
+```bash
 $ docker run -d -p 5000:5000 registry:2
 ```
 默认情况下，仓库会被创建在容器的 `/var/lib/registry` 目录下。
@@ -51,7 +51,7 @@ $ docker run -d -p 5000:5000 registry:2
 DOCKER_OPTS="--insecure-registry 10.0.2.2:5000"
 ```
 之后再重启 Docker 服务：
-```
+```bash
 $ sudo service docker restart
 ```
 如果要使用安全证书，用户也可以从较知名的 CA 服务商（如 verisign）申请公开的 SSL/TLS 证书，或者使用 OpenSSL 等软件来自行生成。

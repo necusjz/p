@@ -13,7 +13,7 @@ Java 这种编程语言，既支持抽象类，也支持接口，所以，为了
 ### 抽象类
 下面这段代码是一个比较典型的抽象类的使用场景（`模板设计模式`）。Logger 是一个记录日志的抽象类，FileLogger 和 MessageQueueLogger 继承 Logger，分别实现两种不同的日志记录方式：记录日志到文件中和记录日志到消息队列中。FileLogger 和 MessageQueueLogger 两个子类复用了父类 Logger 中的 name、enabled、minPermittedLevel 属性和 log() 方法，但因为这两个子类写日志的方式不同，它们又各自重写了父类中的 doLog() 方法：
 <!--more-->
-```
+```java
 // 抽象类
 public abstract class Logger 
 {
@@ -81,7 +81,7 @@ public class MessageQueueLogger extends Logger
 - **子类继承抽象类，必须实现抽象类中的所有抽象方法**。对应到例子代码中就是，所有继承 Logger 抽象类的子类，都必须重写 doLog() 方法；
 
 ### 接口
-```
+```java
 // 接口
 public interface Filter 
 {
@@ -148,7 +148,7 @@ public class Application
 不过，既然继承本身就能达到代码复用的目的，而继承也并不要求父类一定是抽象类，那我们不使用抽象类，照样也可以实现继承和复用。从这个角度上来讲，我们貌似并不需要抽象类这种语法呀。那**抽象类除了解决代码复用的问题，还有什么其他存在的意义吗？**
 
 我们还是拿之前那个打印日志的例子来讲解。我们先对上面的代码做下改造。在改造之后的代码中，Logger 不再是抽象类，只是一个普通的父类，删除了 Logger 中 log()、doLog() 方法，新增了 isLoggable() 方法。FileLogger 和 MessageQueueLogger 还是继承 Logger 父类，以达到代码复用的目的。具体的代码如下：
-```
+```java
 // 父类: 非抽象类, 就是普通的类. 删除了log(), doLog(), 新增了isLoggable()
 public class Logger 
 {
@@ -180,11 +180,11 @@ public class FileLogger extends Logger
     public void log(Level level, String message) 
     {
         if (!isLoggable()) return;
-        // 格式化level和message,输出到日志文件
+        // 格式化 level 和 message，输出到日志文件
         fileWriter.write(...);
     }
 }
-// 子类: 输出日志到消息中间件(比如kafka)
+// 子类: 输出日志到消息中间件(比如 kafka)
 public class MessageQueueLogger extends Logger 
 {
     private MessageQueueClient msgQueueClient;
@@ -197,14 +197,14 @@ public class MessageQueueLogger extends Logger
     public void log(Level level, String message) 
     {
         if (!isLoggable()) return;
-        // 格式化level和message,输出到消息中间件
+        // 格式化 level 和 message，输出到消息中间件
         msgQueueClient.send(...);
     }
 }
 ```
 
 这个设计思路虽然达到了代码复用的目的，但是**无法使用多态特性**了。像下面这样编写代码，就会出现编译错误，因为 Logger 中并没有定义 log() 方法：
-```
+```java
 Logger logger = new FileLogger("access-log", true, Level.WARN, "/users/wangzheng/access.log");
 logger.log(Level.ERROR, "This is a test log message.");
 ```
@@ -221,7 +221,7 @@ logger.log(Level.ERROR, "This is a test log message.");
 在前面举的例子中，我们使用 Java 的接口语法实现了一个 Filter 过滤器。不过，如果你熟悉的是 C++ 这种编程语言，你可能会说，**C++ 只有抽象类，并没有接口**，那从代码实现的角度上来说，是不是就无法实现 Filter 的设计思路了呢？
 
 我们先来回忆一下接口的定义：**接口中没有成员变量，只有方法声明，没有方法实现，实现接口的类必须实现接口中的所有方法**。只要满足这样几点，从设计的角度上来说，我们就可以把它叫作接口。实际上，要满足接口的这些语法特性并不难。在下面这段 C++ 代码中，我们就用抽象类模拟了一个接口（下面这段代码实际上是`策略模式`中的一段代码）：
-```
+```java
 class Strategy 
 { 
     // 用抽象类模拟接口
