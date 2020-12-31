@@ -2,7 +2,7 @@
 title: AOAPC 读书笔记-3
 date: 2017-05-07 15:17:54
 tags:
-  - C/C++
+  - C++
 ---
 > C++ 与 STL 入门
 

@@ -113,7 +113,7 @@ public class MessageSender
 {
     public void send(String cellphone, String message) 
     {
-        //....
+        //...
     }
 }
 // 使用 Notification
@@ -169,7 +169,7 @@ public class SmsSender implements MessageSender
     @Override
     public void send(String cellphone, String message) 
     {
-        //....
+        //...
     }
 }
 
@@ -179,7 +179,7 @@ public class InboxSender implements MessageSender
     @Override
     public void send(String cellphone, String message) 
     {
-        //....
+        //...
     }
 }
 

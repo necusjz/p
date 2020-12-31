@@ -47,9 +47,9 @@ public class Alert
 ```java
 public class Alert 
 {
-    //...省略AlertRule/Notification属性和构造函数...
+    //...省略 AlertRule/Notification 属性和构造函数...
     
-    // 改动一：添加参数timeoutCount
+    // 改动一：添加参数 timeoutCount
     public void check(String api, long requestCount, long errorCount, long timeoutCount, long durationOfSeconds) 
     {
         long tps = requestCount / durationOfSeconds;
@@ -101,7 +101,7 @@ public class Alert
 
 public class ApiStatInfo 
 {
-    // 省略constructor/getter/setter方法
+    // 省略 constructor/getter/setter 方法
     private String api;
     private long requestCount;
     private long errorCount;
@@ -194,7 +194,7 @@ public class Demo
     public static void main(String[] args) 
     {
         ApiStatInfo apiStatInfo = new ApiStatInfo();
-        //...省略设置apiStatInfo数据值的代码
+        //...省略设置 apiStatInfo 数据值的代码
         ApplicationContext.getInstance().getAlert().check(apiStatInfo);
     }
 }
@@ -214,7 +214,7 @@ public class Alert
 }
 public class ApiStatInfo 
 {
-    // 省略constructor/getter/setter方法
+    // 省略 constructor/getter/setter 方法
     private String api;
     private long requestCount;
     private long errorCount;
@@ -233,7 +233,7 @@ public class ErrorAlertHandler extends AlertHandler
 {
     // 代码未改动...
 }
-// 改动二：添加新的handler
+// 改动二：添加新的 handler
 public class TimeoutAlertHandler extends AlertHandler 
 {
     // 省略代码...
@@ -252,7 +252,7 @@ public class ApplicationContext
         alert = new Alert();
         alert.addAlertHandler(new TpsAlertHandler(alertRule, notification));
         alert.addAlertHandler(new ErrorAlertHandler(alertRule, notification));
-        // 改动三：注册handler
+        // 改动三：注册 handler
         alert.addAlertHandler(new TimeoutAlertHandler(alertRule, notification));
     }
     //...省略其他未改动代码...
@@ -263,8 +263,8 @@ public class Demo
     public static void main(String[] args) 
     {
         ApiStatInfo apiStatInfo = new ApiStatInfo();
-        //...省略apiStatInfo的set字段代码
-        apiStatInfo.setTimeoutCount(289); // 改动四：设置timeoutCount值
+        //...省略 apiStatInfo 的 set 字段代码
+        apiStatInfo.setTimeoutCount(289); // 改动四：设置 timeoutCount 值
         ApplicationContext.getInstance().getAlert().check(apiStatInfo);
     }
 }
