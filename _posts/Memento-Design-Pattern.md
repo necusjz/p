@@ -6,7 +6,7 @@ tags:
 ---
 ## 备忘录模式的原理与实现
 `备忘录模式`，也叫快照（Snapshot）模式，英文翻译是 Memento Design Pattern。它是这么定义的：
-> Captures and externalizes an object’s internal state so that it can be restored later, all without violating encapsulation.
+> Captures and externalizes an object's internal state so that it can be restored later, all without violating encapsulation.
 
 翻译成中文就是：**在不违背封装原则的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态，以便之后恢复对象为先前的状态**。在我看来，这个模式的定义主要表达了两部分内容：一部分是，存储副本以便后期恢复；另一部分是，要在不违背封装原则的前提下，进行对象的备份和恢复。接下来，我就结合一个例子来解释一下，带你搞清楚这两个问题：
 - 为什么存储和恢复副本会违背封装原则？

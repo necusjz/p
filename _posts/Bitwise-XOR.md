@@ -7,7 +7,7 @@ tags:
 XOR is a logical bitwise operator that returns 0 (false) if both bits are the same and returns 1 (true) otherwise. In other words, it only returns 1 if exactly one bit is set to 1 out of the two bits in comparison:
 ![](https://raw.githubusercontent.com/was48i/mPOST/master/CodingInterview/educative/04.png)
 
-It is surprising to know the approaches that the XOR operator enables us to solve certain problems. For example, let’s take a look at the following problem:
+It is surprising to know the approaches that the XOR operator enables us to solve certain problems. For example, let's take a look at the following problem:
 > Given an array of n-1 integers in the range from 1 to n, find the one number that is missing from the array.
 
 Example:
@@ -17,7 +17,7 @@ Answer: 3
 ```
 
 A straight forward approach to solve this problem can be:
-1. Find the sum of all integers from 1 to n; let’s call it `s1`;
+1. Find the sum of all integers from 1 to n; let's call it `s1`;
 2. Subtract all the numbers in the input array from `s1`; this will give us the missing number;
 
 <!--more-->
@@ -41,8 +41,8 @@ def find_missing_number(arr):
 > While finding the sum of numbers from 1 to n, we can get integer overflow when n is large.
 
 Remember the important property of XOR that it returns 0 if both the bits in comparison are the same. In other words, XOR of a number with itself will always result in 0. This means that if we XOR all the numbers in the input array with all numbers from the range 1 to n then each number in the input is going to get zeroed out except the missing number. Following are the set of steps to find the missing number using XOR:
-1. XOR all the numbers from 1 to n, let’s call it `x1`;
-2. XOR all the numbers in the input array, let’s call it `x2`;
+1. XOR all the numbers from 1 to n, let's call it `x1`;
+2. XOR all the numbers in the input array, let's call it `x2`;
 3. The missing number can be found by `x1 XOR x2`;
 
 Here is what the algorithm will look like:

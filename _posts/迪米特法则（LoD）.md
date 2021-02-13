@@ -27,7 +27,7 @@ tags:
 > The Least Knowledge Principle.
 
 关于这个设计原则，我们先来看一下它最原汁原味的英文定义：
-> Each unit should have only limited knowledge about other units: only units “closely” related to the current unit. Or: Each unit should only talk to its friends; Don’t talk to strangers.
+> Each unit should have only limited knowledge about other units: only units “closely” related to the current unit. Or: Each unit should only talk to its friends; Don't talk to strangers.
 
 我们之前讲过，大部分设计原则和思想都非常抽象，有各种各样的解读，**要想灵活地应用到实际的开发中，需要有实战经验的积累**。迪米特法则也不例外。所以，我结合我自己的理解和经验，对刚刚的定义重新描述一下：
 > 不该有直接依赖关系的类之间，不要有依赖；有依赖关系的类之间，尽量只依赖必要的接口（也就是定义中的**有限知识**）。

@@ -208,7 +208,7 @@ public class Demo
 
 ## 依赖反转原则（DIP）
 依赖反转原则的英文翻译是 Dependency Inversion Principle，缩写为 DIP。中文翻译有时候也叫依赖倒置原则。为了追本溯源，我先给出这条原则最原汁原味的英文描述：
-> High-level modules shouldn’t depend on low-level modules. Both modules should depend on abstractions. In addition, abstractions shouldn’t depend on details. Details depend on abstractions.
+> High-level modules shouldn't depend on low-level modules. Both modules should depend on abstractions. In addition, abstractions shouldn't depend on details. Details depend on abstractions.
 
 我们将它翻译成中文，大概意思就是：高层模块（high-level modules）不要依赖低层模块（low-level modules）。**高层模块和低层模块应该通过抽象（abstractions）来互相依赖**。除此之外，抽象（abstractions）不要依赖具体实现细节（details），具体实现细节（details）依赖抽象（abstractions）。
 

@@ -18,7 +18,7 @@ But what **about deployment**? How can you make sure that a code change is sent 
 
 After “outsourcing” your sessions and serving the same codebase from all your servers, you can now create an image file from one of these servers (AWS calls this `AMI` - **A**mazon **M**achine **I**mage.) Use this AMI as a “super-clone” that all your **new instances are based upon**. Whenever you start a new instance/clone, just do an initial deployment of your latest code and you are ready!
 ## Database
-After following "Clones", your servers can now **horizontally scale** and you can already **serve thousands of concurrent requests**. But somewhere down the road your application gets slower and slower and finally breaks down. The reason: your database. It’s MySQL, isn’t it?
+After following "Clones", your servers can now **horizontally scale** and you can already **serve thousands of concurrent requests**. But somewhere down the road your application gets slower and slower and finally breaks down. The reason: your database. It's MySQL, isn't it?
 
 Now the required changes are more radical than just adding more cloned servers and may even require some boldness. In the end, you can choose from 2 paths:
 ### Path #1
@@ -30,15 +30,15 @@ After following "Database", you now have a **scalable database solution**. You h
 
 With “cache” I always mean in-memory caches like `Memcached` or `Redis`. Please **never do file-based caching**, it makes cloning and auto-scaling of your servers just a pain. 
 
-But back to in-memory caches. A cache is a simple key-value store and it should reside as **a buffering layer** between your application and your data storage. Whenever your application has to read data it should at first try to retrieve the data from your cache. Only if it’s not in the cache should it then try to get the data from the main data source. Why should you do that? Because a cache is lightning-fast. It holds every dataset in RAM and requests are handled as fast as technically possible. For example, Redis can do **several hundreds of thousands of read operations per second** when being hosted on a standard server. Also writes, especially increments, are very, very fast. Try that with a database!
+But back to in-memory caches. A cache is a simple key-value store and it should reside as **a buffering layer** between your application and your data storage. Whenever your application has to read data it should at first try to retrieve the data from your cache. Only if it's not in the cache should it then try to get the data from the main data source. Why should you do that? Because a cache is lightning-fast. It holds every dataset in RAM and requests are handled as fast as technically possible. For example, Redis can do **several hundreds of thousands of read operations per second** when being hosted on a standard server. Also writes, especially increments, are very, very fast. Try that with a database!
 
 There are 2 patterns of caching your data. An old one and a new one:
 ### Cached Database Queries
-That’s still the most commonly used caching pattern. Whenever you do a query to your database, you **store the result dataset** in cache. A **hashed version of your query is the cache key**. The next time you run the query, you first check if it is already in the cache. The next time you run the query, you check at first the cache if there is already a result. This pattern has several issues. The main issue is the expiration. It is hard to delete a cached result when you cache a complex query (who has not?). 
+That's still the most commonly used caching pattern. Whenever you do a query to your database, you **store the result dataset** in cache. A **hashed version of your query is the cache key**. The next time you run the query, you first check if it is already in the cache. The next time you run the query, you check at first the cache if there is already a result. This pattern has several issues. The main issue is the expiration. It is hard to delete a cached result when you cache a complex query (who has not?). 
 > When one piece of data changes (for example a table cell) you need to delete all cached queries who may include that table cell.
 
 ### Cached Objects
-That’s my strong recommendation and I always prefer this pattern. In general, see your data as an object like you already do in your code (classes, instances, etc.). 
+That's my strong recommendation and I always prefer this pattern. In general, see your data as an object like you already do in your code (classes, instances, etc.). 
 > Let your class assemble a dataset from your database and then store the complete instance of the class or the assembled dataset in the cache.
 
 Sounds theoretical, I know, but just look how you normally code. You have, for example, a class called “Product” which has a property called “data”. It is an array containing prices, texts, pictures, and customer reviews of your product. The property “data” is filled by several methods in the class doing several database requests which are hard to cache, since many things relate to each other. Now, do the following: when your class has finished the “assembling” of the data array, **directly store the data array**, or better yet the complete instance of the class, in the cache! This allows you to easily get rid of the object whenever something did change and makes the overall operation of your code faster and more logical.
@@ -55,13 +55,13 @@ As you maybe already realized, I am a huge fan of caching. It is easy to underst
 
 Happy caching!
 ## Asynchronism
-Start with a picture: please imagine that you want to buy bread at your favorite bakery. So you go into the bakery, ask for a loaf of bread, but there is no bread there! Instead, you are asked to come back in 2 hours when your ordered bread is ready. That’s annoying, isn’t it?
+Start with a picture: please imagine that you want to buy bread at your favorite bakery. So you go into the bakery, ask for a loaf of bread, but there is no bread there! Instead, you are asked to come back in 2 hours when your ordered bread is ready. That's annoying, isn't it?
 
-To avoid such a “please wait a while” - situation, **asynchronism needs to be done**. And what’s good for a bakery, is maybe also good for your web service or web app.
+To avoid such a “please wait a while” - situation, **asynchronism needs to be done**. And what's good for a bakery, is maybe also good for your web service or web app.
 
 In general, there are two ways/paradigms asynchronism can be done:
 ### Async #1
-Let’s stay in the former bakery picture. The first way of async processing is the “bake the breads at night and sell them in the morning” way. No waiting time at the cash register and a happy customer. Referring to a web app this means **doing the time-consuming work in advance** and **serving the finished work with a low request time**.
+Let's stay in the former bakery picture. The first way of async processing is the “bake the breads at night and sell them in the morning” way. No waiting time at the cash register and a happy customer. Referring to a web app this means **doing the time-consuming work in advance** and **serving the finished work with a low request time**.
 
 Very often this paradigm is used to **turn dynamic content into static content**. Pages of a website, maybe built with a massive framework or CMS (**C**ontent **M**anagement **S**ystem), are pre-rendered and locally stored as static HTML files on every change. Often these computing tasks are done on a regular basis, maybe by a script which is called every hour by a cronjob. This pre-computing of overall general data can extremely improve websites and web apps and makes them very scalable and efficient. Just imagine the scalability of your website if the script would upload these pre-rendered HTML pages to AWS S3 or CloudFront or another Content Delivery Network! Your website would be super responsive and could **handle millions of visitors per hour**!
 ### Async #2

@@ -18,8 +18,8 @@ To utilize full scalability and redundancy, we can try to balance the load at ea
 ![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/02.png)
 
 ## Benefits of Load Balancing
-- Users experience faster, uninterrupted service. Users won’t have to wait for a single struggling server to finish its previous tasks. Instead, their requests are immediately passed on to a more readily available resource;
-- Service providers experience less downtime and higher throughput. Even a full server failure won’t affect the end user experience as the load balancer will simply route around it to a healthy server;
+- Users experience faster, uninterrupted service. Users won't have to wait for a single struggling server to finish its previous tasks. Instead, their requests are immediately passed on to a more readily available resource;
+- Service providers experience less downtime and higher throughput. Even a full server failure won't affect the end user experience as the load balancer will simply route around it to a healthy server;
 - Load balancing makes it easier for system administrators to handle incoming requests while decreasing wait time for users;
 - Smart load balancers provide benefits like predictive analytics that determine traffic bottlenecks before they happen. As a result, the smart load balancer gives an organization actionable insights. These are key to automation and can help drive business decisions;
 - System administrators experience fewer failed or stressed components. Instead of a single device performing a lot of work, load balancing has several devices perform a little bit of work;
@@ -28,7 +28,7 @@ To utilize full scalability and redundancy, we can try to balance the load at ea
 **How does the load balancer choose the backend server?**
 Load balancers consider two factors before forwarding a request to a backend server. They will first ensure that the server they choose is actually responding appropriately to requests and then use a pre-configured algorithm to select one from the set of healthy servers. We will discuss these algorithms shortly.
 
-**Health Checks**: Load balancers should only forward traffic to 'healthy' backend servers. To monitor the health of a backend server, 'health checks' regularly attempt to connect to backend servers to ensure that servers are listening. If a server fails a health check, it is automatically removed from the pool, and traffic will not be forwarded to it until it responds to the health checks again.
+**Health Checks**: Load balancers should only forward traffic to "healthy" backend servers. To monitor the health of a backend server, "health checks" regularly attempt to connect to backend servers to ensure that servers are listening. If a server fails a health check, it is automatically removed from the pool, and traffic will not be forwarded to it until it responds to the health checks again.
 
 There is a variety of load balancing methods, which use different algorithms for different needs:
 - **Least Connection Method**: This method directs traffic to the server with the fewest active connections. This approach is quite useful when there are a large number of persistent client connections which are unevenly distributed between the servers;
@@ -43,6 +43,6 @@ The load balancer can be a single point of failure; to overcome this, a second l
 ![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/03.png)
 
 Following links have some good discussion about load balancers:
-\[1] [What is load balancing](https://avinetworks.com/what-is-load-balancing/)
-\[2] [Introduction to architecting systems](https://lethain.com/introduction-to-architecting-systems-for-scale/)
-\[3] [Load balancing](https://en.wikipedia.org/wiki/Load_balancing_(computing))
+[1] [What is load balancing](https://avinetworks.com/what-is-load-balancing/)
+[2] [Introduction to architecting systems](https://lethain.com/introduction-to-architecting-systems-for-scale/)
+[3] [Load balancing](https://en.wikipedia.org/wiki/Load_balancing_(computing))

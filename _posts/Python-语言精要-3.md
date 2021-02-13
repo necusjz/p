@@ -174,7 +174,7 @@ def format_and_pad(template, space):
 fmt = format_and_pad('%.4f', 15)
 fmt(1.756)
 
->>> ’         1.7560‘
+>>> '         1.7560'
 ```
 > 通过面向对象编程，这种模式也能用类来实现。
 

@@ -7,7 +7,7 @@ tags:
 `In-memory database technology` is a core feature of the SAP HANA database, which enables new applications that were not possible before.
 ## Impact of Modern Hardware on Database System Architecture
 In the past database management systems were designed for optimizing performance on hardware with limited main memory and with slow disk I/O as the main bottleneck. The focus was on **optimizing disk access**, for example by minimizing the number of disk pages to be read into main memory when processing a query.
-Today’s computer architectures have changed. With `multi-core processors`, parallel processing is possible with fast communication between processor cores. Very large main memory configurations are now commercially available and affordable.
+Today's computer architectures have changed. With `multi-core processors`, parallel processing is possible with fast communication between processor cores. Very large main memory configurations are now commercially available and affordable.
 With all relevant data in memory, disk access is no longer a limiting factor for performance. With the increasing number of cores, CPUs are able to process more and more data per time interval. That means the performance bottleneck is now **between the CPU cache and main memory**.
 ![](https://raw.githubusercontent.com/was48i/mPOST/master/HANA/2-1.jpg)
 A `high performance data management system` for modern hardware must have the following characteristics:
