@@ -17,11 +17,11 @@ The shortened URL is nearly one-third the size of the actual URL.
 URL shortening is used to optimize links across devices, track individual links to analyze audience, measure ad campaigns’ performance, or hide affiliated original URLs.
 
 If you haven't used [tinyurl.com](https://tinyurl.com/app) before, please try creating a new shortened URL and spend some time going through the various options their service offers. This will help you a lot in understanding this chapter.
+<!--more-->
 
 ## Requirements and Goals of the System
 > You should always clarify requirements at the beginning of the interview. Be sure to ask questions to find the exact scope of the system that the interviewer has in mind.
 
-<!--more-->
 Our URL shortening system should meet the following requirements:
 **Functional Requirements**:
 1. Given a URL, our service should generate a shorter and unique alias of it. This is called a short link. This link should be short enough to be easily copied and pasted into applications;

@@ -17,13 +17,13 @@ We'll focus on the following set of requirements while designing Instagram:
 3. Users can follow other users;
 4. The system should generate and display a user's News Feed consisting of top photos from all the people the user follows;
 
-**Non-functional Requirements**:
+**Non-Functional Requirements**:
 1. Our service needs to be highly available;
 2. The acceptable latency of the system is 200ms for News Feed generation;
 3. Consistency can take a hit (in the interest of availability) if a user doesn't see a photo for a while; it should be fine;
 4. The system should be highly reliable; any uploaded photo or video should never be lost;
 
-**Not in scope**: Adding tags to photos, searching photos on tags, commenting on photos, tagging users to photos, who to follow, etc.
+**Not in Scope**: Adding tags to photos, searching photos on tags, commenting on photos, tagging users to photos, who to follow, etc.
 <!--more-->
 
 ## Some Design Considerations

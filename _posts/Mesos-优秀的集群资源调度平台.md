@@ -60,16 +60,16 @@ Marathon 作为 Mesos 的一个应用框架，配置要更为简单，**必需�
 ### 访问 Mesos 图形界面
 Mesos 自带了 Web 图形界面，可以方便用户查看集群状态。
 用户在 Mesos 主节点服务和从节点服务都启动后，可以通过浏览器访问主节点 `5050` 端口，看到如下界面：
-![](https://raw.githubusercontent.com/was48i/mPOST/master/Mesos/01.jpg)
+![](https://raw.githubusercontent.com/was48i/mPOST/master/Kubernetes/01.jpg)
 ### 访问 Marathon 图形界面
 Marathon 服务启动后，在 Mesos 的 Web 界面的 Frameworks 标签页下面将能看到名称为 marathon 的框架出现。
 同时，可以通过浏览器访问 `8080` 端口，看到 Marathon 自己的管理界面：
-![](https://raw.githubusercontent.com/was48i/mPOST/master/Mesos/02.jpg)
+![](https://raw.githubusercontent.com/was48i/mPOST/master/Kubernetes/02.jpg)
 ## 原理与架构
 基于 Mesos，可以比较容易地为各种应用管理框架或者中间件平台，**提供分布式运行能力**；同时多个框架也可以同时运行在一个 Mesos 集群中，**提高整体的资源使用率**。
 ### 架构
 Mesos 的基本架构：
-![](https://raw.githubusercontent.com/was48i/mPOST/master/Mesos/03.jpg)
+![](https://raw.githubusercontent.com/was48i/mPOST/master/Kubernetes/03.jpg)
 Mesos 采用了经典的主-从架构，其中主节点可以使用 ZooKeeper 来做 HA。
 Mesos slave 服务运行在各个计算任务节点上，负责完成具体任务的应用框架，并与 Mesos master 进行交互申请资源。
 ### 基本单元
@@ -112,7 +112,7 @@ framework 可以通过`过滤器机制`告诉 master 它的资源偏好。过滤
 Mesos 的配置项分为三种类型：通用项、master 专属配置项、slave 专属配置项。
 ### 通用项
 通用项数量不多，主要涉及服务绑定地址和日志信息等：
-![](https://raw.githubusercontent.com/was48i/mPOST/master/Mesos/04.jpg)
+![](https://raw.githubusercontent.com/was48i/mPOST/master/Kubernetes/04.jpg)
 ### master 专属配置项
 这些配置项是针对主节点上的 Mesos master 服务的，围绕高可用、注册信息、对应用框架的资源管理等。
 **必须指定**的配置项有以下三个：
@@ -141,5 +141,5 @@ Mesos 提供了方便的`监控接口`，供用户查看集群中各个节点的
 ## 常见应用框架
 应用框架是实际干活的，可以理解为 Mesos 之上跑的应用，应用框架**注册到 Mesos master 服务**上即可使用。
 Mesos 目前支持的应用框架分为四大类：**长期运行任务**、**大数据处理**、**批量调度**、**数据存储**。
-![](https://raw.githubusercontent.com/was48i/mPOST/master/Mesos/05.jpg)
+![](https://raw.githubusercontent.com/was48i/mPOST/master/Kubernetes/05.jpg)
 > 结合 Docker，Mesos 可以很容易部署一套私有的容器云，可以很好地应用并集成到生产环境中；但它的定位集中在资源调度，往往需要结合应用框架或二次开发。
