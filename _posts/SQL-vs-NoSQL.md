@@ -19,7 +19,7 @@ Following are the most common types of NoSQL:
 - **Graph Databases**: These databases are used to store data whose relations are best represented in a graph. Data is saved in graph structures with nodes (entities), properties (information about the entities), and lines (connections between the entities). Examples of graph database include Neo4J and InfiniteGraph;
 
 <!--more-->
-## High Level Differences between SQL and NoSQL
+## High-Level Differences between SQL and NoSQL
 **Storage**: SQL stores data in tables where each row represents an entity and each column represents a data point about that entity; for example, if we are storing a car entity in a table, different columns could be "Color", "Make", "Model", and so on.
 NoSQL databases have different data storage models. The main ones are key-value, document, graph, and columnar. We will discuss differences between these databases below.
 

@@ -43,7 +43,7 @@ What do we wish to achieve from a Cloud Storage system? Here are the top-level r
     > 100B * 100KB = 10PB
 - Let's also assume that we will have one million active connections per minute;
 
-## High Level Design
+## High-Level Design
 The user will specify a folder as the workspace on their device. Any file/photo/folder placed in this folder will be uploaded to the cloud, and whenever a file is modified or deleted, it will be reflected in the same way in the cloud storage. The user can specify similar workspaces on all their devices and any modification done on one device will be propagated to all other devices to have the same view of the workspace everywhere.
 
 At a high level, we need to store files and their metadata information like File Name, File Size, Directory, etc., and who this file is shared with. So, we need some servers that can help the clients to upload/download files to Cloud Storage and some servers that can facilitate updating metadata about files and users. We also need some mechanism to notify all clients whenever an update happens so they can synchronize their files:

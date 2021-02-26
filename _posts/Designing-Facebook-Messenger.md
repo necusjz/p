@@ -27,7 +27,7 @@ Our Messenger should meet the following requirements:
 ## Capacity Estimation and Constraints
 Let's assume that we have 500 million daily active users and on average each user sends 40 messages daily; this gives us 20 billion messages per day.
 
-**Storage Estimation**: Let's assume that on average a message is 100 bytes, so to store all the messages for one day we would need 2TB of storage:
+**Storage estimates**: Let's assume that on average a message is 100 bytes, so to store all the messages for one day we would need 2TB of storage:
 > 20 billion messages * 100 bytes = 2 TB/day
 
 To store five years of chat history, we would need 3.6 petabytes of storage:
@@ -35,15 +35,15 @@ To store five years of chat history, we would need 3.6 petabytes of storage:
 
 Other than the chat messages, we would also need to store users' information, messages' metadata (ID, Timestamp, etc.). Not to mention, the above calculation doesn't take data compression and replication into consideration.
 
-**Bandwidth Estimation**: If our service is getting 2TB of data every day, this will give us 25MB of incoming data for each second:
+**Bandwidth estimates**: If our service is getting 2TB of data every day, this will give us 25MB of incoming data for each second:
 > 2 TB / 86400 sec ≈ 25 MB/s
 
 Since each incoming message needs to go out to another user, we will need the same amount of bandwidth 25MB/s for both upload and download.
 
-**High level estimates**:
+**High-level estimates**:
 ![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/36.png)
 
-## High Level Design
+## High-Level Design
 At a high-level, we will need a chat server that will be the central piece, orchestrating all the communications between users. When a user wants to send a message to another user, they will connect to the chat server and send the message to the server; the server then passes that message to the other user and also stores it in the database:
 ![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/37.png)
 

@@ -38,7 +38,7 @@ search(api_dev_key, search_terms, maximum_results_to_return, sort, page_token)
 
 **Return**: A JSON containing information about a list of tweets matching the search query. Each result entry can have the user ID & name, tweet text, tweet ID, creation time, number of likes, etc.
 
-## High Level Design
+## High-Level Design
 At the high level, we need to store all the tweets in a database and also build an index that can keep track of which word appears in which tweet. This index will help us quickly find tweets that the users are trying to search for:
 ![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/56.png)
 

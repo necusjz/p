@@ -67,7 +67,7 @@ tweet(api_dev_key, tweet_data, tweet_location, user_location, media_ids)
 
 **Returns**: A successful post will return the URL to access that tweet. Otherwise, an appropriate HTTP error is returned.
 
-## High Level System Design
+## High-Level System Design
 We need a system that can efficiently store all the new tweets, "100M/86400s ≈ 1150" tweets per second and read "28B/86400s ≈ 325K" tweets per second. It is clear from the requirements that this will be a read-heavy system.
 At a high level, we need multiple application servers to serve all these requests with load balancers in front of them for traffic distributions. On the backend, we need an efficient database that can store all the new tweets and can support a huge number of reads. We also need some file storage to store photos and videos:
 ![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/40.png)

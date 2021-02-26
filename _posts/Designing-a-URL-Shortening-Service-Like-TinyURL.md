@@ -70,7 +70,7 @@ To cache 20% of these requests, we will need 170GB of memory:
 
 One thing to note here is that since there will be many duplicate requests (of the same URL), our actual memory usage will be less than 170GB.
 
-**High-level estimates**: Assuming 500 million new URLs per month and 100:1 read:write ratio, following is the summary of the high level estimates for our service:
+**High-level estimates**: Assuming 500 million new URLs per month and 100:1 read:write ratio, following is the summary of the high-level estimates for our service:
 ![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/19.png)
 
 ## System APIs

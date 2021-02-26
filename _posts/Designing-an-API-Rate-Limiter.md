@@ -49,7 +49,7 @@ Following are the two types of algorithms used for Rate Limiting:
 
 ![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/49.png)
 
-## High Level Design for Rate Limiter
+## High-Level Design for Rate Limiter
 Rate Limiter will be responsible for deciding which request will be served by the API servers and which request will be declined. Once a new request arrives, the Web Server first asks the Rate Limiter to decide if it will be served or throttled. If the request is not throttled, then it'll be passed to the API servers:
 ![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/50.png)
 
