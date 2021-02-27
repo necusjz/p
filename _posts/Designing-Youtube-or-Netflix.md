@@ -87,7 +87,7 @@ streamVideo(api_dev_key, video_id, offset, codec, resolution)
 **Returns**: A media stream (a video chunk) from the given offset;
 
 ## High-Level Design
-At a high-level we would need the following components:
+At a high level we would need the following components:
 1. **Processing Queue**: Each uploaded video will be pushed to a processing queue to be de-queued later for encoding, thumbnail generation, and storage;
 2. **Encoder**: To encode each uploaded video into multiple formats;
 3. **Thumbnails Generator**: To generate a few thumbnails for each video;

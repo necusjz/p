@@ -44,7 +44,7 @@ Since each incoming message needs to go out to another user, we will need the sa
 ![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/36.png)
 
 ## High-Level Design
-At a high-level, we will need a chat server that will be the central piece, orchestrating all the communications between users. When a user wants to send a message to another user, they will connect to the chat server and send the message to the server; the server then passes that message to the other user and also stores it in the database:
+At a high level, we will need a chat server that will be the central piece, orchestrating all the communications between users. When a user wants to send a message to another user, they will connect to the chat server and send the message to the server; the server then passes that message to the other user and also stores it in the database:
 ![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/37.png)
 
 The detailed workflow would look like this:

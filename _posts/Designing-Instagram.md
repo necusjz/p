@@ -42,7 +42,7 @@ The system would be read-heavy, so we will focus on building a system that can r
     > 400GB * 365 (days a year) * 10 (years) = 1425 TB
 
 ## High-Level System Design
-At a high-level, we need to support two scenarios, one to upload photos and the other to view/search photos. Our service would need some object storage servers to store photos and some database servers to store metadata information about the photos:
+At a high level, we need to support two scenarios, one to upload photos and the other to view/search photos. Our service would need some object storage servers to store photos and some database servers to store metadata information about the photos:
 ![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/28.png)
 
 ## Database Schema

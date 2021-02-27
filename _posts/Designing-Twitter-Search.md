@@ -33,7 +33,7 @@ search(api_dev_key, search_terms, maximum_results_to_return, sort, page_token)
 - api_dev_key: The API developer key of a registered account. This will be used to, among other things, throttle users based on their allocated quota;
 - search_terms: A string containing the search terms;
 - maximum_results_to_return: Number of tweets to return;
-- sort: Latest first (0 - default), Best matched (1), Most liked (2);
+- sort: Optional; Latest First (0, default), Best Matched (1), Most Liked (2);
 - page_token: This token will specify a page in the result set that should be returned;
 
 **Return**: A JSON containing information about a list of tweets matching the search query. Each result entry can have the user ID & name, tweet text, tweet ID, creation time, number of likes, etc.
