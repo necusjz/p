@@ -64,7 +64,7 @@ To all these customers we need to send DriverID (3 bytes) and their location (16
 **How will the new publishers/drivers get added for a current customer**? As we have proposed above, customers will be subscribed to nearby drivers when they open the Uber app for the first time, what will happen when a new driver enters the area the customer is looking at? To add a new customer/driver subscription dynamically, we need to keep track of the area the customer is watching. This will make our solution complicated.
 
 **How about if clients pull information about nearby drivers from the server**? Clients can send their current location, and the server will find all the nearby drivers from the QuadTree to return them to the client. Upon receiving this information, the client can update their screen to reflect the current positions of the drivers. Clients can query every five seconds to limit the number of round trips to the server. This solution looks simpler compared to the push model described above:
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/65.png?token=AC6MNN5SN6OXBSOE2IA3QFLAIOVHG)
+![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/65.png)
 
 **Do we need to repartition a grid as soon as it reaches the maximum limit**? We can have a cushion to let each grid grow a little bigger beyond the limit before we decide to partition it. Let's say our grids can grow/shrink an extra 10% before we partition/merge them. This should decrease the load for a grid partition or merge on high traffic grids.
 

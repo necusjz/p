@@ -8,11 +8,6 @@ The Fast & Slow pointer approach, also known as the `Tortoise & Hare Algorithm`,
 
 By moving at different speeds (say, in a cyclic LinkedList), the algorithm proves that the two pointers are bound to meet. The fast pointer should catch the slow pointer once both the pointers are in a cyclic loop.
 
-## Snippet
-```python
-
-```
-
 ## LeetCode
 [Linked List Cycle](https://leetcode.com/problems/linked-list-cycle/)
 [Linked List Cycle II](https://leetcode.com/problems/linked-list-cycle-ii/)

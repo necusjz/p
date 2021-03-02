@@ -15,33 +15,9 @@ Given that the input array is sorted, an efficient way would be to start with on
 
 <!--more-->
 Here is the visual representation of this algorithm:
-![](https://raw.githubusercontent.com/was48i/mPOST/master/CodingInterview/educative/02.png?token=AC6MNN24ERQIFF6RVGXROBDAIPB4E)
+![](https://raw.githubusercontent.com/was48i/mPOST/master/CodingInterview/educative/02.png)
 
 The time complexity of the above algorithm will be O(N).
-
-## Snippet
-```python
-def threeSum(self, nums: List[int]) -> List[List[int]]:
-    triplets = []
-    nums.sort()
-    for i in range(len(nums)):
-        if i > 0 and nums[i] == nums[i-1]:
-            continue
-        l, r = i + 1, len(nums) - 1
-        # two pointers
-        while l < r:
-            curr_sum = nums[i] + nums[l] + nums[r]
-            if curr_sum < 0:
-                l += 1
-            elif curr_sum > 0:
-                r -= 1
-            else:
-                triplets.append([nums[i], nums[l], nums[r]])
-                l += 1
-                while l < r and nums[l] == nums[l-1]:
-                    l += 1
-    return triplets
-```
 
 ## LeetCode
 [Two Sum](https://leetcode.com/problems/two-sum/)
