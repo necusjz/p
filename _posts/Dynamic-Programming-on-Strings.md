@@ -34,6 +34,7 @@ for (int l = 1; l < n; ++l) {
     }
 }
 ```
+<!--more-->
 
 ## LeetCode
 [Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/)

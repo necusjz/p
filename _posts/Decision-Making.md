@@ -19,6 +19,7 @@ for (int i = 1; i < n; ++i) {
     }
 }
 ```
+<!--more-->
 
 ## LeetCode
 [House Robber](https://leetcode.com/problems/house-robber/)

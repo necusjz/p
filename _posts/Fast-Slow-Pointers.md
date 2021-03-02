@@ -8,6 +8,28 @@ The Fast & Slow pointer approach, also known as the `Tortoise & Hare Algorithm`,
 
 By moving at different speeds (say, in a cyclic LinkedList), the algorithm proves that the two pointers are bound to meet. The fast pointer should catch the slow pointer once both the pointers are in a cyclic loop.
 
+## Snippet
+```python
+def isPalindrome(self, head: ListNode) -> bool:
+    l = r = head
+    # obtain the pointer of middle
+    while r and r.next:
+        l = l.next
+        r = r.next.next
+    stack = []
+    # push the second half to stack
+    while l:
+        stack.append(l.val)
+        l = l.next
+    curr = head
+    # compare with the first half
+    while stack:
+        if stack.pop() != curr.val:
+            return False
+        curr = curr.next
+    return True
+```
+
 ## LeetCode
 [Linked List Cycle](https://leetcode.com/problems/linked-list-cycle/)
 [Linked List Cycle II](https://leetcode.com/problems/linked-list-cycle-ii/)

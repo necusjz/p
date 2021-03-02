@@ -24,6 +24,7 @@ for (int l = 1; l < n; ++l) {
  
 return dp[0][n-1];
 ```
+<!--more-->
 
 ## LeetCode
 [Minimum Cost Tree From Leaf Values](https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/)

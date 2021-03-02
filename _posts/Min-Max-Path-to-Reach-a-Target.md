@@ -23,6 +23,7 @@ for (int i = 1; i <= target; ++i) {
 
 return dp[target];
 ```
+<!--more-->
 
 ## LeetCode
 [Min Cost Climbing Stairs](https://leetcode.com/problems/min-cost-climbing-stairs/)
