@@ -11,6 +11,27 @@ Given two intervals ("a" and "b"), there will be six different ways the two inte
 
 Understanding the above six cases will help us in solving all intervals related problems.
 
+## Snippet
+```python
+def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+    merged, i = [], 0
+    # merge the left part
+    while i < len(intervals) and intervals[i][1] < newInterval[0]:
+        merged.append(intervals[i])
+        i += 1
+    # merge the middle part
+    while i < len(intervals) and intervals[i][0] <= newInterval[1]:
+        newInterval[0] = min(newInterval[0], intervals[i][0])
+        newInterval[1] = max(newInterval[1], intervals[i][1])
+        i += 1
+    merged.append(newInterval)
+    # merge the right part
+    while i < len(intervals):
+        merged.append(intervals[i])
+        i += 1
+    return merged
+```
+
 ## LeetCode
 [Merge Intervals](https://leetcode.com/problems/merge-intervals/)
 [Insert Interval](https://leetcode.com/problems/insert-interval/)
