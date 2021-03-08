@@ -74,6 +74,37 @@ Following are some important properties of XOR to remember:
     - (a ^ b) ^ c = a ^ (b ^ c);
     - a ^ b = b ^ a;
 
+## Snippet
+```python
+def singleNumber(self, nums: List[int]) -> List[int]:
+    n1xn2 = 0
+    for num in nums:
+        n1xn2 = n1xn2 ^ num
+    last = 1
+    # obtain the last one
+    while last & n1xn2 == 0:
+        last = last << 1
+    num1, num2 = 0, 0
+    # divide into two parts
+    for num in nums:
+        if last & num == 0:
+            num1 = num1 ^ num
+        else:
+            num2 = num2 ^ num
+    return [num1, num2]
+
+# two's complement
+def findComplement(self, num: int) -> int:
+    # obtain bit count
+    bit_cnt, n = 0, num
+    while n > 0:
+        bit_cnt += 1
+        n = n >> 1
+    all_sets = 2 ** bit_cnt - 1
+    return num ^ all_sets
+
+```
+
 ## LeetCode
 [Single Number](https://leetcode.com/problems/single-number/)
 [Single Number III](https://leetcode.com/problems/single-number-iii/)

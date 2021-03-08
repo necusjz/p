@@ -8,6 +8,32 @@ Any problem that asks us to find the top/smallest/frequent "K" elements among a 
 
 The best data structure that comes to mind to keep track of "K" elements is `Heap`. This pattern will make use of the Heap to solve multiple problems dealing with "K" elements at a time from a set of given elements.
 
+## Snippet
+```python
+from heapq import heappush, heappop
+
+def reorganizeString(self, S: str) -> str:
+    freq = dict()
+    # obtain frequency map
+    for char in S:
+        freq[char] = freq.get(char, 0) + 1
+    max_heap = []
+    # initialize max heap
+    for char, count in freq.items():
+        heappush(max_heap, (-count, char))
+    result = ""
+    prev_char, prev_count = "", 0
+    while max_heap:
+        count, char = heappop(max_heap)
+        if prev_count > 0:
+            heappush(max_heap, (-prev_count, prev_char))
+        result += char
+        prev_char = char
+        prev_count = -count - 1
+    return result if len(result) == len(S) else ""
+    
+```
+
 ## LeetCode
 [Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/)
 [K Closest Points to Origin](https://leetcode.com/problems/k-closest-points-to-origin/)
