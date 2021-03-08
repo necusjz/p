@@ -8,6 +8,32 @@ In many problems, where we are given a set of elements such that we can divide t
 
 This pattern uses two Heaps to solve these problems; A `Min Heap` to find the smallest element and a `Max Heap` to find the biggest element.
 
+## Snippet
+```python
+from heapq import heappush, heappop
+
+def __init__(self):
+    self.max_heap = []
+    self.min_heap = []
+
+def addNum(self, num: int) -> None:
+    if not self.max_heap or num <= -self.max_heap[0]:
+        heappush(self.max_heap, -num)
+    else:
+        heappush(self.min_heap, num)
+    # balance
+    if len(self.max_heap) > len(self.min_heap) + 1:
+        heappush(self.min_heap, -heappop(self.max_heap))
+    elif len(self.max_heap) < len(self.min_heap):
+        heappush(self.max_heap, -heappop(self.min_heap))
+
+def findMedian(self) -> float:
+    if len(self.max_heap) == len(self.min_heap):
+        return -self.max_heap[0] / 2.0 + self.min_heap[0] / 2.0
+    return -self.max_heap[0] / 1.0
+    
+```
+
 ## LeetCode
 [Find Median from Data Stream](https://leetcode.com/problems/find-median-from-data-stream/)
 [Sliding Window Median](https://leetcode.com/problems/sliding-window-median/)
