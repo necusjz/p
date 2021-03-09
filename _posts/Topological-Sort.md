@@ -10,7 +10,35 @@ This pattern defines an easy way to understand the technique for performing topo
 
 ## Snippet
 ```python
+from collections import defaultdict, deque
 
+def findMinHeightTrees(self, n: int, edges: List[List[int]]) -> List[int]:
+    # handle single vertex
+    if n == 1:
+        return [0]
+    graph, degree = defaultdict(list), defaultdict(int)
+    # initialize graph
+    for u, v in edges:
+        graph[u].append(v)
+        graph[v].append(u)
+        degree[u] += 1
+        degree[v] += 1
+    sources = deque()
+    # obtain sources
+    for num in range(n):
+        if degree[num] == 1:
+            sources.append(num)
+    while n > 2:
+        curr_len = len(sources)
+        n -= curr_len
+        for _ in range(curr_len):
+            u = sources.popleft()
+            for v in graph[u]:
+                degree[v] -= 1
+                if degree[v] == 1:
+                    sources.append(v)
+    return sources
+    
 ```
 
 ## LeetCode

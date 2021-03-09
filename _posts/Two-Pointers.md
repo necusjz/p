@@ -41,6 +41,7 @@ def threeSum(self, nums: List[int]) -> List[List[int]]:
                 while l < r and nums[l] == nums[l-1]:
                     l += 1
     return triplets
+    
 ```
 
 ## LeetCode

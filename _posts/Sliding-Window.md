@@ -29,15 +29,16 @@ A brute-force algorithm will calculate the sum of every 5-element contiguous sub
 def find_averages_of_subarrays(k, arr):
     result = []
     for i in range(len(arr) - k + 1):
-        # find sum of next "K" elements
         element_sum = 0.0
+        # find sum of next `K` elements
         for j in range(i, i + k):
             element_sum += arr[j]
             result.append(element_sum / k) # calculate average
     return result
+
 ```
 
-**Time complexity**: Since for every element of the input array, we are calculating the sum of its next "K" elements, the time complexity of the above algorithm will be O(N\*K) where "N" is the number of elements in the input array.
+**Time Complexity**: Since for every element of the input array, we are calculating the sum of its next "K" elements, the time complexity of the above algorithm will be O(N\*K) where "N" is the number of elements in the input array.
 
 The inefficiency is that for any two consecutive subarrays of size "5", the overlapping part (which will contain four elements) will be evaluated twice. For example, take the above-mentioned input:
 ![](https://raw.githubusercontent.com/was48i/mPOST/master/CodingInterview/educative/00.png)
@@ -55,12 +56,13 @@ def find_averages_of_subarrays(k, arr):
     for end in range(len(arr)):
         # add the next element
         window_sum += arr[end]
-        # slide the window, we don't need to slide if we've not hit the required window size of "K"
+        # slide the window, we don't need to slide if we've not hit the required window size of `K`
         if end >= k - 1:
             result.append(window_sum / k) # calculate the average
             window_sum -= arr[start]      # subtract the element going out
             start += 1                    # slide the window ahead
     return result
+
 ```
 
 In some problems, the size of the sliding window is not fixed. We have to expand or shrink the window based on the problem constraints.
@@ -88,6 +90,7 @@ def checkInclusion(self, s1: str, s2: str) -> bool:
                 freq[s2[start]] += 1
             start += 1
     return False
+    
 ```
 
 ## LeetCode

@@ -30,6 +30,7 @@ def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[Lis
         merged.append(intervals[i])
         i += 1
     return merged
+    
 ```
 
 ## LeetCode

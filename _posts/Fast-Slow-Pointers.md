@@ -28,6 +28,7 @@ def isPalindrome(self, head: ListNode) -> bool:
             return False
         curr = curr.next
     return True
+    
 ```
 
 ## LeetCode

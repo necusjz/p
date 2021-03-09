@@ -16,7 +16,7 @@ def search(self, nums: List[int], target: int) -> bool:
         mid = lo + (hi - lo) // 2
         if nums[mid] == target:
             return True
-        # obtain sorted interval
+        # obtain sorted intervals
         if nums[lo] == nums[mid] == nums[hi]:
             lo += 1
             hi -= 1

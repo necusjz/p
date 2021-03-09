@@ -8,7 +8,9 @@ A huge number of coding interview problems involve dealing with `Permutations` a
 
 ## Snippet
 ```python
-# iteration
+"""
+Iteration
+"""
 def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
     subsets = [[]]
     nums.sort()
@@ -22,7 +24,9 @@ def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
             subsets.append(subsets[j] + [nums[i]])
     return subsets
 
-# recursion
+"""
+Recursion
+"""
 def __init__(self):
     self.map = dict()
 

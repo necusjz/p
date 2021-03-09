@@ -10,7 +10,9 @@ We will be using recursion (or we can also use a stack for the iterative approac
 
 ## Snippet
 ```python
-# left or right
+"""
+One Direction
+"""
 def __init__(self):
     self.paths = []
 
@@ -31,7 +33,9 @@ def pathSum(self, root: TreeNode, targetSum: int) -> List[List[int]]:
     self.obtain_path(root, targetSum, [])
     return self.paths
 
-# left and right
+"""
+Both Directions
+"""
 def __init__(self):
     self.max_sum = -sys.maxsize
 

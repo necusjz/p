@@ -25,18 +25,19 @@ This is what the algorithm will look like:
 ```python
 def find_missing_number(arr):
     n = len(arr) + 1
-    # find sum of all numbers from 1 to n.
     s1 = 0
+    # find sum of all numbers from 1 to n
     for i in range (1, n + 1):
         s1 += i
-    # subtract all numbers in input from sum.
+    # subtract all numbers in input from sum
     for i in arr:
         s1 -= i
     # s1, now, is the missing number
     return s1
+
 ```
 
-**Time & Space complexity**: The time complexity of the above algorithm is O(n) and the space complexity is O(1).
+**Time & Space Complexity**: The time complexity of the above algorithm is O(n) and the space complexity is O(1).
 
 > While finding the sum of numbers from 1 to n, we can get integer overflow when n is large.
 
@@ -49,19 +50,20 @@ Here is what the algorithm will look like:
 ```python
 def find_missing_number(arr):
     n = len(arr) + 1
-    # x1 represents XOR of all values from 1 to n
     x1 = 1
+    # x1 represents XOR of all values from 1 to n
     for i in range(2, n + 1):
         x1 = x1 ^ i
-    # x2 represents XOR of all values in arr
     x2 = arr[0]
+    # x2 represents XOR of all values in arr
     for i in range(1, n - 1):
         x2 = x2 ^ arr[i]
     # missing number is the XOR of x1 and x2
     return x1 ^ x2
+
 ```
 
-**Time & Space complexity**: The time complexity of the above algorithm is O(n) and the space complexity is O(1). The time and space complexities are the same as that of the previous solution but, in this algorithm, we will not have any integer overflow problem.
+**Time & Space Complexity**: The time complexity of the above algorithm is O(n) and the space complexity is O(1). The time and space complexities are the same as that of the previous solution but, in this algorithm, we will not have any integer overflow problem.
 
 Following are some important properties of XOR to remember:
 - Taking XOR of a number with itself returns 0, e.g.,
@@ -93,10 +95,12 @@ def singleNumber(self, nums: List[int]) -> List[int]:
             num2 = num2 ^ num
     return [num1, num2]
 
-# two's complement
+"""
+Two's Complement
+"""
 def findComplement(self, num: int) -> int:
-    # obtain bit count
     bit_cnt, n = 0, num
+    # obtain bit count
     while n > 0:
         bit_cnt += 1
         n = n >> 1

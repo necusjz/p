@@ -26,6 +26,7 @@ def firstMissingPositive(self, nums: List[int]) -> int:
         if nums[i] // max_value == 0:
             return i
     return max_value
+    
 ```
 
 ## LeetCode
