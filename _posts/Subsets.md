@@ -43,7 +43,6 @@ def numTrees(self, n: int) -> int:
     # memorization
     self.map[n] = count
     return count
-
 ```
 
 ## LeetCode

@@ -19,7 +19,6 @@ for (int i = 1; i <= n; ++i) {
         }
     }
 }
-
 ```
 
 If you are given one string s the approach may little vary:
@@ -34,7 +33,6 @@ for (int l = 1; l < n; ++l) {
         }
     }
 }
-
 ```
 <!--more-->
 

@@ -21,9 +21,7 @@ for (int l = 1; l < n; ++l) {
         }
     }
 }
- 
 return dp[0][n-1];
-
 ```
 <!--more-->
 

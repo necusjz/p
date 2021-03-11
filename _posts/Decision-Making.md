@@ -18,7 +18,6 @@ for (int i = 1; i < n; ++i) {
         dp[i][j-1] = max({dp[i][j-1], dp[i-1][j-1] + arr[i], arr[i]});
     }
 }
-
 ```
 <!--more-->
 

@@ -34,7 +34,6 @@ def find_missing_number(arr):
         s1 -= i
     # s1, now, is the missing number
     return s1
-
 ```
 
 **Time & Space Complexity**: The time complexity of the above algorithm is O(n) and the space complexity is O(1).
@@ -60,7 +59,6 @@ def find_missing_number(arr):
         x2 = x2 ^ arr[i]
     # missing number is the XOR of x1 and x2
     return x1 ^ x2
-
 ```
 
 **Time & Space Complexity**: The time complexity of the above algorithm is O(n) and the space complexity is O(1). The time and space complexities are the same as that of the previous solution but, in this algorithm, we will not have any integer overflow problem.
@@ -106,7 +104,6 @@ def findComplement(self, num: int) -> int:
         n = n >> 1
     all_sets = 2 ** bit_cnt - 1
     return num ^ all_sets
-
 ```
 
 ## LeetCode

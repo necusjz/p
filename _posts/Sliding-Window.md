@@ -35,7 +35,6 @@ def find_averages_of_subarrays(k, arr):
             element_sum += arr[j]
             result.append(element_sum / k) # calculate average
     return result
-
 ```
 
 **Time Complexity**: Since for every element of the input array, we are calculating the sum of its next "K" elements, the time complexity of the above algorithm will be O(N\*K) where "N" is the number of elements in the input array.
@@ -62,7 +61,6 @@ def find_averages_of_subarrays(k, arr):
             window_sum -= arr[start]      # subtract the element going out
             start += 1                    # slide the window ahead
     return result
-
 ```
 
 In some problems, the size of the sliding window is not fixed. We have to expand or shrink the window based on the problem constraints.
@@ -90,7 +88,6 @@ def checkInclusion(self, s1: str, s2: str) -> bool:
                 freq[s2[start]] += 1
             start += 1
     return False
-    
 ```
 
 ## LeetCode

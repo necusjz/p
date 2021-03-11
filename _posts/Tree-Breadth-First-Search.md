@@ -28,7 +28,6 @@ def averageOfLevels(self, root: TreeNode) -> List[float]:
                 queue.append(node.right)
         result.append(curr_sum / curr_len)
     return result
-
 ```
 
 ## LeetCode

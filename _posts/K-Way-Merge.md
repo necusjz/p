@@ -29,7 +29,6 @@ def smallestRange(self, nums: List[List[int]]) -> List[int]:
             heappush(min_heap, (arr[index+1], index + 1, arr))
             max_num = max(max_num, arr[index+1])
     return [start, end]
-
 ```
 
 ## LeetCode
