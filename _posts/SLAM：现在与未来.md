@@ -7,7 +7,7 @@ tags:
 除了经典 V-SLAM 框架之外，也积累了许多优秀的开源 SLAM 方案，大部分实现都比较复杂，不适合作为初学者的上手材料。
 ## 当前的开源方案
 在 SLAM 研究领域，能见到开源方案是很不容易的。论文中，往往介绍理论只占 20% 的内容，其他 80% 都写在代码中。
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SLAM/14_1.jpeg)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/SLAM/14_1.jpeg)
 <!--more-->
 ### MonoSLAM
 被认为是许多工作的发源地，`EKF` 在早期 SLAM 中占据着明显主导地位，所以 MonoSLAM也是建立在 EKF 的基础之上。

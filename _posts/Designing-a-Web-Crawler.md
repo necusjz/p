@@ -65,7 +65,7 @@ A bare minimum crawler needs at least these components:
 4. **Duplicate Eliminator**: To make sure the same content is not extracted twice unintentionally;
 5. **Datastore**: To store retrieved pages, URLs, and other metadata;
 
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/58.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/58.png)
 
 ## Detailed Component Design
 Let's assume our crawler is running on one server and all the crawling is done by multiple working threads where each working thread performs all the steps needed to download and process a document in a loop.
@@ -74,7 +74,7 @@ Once the document has been written to the DIS, the worker thread invokes the ded
 Next, our crawler needs to process the downloaded document. Each document can have a different MIME type like HTML page, Image, Video, etc. We can implement these MIME schemes in a modular way, so that later if our crawler needs to support more types, we can easily implement them. Based on the downloaded document's MIME type, the worker invokes the process method of each processing module associated with that MIME type.
 Furthermore, our HTML processing module will extract all links from the page. Each link is converted into an absolute URL and tested against a user-supplied URL filter to determine if it should be downloaded. If the URL passes the filter, the worker performs the URL-seen test, which checks if the URL has been seen before, namely, if it is in the URL frontier or has already been downloaded. If the URL is new, it is added to the frontier.
 
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/59.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/59.png)
 
 ### URL Frontier
 The URL frontier is the data structure that contains all the URLs that remain to be downloaded. We can crawl by performing a breadth-first traversal of the Web, starting from the pages in the seed set. Such traversals are easily implemented by using a FIFO queue.

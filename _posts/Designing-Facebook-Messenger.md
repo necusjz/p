@@ -41,11 +41,11 @@ Other than the chat messages, we would also need to store users' information, me
 Since each incoming message needs to go out to another user, we will need the same amount of bandwidth 25MB/s for both upload and download.
 
 **High-level estimates**:
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/36.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/36.png)
 
 ## High-Level Design
 At a high level, we will need a chat server that will be the central piece, orchestrating all the communications between users. When a user wants to send a message to another user, they will connect to the chat server and send the message to the server; the server then passes that message to the other user and also stores it in the database:
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/37.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/37.png)
 
 The detailed workflow would look like this:
 1. User A sends a message to User B through the chat server;
@@ -54,7 +54,7 @@ The detailed workflow would look like this:
 4. User B receives the message and sends the acknowledgment to the server;
 5. The server notifies User A that the message has been delivered successfully to User B;
 
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/38.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/38.png)
 
 ## Detailed Component Design
 Let's try to build a simple solution first where everything runs on one server. At the high level our system needs to handle the following use cases:
@@ -124,7 +124,7 @@ We need to keep track of user's online/offline status and notify all the relevan
 4. Clients can pull the status from the server about those users that are being shown on the user's viewport. This should not be a frequent operation, as the server is broadcasting the online status of users and we can live with the stale offline status of users for a while;
 5. Whenever the client starts a new chat with another user, we can pull the status at that time;
 
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/39.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/39.png)
 
 **Design Summary**: Clients will open a connection to the chat server to send a message; the server will then pass it to the requested user. All the active users will keep a connection open with the server to receive messages. Whenever a new message arrives, the chat server will push it to the receiving user on the long poll request. Messages can be stored in HBase, which supports quick small updates, and range based searches. The servers can broadcast the online status of a user to other relevant users. Clients can pull status updates for users who are visible in the client's viewport on a less frequent basis.
 

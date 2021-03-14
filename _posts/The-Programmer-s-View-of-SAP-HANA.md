@@ -19,7 +19,7 @@ Traditionally, the client application is written in a high-level language such a
 - SAP HANA has been enhanced with a new abstraction layer, called `Core Data Services` (CDS). The CDS allow application developers to create data models on a high level of abstraction. These models can then **be reused from different application development environments**.
 
 It shows **most elements** of the SAP HANA programming model and their relationships:
-![](https://raw.githubusercontent.com/was48i/mPOST/master/HANA/4-1.jpg)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/HANA/4-1.jpg)
 ## Clients
 SAP HANA supports clients using the following development environments and interfaces:
 - Client applications written in C/C++, which use the `ODBC` (Open DataBase Connectivity) interface.
@@ -31,7 +31,7 @@ SAP HANA supports clients using the following development environments and inter
 - XS applications can execute SQL statements using a database API provided by the `XS` server.
 - The `InA` (InformationAccess) infrastructure provides a client API, which combines analytical queries, search and planning. It connects to the InA service in the backend via HTTP using an InA-specific internal protocol.
 
-![](https://raw.githubusercontent.com/was48i/mPOST/master/HANA/4-2.jpg)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/HANA/4-2.jpg)
 ODBC is a standard, implementation-agnostic C-based API for accessing a database. Analogously, JDBC is a data access API for Java, and the Python Database API is the data access interface for Python. All three interfaces provide methods for creating and maintaining connections, as well as transactions, and other mechanisms for querying and updating data in a database, which map directly to underlying SQL semantics, **hiding the actual communication details**.
 ODBO is a Microsoft specification and an industry standard for multi-dimensional data processing. The ODBO API is used by applications that use the MDX query language to access multi-dimensional data in SAP HANA. **As alternative to ODBO**, MDX clients can use XMLA which exposes a similar interface as a `SOAP` (Simple Object Access Protocol) web service over HTTP. On the server side, the **XMLA interface is provided by an application that runs in the XS server**.
 ## SQL

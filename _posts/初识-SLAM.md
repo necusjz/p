@@ -33,7 +33,7 @@ tags:
 主要用于室内，室外则较难应用。
 ## 经典视觉 SLAM 框架
 SLAM 需要一个完善的框架：
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SLAM/2_1.jpeg)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/SLAM/2_1.jpeg)
 如果把工作环境限定在**静态、刚体、光照变化不明显、没有人为干扰**的场景，那么，这个 SLAM 系统是相当成熟的了。
 ### 视觉里程计（Visual Odometry）
 VO 又称为前端（Front End），只计算相邻时刻的运动，而和再往前的过去的信息没有关联。
@@ -67,7 +67,7 @@ VO 又称为前端（Front End），只计算相邻时刻的运动，而和再�
 * 观测：假设小萝卜在 k 时刻于 xk处探测到了某一路标yj，我们要考虑这件事情是如何用数学语言来描述的。
 
 针对不同的传感器，**运动方程**和**观测方程**有不同的参数化形式，我们把它们取成通用的抽象形式：
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SLAM/2_2.jpeg)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/SLAM/2_2.jpeg)
 这两个方程描述了最基本的 SLAM 问题：当知道运动测量的读数 u，以及传感器的读数 z 时，如何求解定位问题（估计 x）和建图问题（估计 y）？这时，我们就把 SLAM 问题建模成了一个**状态估计问题：**如何通过带有噪声的测量数据，估计内部的、隐藏着的状态变量？
 按照运动和观测方程是否为线性，噪声是否服从高斯分布进行分类。分为**线性/非线性**和**高斯/非高斯**系统。
 其中，线性高斯系统（Linear Gaussian，LG）是最简单的，它的无偏的最优估计可以由卡尔曼滤波器（Kalman Filter，KF）给出；而在复杂的非线形非高斯系统（Non-Linear Non-Gaussian，NLNG）中，我们会使用以扩展卡尔曼滤波器（Extended Kalman Filter，EKF）和非线性优化两大类方法去求解。
@@ -84,7 +84,7 @@ VO 又称为前端（Front End），只计算相邻时刻的运动，而和再�
 任意一个 C++ 程序都可以用 g++ 来编译，在历史上工程师们曾使用 makefile 进行自动编译，cmake 比它更加方便。
 在一个 cmake 工程中，我们会用 cmake 命令生成一个 makefile 文件，然后，用 make 命令根据这个 makefile 文件的内容编译整个工程。
 MakeFile 是一个自动化编译的脚本，我们用 cmake-make 的做法，cmake 过程处理了**工程文件之间的关系**，降低了维护整个工程的难度；而 make 过程实际调用了 g++ 来编译程序。
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SLAM/2_3.jpeg)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/SLAM/2_3.jpeg)
 我们新建了一个中间文件夹“build”，这样，cmake 产生的中间文件就会生成在 build 文件夹中，当发布源代码时，只要把 build 文件夹删掉即可。
 ### 使用库
 程序代码由头文件和源文件组成，带有 main 函数的源文件编译成可执行程序，其他的编译成`库文件`。

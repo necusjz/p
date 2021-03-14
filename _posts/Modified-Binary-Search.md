@@ -30,8 +30,7 @@ def search(self, nums: List[int], target: int) -> bool:
                 lo = mid + 1
             else:
                 hi = mid - 1
-    return False
-        
+    return False       
 ```
 
 ## LeetCode

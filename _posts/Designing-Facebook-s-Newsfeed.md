@@ -54,7 +54,7 @@ There are three primary objects: User, Entity (e.g. page, group, etc.), and Feed
 - Each FeedItem can optionally have an EntityID pointing to the page or the group where that post was created;
 
 If we are using a relational database, we would need to model two relations: User-Entity relation and FeedItem-Media relation. Since each user can be friends with many people and follow a lot of entities, we can store this relation in a separate table. The "Type" column in "UserFollow" identifies if the entity being followed is a User or Entity. Similarly, we can have a table for FeedMedia relation:
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/60.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/60.png)
 
 ## High-Level System Design
 ### Feed Generation
@@ -80,7 +80,7 @@ At a high level, we will need following components in our Newsfeed service:
 7. **Feed Notification Service**: To notify the user that there are newer items available for their newsfeed;
 
 Following is the high-level architecture diagram of our system. User B and C are following User A:
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/61.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/61.png)
 
 ## Detailed Component Design
 ### Feed Generation

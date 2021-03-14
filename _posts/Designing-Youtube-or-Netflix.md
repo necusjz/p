@@ -95,7 +95,7 @@ At a high level we would need the following components:
 5. **User Database**: To store user's information, e.g., name, email, address, etc;
 6. **Video Metadata Storage**: A metadata database to store all the information about videos like title, file path in the system, uploading user, total views, likes, dislikes, etc. It will also be used to store all the video comments;
 
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/44.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/44.png)
 
 ## Database Schema
 **Video Metadata Storage**:
@@ -137,7 +137,7 @@ Bigtable can be a reasonable choice here as it combines multiple files into one 
 
 **Video encoding**: Newly uploaded videos are stored on the server, and a new task is added to the processing queue to encode the video into multiple formats. Once all the encoding is completed, the uploader will be notified, and the video is made available for view/sharing.
 
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/45.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/45.png)
 
 ## Metadata Sharding
 Since we have a huge number of new videos every day and our read load is extremely high, therefore, we need to distribute our data onto multiple machines so that we can perform read/write operations efficiently. We have many options to shard our data. Let’s go through different strategies of sharding this data one by one.

@@ -34,18 +34,18 @@ public class AcNode
 2. 在 Trie 树上构建失败指针（相当于 KMP 中的失效函数 next 数组）；
 
 构建好 Trie 树之后，如何在它之上构建失败指针？这里有 4 个模式串，分别是 c, bc, bcd, abcd；主串是 abcd：
-![](https://raw.githubusercontent.com/was48i/mPOST/master/CLRS/geek/216.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/216.png)
 
 假设我们沿 Trie 树走到 p 节点，也就是下图中的紫色节点，那 p 的失败指针就是从 root 走到紫色节点形成的字符串 abc，跟所有模式串前缀匹配的**最长可匹配后缀子串**，就是箭头指的 bc 模式串。我们将 p 节点的失败指针指向那个最长匹配后缀子串对应的模式串的前缀的最后一个节点，就是下图中箭头指向的节点：
-![](https://raw.githubusercontent.com/was48i/mPOST/master/CLRS/geek/217.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/217.png)
 
 其实，如果我们把树中相同深度的节点放到同一层，那么某个节点的失败指针只有可能出现在它所在层的上一层。我们可以像 KMP 算法那样，当我们要求某个节点的失败指针的时候，我们通过已经求得的、深度更小的那些节点的失败指针来推导。也就是说，我们可以逐层依次来求解每个节点的失败指针。所以，**失败指针的构建过程，是一个按层遍历树的过程**。
 
 我们假设节点 p 的失败指针指向节点 q，我们看节点 p 的子节点 pc 对应的字符，是否也可以在节点 q 的子节点中找到。如果找到了节点 q 的一个子节点 qc，对应的字符跟节点 pc 对应的字符相同，则将节点 pc 的失败指针指向节点 qc：
-![](https://raw.githubusercontent.com/was48i/mPOST/master/CLRS/geek/218.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/218.png)
 
 如果节点 q 中没有子节点的字符等于节点 pc 包含的字符，则**令 q=q->fail，继续上面的查找，直到 q 是 root 为止**，如果还没有找到相同字符的子节点，就让节点 pc 的失败指针指向 root：
-![](https://raw.githubusercontent.com/was48i/mPOST/master/CLRS/geek/219.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/219.png)
 
 我将构建失败指针的代码贴在这里，你可以对照着讲解一块看下，应该更容易理解：
 ```java
@@ -93,7 +93,7 @@ public void buildFailurePointer()
 ```
 
 通过按层来计算每个节点的子节点的失效指针，刚刚举的那个例子，最后构建完成之后的 AC 自动机就是下面这个样子：
-![](https://raw.githubusercontent.com/was48i/mPOST/master/CLRS/geek/220.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/220.png)
 
 在匹配过程中，主串从 i=0 开始，AC 自动机从指针 p=root 开始，假设模式串是 b，主串是 a：
 - 如果 p 指向的节点有一个等于 b\[i]的子节点 x，我们就更新 p 指向 x，这个时候我们需要通过失败指针，检测一系列失败指针为结尾的路径是否是模式串。这一句不好理解，你可以结合代码看。处理完之后 i+1，继续这两个过程；
@@ -147,4 +147,4 @@ AC 自动机的构建过程都是预先处理好的，构建好之后，并不�
 跟刚刚构建失败指针的分析类似，for 循环依次遍历主串中的每个字符，for 循环内部最耗时的部分也是 while 循环，而这一部分的时间复杂度也是 O(len)，所以总的匹配的时间复杂度就是 O(n\*len)。因为敏感词并不会很长，而且这个时间复杂度只是一个非常宽泛的上限，**实际情况下，可能近似于 O(n)，所以 AC 自动机做敏感词过滤，性能非常高**；
 
 实际上，因为失效指针可能大部分情况下都指向 root 节点，所以**绝大部分情况下，在 AC 自动机上做匹配的效率要远高于刚刚计算出的比较宽泛的时间复杂度**。只有在极端情况下，如图所示，AC 自动机的性能才会退化的跟 Trie 树一样：
-![](https://raw.githubusercontent.com/was48i/mPOST/master/CLRS/geek/221.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/221.png)

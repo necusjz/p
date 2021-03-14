@@ -7,7 +7,7 @@ tags:
 Kubernetes 是 Google 团队发起并维护的开源容器集群管理系统，底层**基于 Docker、rkt 等容器技术**，提供强大的应用管理和资源调度能力。
 ## 简介
 Kubernetes 是 Google 公司于 2014 年开源的容器集群管理项目。该项目**基于 Go 语言实现**，遵守 Apache v2 许可，试图为基于容器的应用部署和生产管理打造一套强大并且易用的操作平台。
-![](https://raw.githubusercontent.com/was48i/mPOST/master/Kubernetes/01.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/01.png)
 目前被云原生计算基金会（Cloud Native Computing Foundation，CNCF）管理，以开源项目形式持续演化。
 Kubernetes 拥有鲜明的技术优势：
 - 优秀的 API 设计，以及简洁高效的架构设计；
@@ -21,7 +21,7 @@ Kubernetes 拥有鲜明的技术优势：
 <!--more-->
 ## 核心概念
 要想深入理解 Kubernetes 的特性和工作机制，首先要掌握 Kubernetes 模型中的**核心概念**。这些核心概念反映了 Kubernetes 设计过程中，对应用容器集群的认知模型。
-![](https://raw.githubusercontent.com/was48i/mPOST/master/Kubernetes/02.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/02.png)
 Kubernetes 中每种对象都拥有一个对应的**声明式 API**。对象包括**三大属性**：元数据（metadata）、规范（spec）和状态（status）。
 每个对象可以使用一个外部的 **JSON 或 YAML 模板文件**来定义，通过参数传递给命令或 API。
 基础的操作对象，主要是指**资源抽象对象**，包括：

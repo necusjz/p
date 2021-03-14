@@ -370,8 +370,8 @@ public DObserver
 
 ## 手把手实现一个 EventBus 框架
 我们重点来看，EventBus 中两个核心函数 `register()` 和 `post()` 的实现原理。弄懂了它们，基本上就弄懂了整个 EventBus 框架。下面两张图是这两个函数的实现原理图：
-![](https://raw.githubusercontent.com/was48i/mPOST/master/GoF/19.png)
-![](https://raw.githubusercontent.com/was48i/mPOST/master/GoF/20.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/19.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/20.png)
 
 从图中我们可以看出，**最关键的一个数据结构是 Observer 注册表，记录了消息类型和可接收消息函数的对应关系**。当调用 register() 函数注册观察者的时候，EventBus 通过解析 @Subscribe 注解，生成 Observer 注册表。当调用 post() 函数发送消息的时候，EventBus 通过注册表找到相应的可接收消息的函数，然后通过 Java 的`反射语法`来动态地创建对象、执行函数。**对于同步阻塞模式，EventBus 在一个线程内依次执行相应的函数。对于异步非阻塞模式，EventBus 通过一个线程池来执行相应的函数**。
 

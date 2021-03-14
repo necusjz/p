@@ -13,7 +13,7 @@ tags:
 
 不过，我们还有另外一个系统 B，专门用来分析搜索日志，定期（比如间隔 10 分钟）批量地更新数据库中的数据，并且标记为新的数据版本。比如，在下面的示例图中，我们对 v2 版本的数据进行更新，得到 v3 版本的数据。这里我们假设只有更新和新添关键词，没有删除关键词的行为：
 <!--more-->
-![](https://raw.githubusercontent.com/was48i/mPOST/master/GoF/08.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/08.png)
 
 为了保证系统 A 中数据的实时性（不一定非常实时，但数据也不能太旧），系统 A 需要定期根据数据库中的数据，更新内存中的索引和数据。我们只需要在系统 A 中，记录当前数据的版本 Va 对应的更新时间 Ta，从数据库中捞出更新时间大于 Ta 的所有搜索关键词，也就是**找出 Va 版本与最新版本数据的差集**，然后针对差集中的每个关键词进行处理。如果它已经在散列表中存在了，我们就更新相应的搜索次数、更新时间等信息；如果它在散列表中不存在，我们就将它插入到散列表中：
 ```java
@@ -133,11 +133,11 @@ public class Demo
 
 ## 原型模式的实现方式：深拷贝和浅拷贝
 我们来看，在内存中，用散列表组织的搜索关键词信息是如何存储的。从图中我们可以发现，散列表索引中，每个结点存储的 key 是搜索关键词，value 是 SearchWord 对象的内存地址。**SearchWord 对象本身存储在散列表之外的内存空间中**：
-![](https://raw.githubusercontent.com/was48i/mPOST/master/GoF/09.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/09.png)
 
 浅拷贝和深拷贝的区别在于，浅拷贝只会复制图中的索引（散列表），不会复制数据（SearchWord 对象）本身。相反，**深拷贝不仅仅会复制索引，还会复制数据本身**。浅拷贝得到的对象（newKeywords）跟原始对象（currentKeywords）共享数据，而深拷贝得到的是一份完完全全独立的对象。具体的对比如下图所示：
-![](https://raw.githubusercontent.com/was48i/mPOST/master/GoF/10.png)
-![](https://raw.githubusercontent.com/was48i/mPOST/master/GoF/11.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/10.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/11.png)
 
 在上面的代码中，我们通过调用 HashMap 上的 clone() 浅拷贝方法来实现原型模式。当我们通过 newKeywords 更新 SearchWord 对象的时候，newKeywords 和 currentKeywords 因为指向相同的一组 SearchWord 对象，就会**导致 currentKeywords 中指向的 SearchWord，有的是老版本的，有的是新版本的**，就没法满足我们之前的需求：currentKeywords 中的数据在任何时刻都是同一个版本的，不存在介于老版本与新版本之间的中间状态。
 

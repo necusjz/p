@@ -106,13 +106,13 @@ A few observations about the nature of the data we are storing:
 5. Our service is read-heavy;
 
 **Database Schema**: We would need two tables, one for storing information about the pastes and the other for users' data:
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/25.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/25.png)
 
 Here, "URLHash" is the URL equivalent of the TinyURL, and "ContentKey" is a reference to an external object storing the contents of the paste; we'll discuss the external storage of the paste contents later in the chapter.
 
 ## High-Level Design
 At a high level, we need an application layer that will serve all the read and write requests. Application layer will talk to a storage layer to store and retrieve data. We can segregate our storage layer with one database storing metadata related to each paste, users, etc., while the other storing the paste contents in some object storage (like Amazon S3). This division of data will also allow us to scale them individually:
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/26.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/26.png)
 
 ## Component Design
 ### Application layer
@@ -133,16 +133,16 @@ We can divide our datastore layer into two:
 1. Metadata database: We can use a relational database like MySQL or a Distributed Key-Value store like Dynamo or Cassandra;
 2. Object storage: We can store our contents in an Object Storage like Amazon S3. Whenever we feel like hitting our full capacity on content storage, we can easily increase it by adding more servers;
 
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/27.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/27.png)
 
 ## Purging or DB Cleanup
-Please see [Designing a URL Shortening Service Like TinyURL](https://was48i.github.io/2021/02/08/Designing-a-URL-Shortening-Service-Like-TinyURL/).
+Please see [Designing a URL Shortening Service Like TinyURL](https://snlndod.github.io/2021/02/08/Designing-a-URL-Shortening-Service-Like-TinyURL/).
 
 ## Data Partitioning and Replication
-Please see [Designing a URL Shortening Service Like TinyURL](https://was48i.github.io/2021/02/08/Designing-a-URL-Shortening-Service-Like-TinyURL/).
+Please see [Designing a URL Shortening Service Like TinyURL](https://snlndod.github.io/2021/02/08/Designing-a-URL-Shortening-Service-Like-TinyURL/).
 
 ## Cache and Load Balancer
-Please see [Designing a URL Shortening Service Like TinyURL](https://was48i.github.io/2021/02/08/Designing-a-URL-Shortening-Service-Like-TinyURL/).
+Please see [Designing a URL Shortening Service Like TinyURL](https://snlndod.github.io/2021/02/08/Designing-a-URL-Shortening-Service-Like-TinyURL/).
 
 ## Security and Permissions
-Please see [Designing a URL Shortening Service Like TinyURL](https://was48i.github.io/2021/02/08/Designing-a-URL-Shortening-Service-Like-TinyURL/).
+Please see [Designing a URL Shortening Service Like TinyURL](https://snlndod.github.io/2021/02/08/Designing-a-URL-Shortening-Service-Like-TinyURL/).

@@ -10,7 +10,7 @@ tags:
 在超级马里奥中，马里奥可以变身为多种形态，比如小马里奥（Small Mario）、超级马里奥（Super Mario）、火焰马里奥（Fire Mario）、斗篷马里奥（Cape Mario）等等。在不同的游戏情节下，各个形态会互相转化，并相应的增减积分。比如，初始形态是小马里奥，吃了蘑菇之后就会变成超级马里奥，并且增加 100 积分。
 
 实际上，**马里奥形态的转变就是一个状态机**。其中，马里奥的不同形态就是状态机中的“状态”，游戏情节（比如吃了蘑菇）就是状态机中的“事件”，加减积分就是状态机中的“动作”。比如，吃蘑菇这个事件，会触发状态的转移：从小马里奥转移到超级马里奥，以及触发动作的执行（增加 100 积分）。为了方便接下来的讲解，我对游戏背景做了简化，只保留了部分状态和事件：
-![](https://raw.githubusercontent.com/was48i/mPOST/master/GoF/23.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/23.png)
 
 我写了一个骨架代码，如下所示。其中，obtainMushRoom()、obtainCape()、obtainFireFlower()、meetMonster() 这几个函数，能够根据当前的状态和事件，更新状态和增减积分：
 <!--more-->
@@ -171,7 +171,7 @@ public class MarioStateMachine
 
 ## 状态机实现方式二：查表法
 实际上，上面这种实现方法有点类似 hard code，对于复杂的状态机来说不适用，而状态机的第二种实现方式查表法，就更加合适了。**除了用状态转移图来表示之外，状态机还可以用二维表来表示**。在这个二维表中，第一维表示当前状态，第二维表示事件，值表示当前状态经过事件之后，转移到的新状态及其执行的动作，如下所示：
-![](https://raw.githubusercontent.com/was48i/mPOST/master/GoF/24.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/24.png)
 
 相对于分支逻辑的实现方式，查表法的代码实现更加清晰，可读性和可维护性更好。**当修改状态机时，我们只需要修改 transitionTable 和 actionTable 两个二维数组即可**。实际上，如果我们把这两个二维数组存储在配置文件中，当需要修改状态机时，我们甚至可以不修改任何代码，只需要修改配置文件就可以了：
 ```java

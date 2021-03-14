@@ -31,7 +31,6 @@ def reorganizeString(self, S: str) -> str:
         prev_char = char
         prev_count = -count - 1
     return result if len(result) == len(S) else ""
-    
 ```
 
 ## LeetCode

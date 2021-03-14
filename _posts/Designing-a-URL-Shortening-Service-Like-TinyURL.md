@@ -71,7 +71,7 @@ To cache 20% of these requests, we will need 170GB of memory:
 One thing to note here is that since there will be many duplicate requests (of the same URL), our actual memory usage will be less than 170GB.
 
 **High-level estimates**: Assuming 500 million new URLs per month and 100:1 read:write ratio, following is the summary of the high-level estimates for our service:
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/19.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/19.png)
 
 ## System APIs
 > Once we've finalized the requirements, it's always a good idea to define the system APIs. This should explicitly state what is expected from the system.
@@ -108,7 +108,7 @@ A few observations about the nature of the data we will store:
 - Our service is read-heavy;
 
 **Database Schema**: We would need two tables: one for storing information about the URL mappings and one for the user's data who created the short link:
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/20.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/20.png)
 
 **What kind of database should we use**? Since we anticipate storing billions of rows, and we don't need to use relationships between objects – a NoSQL store like DynamoDB, Cassandra or Riak is a better choice. A NoSQL choice would also be easier to scale.
 
@@ -131,11 +131,11 @@ If we use the MD5 algorithm as our hash function, it'll produce a 128 bits hash 
 **Workaround for the issues**: We can append an increasing sequence number to each input URL to make it unique and then generate its hash. We don't need to store this sequence number in the databases, though. Possible problems with this approach could be an ever-increasing sequence number. Can it overflow? Appending an increasing sequence number will also impact the performance of the service.
 
 Another solution could be to append the user id (which should be unique) to the input URL. However, if the user has not signed in, we would have to ask the user to choose a uniqueness key. Even after this, if we have a conflict, we have to keep generating a key until we get a unique one:
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/21.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/21.png)
 
 ### Generating keys offline
 We can have a standalone **Key Generation Service (KGS)** that generates random six-letter strings beforehand and stores them in a database (let's call it key-DB). Whenever we want to shorten a URL, we will take one of the already-generated keys and use it. This approach will make things quite simple and fast. Not only are we not encoding the URL, but we won't have to worry about duplications or collisions. KGS will make sure all the keys inserted into key-DB are unique:
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/22.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/22.png)
 
 **Can concurrency cause problems**? As soon as a key is used, it should be marked in the database to ensure that it is not used again. If there are multiple servers reading keys concurrently, we might get a scenario where two or more servers try to read the same key from the database. How can we solve this concurrency problem?
 Servers can use KGS to read/mark keys in the database. KGS can use two tables to store keys: one for keys that are not used yet, and one for all the used keys. As soon as KGS gives keys to one of the servers, it can move them to the used keys table. KGS can always keep some keys in memory to quickly provide them whenever a server needs them.
@@ -170,7 +170,7 @@ We can cache URLs that are frequently accessed. We can use some off-the-shelf so
 
 To further increase the efficiency, we can replicate our caching servers to distribute the load between them.
 **How can each cache replica be updated**? Whenever there is a cache miss, our servers would be hitting a backend database. Whenever this happens, we can update the cache and pass the new entry to all the cache replicas. Each replica can update its cache by adding the new entry. If a replica already has that entry, it can simply ignore it:
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/23.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/23.png)
 
 ## Load Balancer
 We can add a Load balancing layer at three places in our system:
@@ -192,7 +192,7 @@ If we chose to actively search for expired links to remove them, it would put a 
 - After removing an expired link, we can put the key back in the key-DB to be reused;
 - Should we remove links that haven't been visited in some length of time, say six months? This could be tricky. Since storage is getting cheap, we can decide to keep links forever;
 
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/24.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/24.png)
 
 ## Telemetry
 How many times a short URL has been used, what were user locations, etc.? How would we store these statistics? If it is part of a DB row that gets updated on each view, what will happen when a popular URL is slammed with a large number of concurrent requests?

@@ -284,7 +284,7 @@ System.out.println(i3 == i4);
 - 什么是`自动装箱`（Autoboxing）和`自动拆箱`（Unboxing）；
 
 Java 为基本数据类型提供了对应的包装器类型。具体如下所示：
-![](https://raw.githubusercontent.com/was48i/mPOST/master/GoF/16.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/16.png)
 
 所谓的自动装箱，就是自动将基本数据类型转换为**包装器类型**。所谓的自动拆箱，也就是自动将包装器类型转化为基本数据类型。具体的代码示例如下所示：
 ```java
@@ -308,7 +308,7 @@ User a = new User(123, 23); // id=123, age=23
 ```
 
 针对这条语句，我画了一张内存存储结构图。a 存储的值是 User 对象的内存地址，在图中就表现为 a 指向 User 对象。当我们通过“==”来判定两个对象是否相等的时候，实际上是在判断两个局部变量存储的地址是否相同，换句话说，是在**判断两个局部变量是否指向相同的对象**：
-![](https://raw.githubusercontent.com/was48i/mPOST/master/GoF/17.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/17.png)
 
 Integer 用到了享元模式来复用对象。当我们通过自动装箱，也就是调用 valueOf() 来创建 Integer 对象的时候，如果要创建的 Integer 对象的值在 -128 到 127 之间，会从 IntegerCache 类中直接返回，否则才调用 new 方法创建。看代码更加清晰一些，Integer 类的 valueOf() 函数的具体代码如下所示：
 ```java
@@ -407,7 +407,7 @@ System.out.println(s1 == s3);
 ```
 
 上面代码的运行结果是：一个 true，一个 false。跟 Integer 类的设计思路相似，String 类利用享元模式来复用相同的字符串常量（也就是代码中的“小争哥”）。JVM 会专门开辟一块存储区来存储字符串常量，这块存储区叫作`字符串常量池`。上面代码对应的内存存储结构如下所示：
-![](https://raw.githubusercontent.com/was48i/mPOST/master/GoF/18.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/18.png)
 
 不过，String 类的享元模式的设计，跟 Integer 类稍微有些不同。Integer 类中要共享的对象，是**在类加载的时候，就集中一次性创建好**的。但是，对于字符串来说，我们没法事先知道要共享哪些字符串常量，所以没办法事先创建好，只能**在某个字符串常量第一次被用到的时候，存储到常量池中**，当之后再用到的时候，直接引用常量池中已经存在的即可，就不需要再重新创建了。
 

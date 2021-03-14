@@ -37,8 +37,7 @@ def findMinHeightTrees(self, n: int, edges: List[List[int]]) -> List[int]:
                 degree[v] -= 1
                 if degree[v] == 1:
                     sources.append(v)
-    return sources
-    
+    return sources  
 ```
 
 ## LeetCode

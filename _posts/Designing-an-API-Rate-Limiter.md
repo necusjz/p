@@ -47,11 +47,11 @@ Following are the two types of algorithms used for Rate Limiting:
 - **Fixed Window Algorithm**: In this algorithm, the time window is considered from the start of the time-unit to the end of the time-unit. For example, a period would be considered 0-60 seconds for a minute irrespective of the time frame at which the API request has been made. In the diagram below, there are two messages between 0-1 second and three messages between 1-2 seconds. If we have a rate limiting of two messages a second, this algorithm will throttle only "m5";
 - **Sliding Window Algorithm**: In this algorithm, the time window is considered from the fraction of the time at which the request is made plus the time window length. For example, if there are two messages sent at the 300th millisecond and 400th millisecond of a second, we'll count them as two messages from the 300th millisecond of that second up to the 300th millisecond of next second. In the above diagram, keeping two messages a second, we'll throttle "m3" and "m4";
 
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/49.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/49.png)
 
 ## High-Level Design for Rate Limiter
 Rate Limiter will be responsible for deciding which request will be served by the API servers and which request will be declined. Once a new request arrives, the Web Server first asks the Rate Limiter to decide if it will be served or throttled. If the request is not throttled, then it'll be passed to the API servers:
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/50.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/50.png)
 
 ## Basic System Design and Algorithm
 Let's take the example where we want to limit the number of requests per user. Under this scenario, for each unique user, we would keep a count representing how many requests the user has made and a timestamp when we started counting the requests. We can keep it in a hash-table, where the "key" would be the "UserID" and "value" would be a structure containing an integer for the "Count" and an integer for the Epoch time:
@@ -67,14 +67,14 @@ Let's assume our rate limiter is allowing three requests per minute per user, so
     - If "Count < 3", increment the Count and allow the request;
     - If "Count >= 3", reject the request;
 
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/51.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/51.png)
 
 **What are some of the problems with our algorithm**?
 This is a **Fixed Window** algorithm since we're resetting the "StartTime" at the end of every minute, which means it can potentially allow twice the number of requests per minute. Imagine if Kristie sends three requests at the last second of a minute, then she can immediately send three more requests at the very first second of the next minute, resulting in 6 requests in the span of two seconds:
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/52.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/52.png)
 
 **Atomicity**: In a distributed environment, the "read-and-then-write" behavior can create a race condition. Imagine if Kristie's current "Count" is "2" and that she issues two more requests. If two separate processes served each of these requests and concurrently read the Count before either of them updated it, each process would think that Kristie could have one more request and that she had not hit the rate limit:
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/53.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/53.png)
 
 If we are using Redis to store our key-value, one solution to resolve the atomicity problem is to use `Distributed Lock` for the duration of the read-update operation. This, however, would come at the expense of slowing down concurrent requests from the same user and introducing another layer of complexity. We can use Memcached, but it would have comparable complications.
 If we are using a simple hash-table, we can have a custom implementation for "locking" each record to solve our atomicity problems.
@@ -101,7 +101,7 @@ Let's assume our rate limiter is allowing three requests per minute per user, so
 2. Count the total number of elements in the sorted set. Reject the request if this count is greater than our throttling limit of "3";
 3. Insert the current time in the sorted set and accept the request;
 
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/54.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/54.png)
 
 **How much memory would we need to store all of the user data for sliding window**? Let's assume "UserID" takes 8 bytes. Each epoch time will require 4 bytes. Let's suppose we need a rate limiting of 500 requests per hour. Let's assume 20 bytes overhead for hash-table and 20 bytes overhead for the Sorted Set. At max, we would need a total of 12KB to store one user's data:
 > 8 + (4 + 20 (sorted set overhead)) * 500 + 20 (hash-table overhead) ≈ 12 KB
@@ -116,7 +116,7 @@ Sliding Window Algorithm takes a lot of memory compared to the Fixed Window; thi
 What if we keep track of request counts for each user using multiple fixed time windows, e.g., 1/60th the size of our rate limit's time window. For example, if we have an hourly rate limit we can keep a count for each minute and calculate the sum of all counters in the past hour when we receive a new request to calculate the throttling limit. This would reduce our memory footprint. Let's take an example where we rate-limit at 500 requests per hour with an additional limit of 10 requests per minute. This means that when the sum of the counters with timestamps in the past hour exceeds the request threshold (500), Kristie has exceeded the rate limit. In addition to that, she can't send more than ten requests per minute. This would be a reasonable and practical consideration, as none of the real users would send frequent requests. Even if they do, they will see success with retries since their limits get reset every minute.
 
 We can store our counters in a `Redis Hash` since it offers incredibly efficient storage for fewer than 100 keys. When each request increments a counter in the hash, it also sets the hash to expire an hour later. We will normalize each "time" to a minute:
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/55.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/55.png)
 
 **How much memory we would need to store all the user data for sliding window with counters**? Let's assume "UserID" takes 8 bytes. Each epoch time will need 4 bytes, and the Counter would need 2 bytes. Let's suppose we need a rate limiting of 500 requests per hour. Assume 20 bytes overhead for hash-table and 20 bytes for Redis hash. Since we'll keep a count for each minute, at max, we would need 60 entries for each user. We would need a total of 1.6KB to store one user's data:
 > 8 + (4 + 2 + 20 (Redis hash overhead)) * 60 + 20 (hash-table overhead) ≈ 1.6 KB

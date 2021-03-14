@@ -14,7 +14,7 @@ Docker Hub 是 Docker 官方提供的最大的公共镜像仓库，目前包括�
 <!--more-->
 ### 基本操作
 用户无须登录即可通过 docker search 命令来查找官方仓库中的镜像，并利用 docker pull 命令来将他下载到本地。
-![](https://raw.githubusercontent.com/was48i/mPOST/master/Docker/5-1.jpeg)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/Docker/5-1.jpeg)
 根据是否为官方提供，可将这些镜像资源分为两类：
 - 类似于 centos 这样的基础镜像（根镜像），由 Docker 公司创建、验证、支持、提供，这样的镜像往往使用`单个单词`作为名字。
 - 带有用户名称为`前缀`，表明是某用户下的某仓库。可以通过“user_name/镜像名”，来指定使用某个用户提供的镜像。

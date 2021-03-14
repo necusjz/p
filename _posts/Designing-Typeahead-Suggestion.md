@@ -16,11 +16,11 @@ Typeahead suggestions enable users to search for known and frequently searched t
 The problem we are trying to solve is that we have a lot of "strings" that we need to store in such a way that users can search with any prefix. Our service will suggest the next terms matching the given prefix. For example, if our database contains the following terms: cap, cat, captain, or capital, and the user has typed in "cap", our system should suggest "cap", "captain" and "capital".
 As we have to serve a lot of queries with minimum latency, we need to come up with a scheme that can efficiently store our data such that it can be queried quickly. We can't depend upon some database for this; we need to store our index in memory in a highly efficient data structure.
 One of the most appropriate data structures that can serve our purpose is the Trie. A trie is a tree-like data structure used to store phrases where each node stores a character of the phrase in a sequential manner. For example, if we need to store "cap, cat, caption, captain, capital" in the trie, it would look like:
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/46.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/46.png)
 
 Now if the user has typed "cap", our service can traverse the trie to go to the node "P" to find all the terms that start with this prefix (e.g., cap-tion, cap-ital, etc.).
 We can merge nodes that have only one branch to save storage space. The above trie can be stored like this:
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/47.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/47.png)
 
 **Should we have case insensitive trie**? For simplicity and search use case, let's assume our data is case insensitive.
 
@@ -48,7 +48,7 @@ After inserting a new term in the trie, we'll go to the terminal node of the phr
 
 ## Permanent Storage of the Trie
 **How to store trie in a file so that we can rebuild our trie easily**? - this will be needed when a machine restarts. We can take a snapshot of our trie periodically and store it in a file. This will enable us to rebuild a trie if the server goes down. To store, we can start with the root node and save the trie level-by-level. With each node, we can store what character it contains and how many children it has. Right after each node, we should put all of its children. Let's assume we have the following trie:
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/48.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/48.png)
 
 If we store this trie in a file with the above-mentioned scheme, we will have: "C2, A2, R1, T, P, O1, D". From this, we can easily rebuild our trie.
 If you've noticed, we are not storing top suggestions and their counts with each node. It is hard to store this information; as our trie is being stored top-down, we don't have child nodes created before the parent, so there is no easy way to store their references. For this, we have to recalculate all the top terms with counts. This can be done while we are building the trie. Each node will calculate its top suggestions and pass it to its parent. Each parent node will merge results from all of its children to figure out its top suggestions.

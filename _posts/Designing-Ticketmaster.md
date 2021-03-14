@@ -140,11 +140,11 @@ Here are a few observations about the data we are going to store:
 3. Each Movie will have many Shows and each Show will have multiple Bookings;
 4. A User can have multiple Bookings;
 
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/66.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/66.png)
 
 ## High-Level Design
 At a high level, our web servers will manage users’ sessions and application servers will handle all the ticket management, storing data in the databases as well as working with the cache servers to process reservations:
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/67.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/67.png)
 
 ## Detailed Component Design
 First, let's try to build our service assuming it is being served from a single server.
@@ -167,7 +167,7 @@ First, let's try to build our service assuming it is being served from a single 
         - At maximum, a user can wait one hour, after that user's session gets expired and the user is taken back to the movie search page;
 9. If seats are reserved successfully, the user has five minutes to pay for the reservation. After payment, the booking is marked complete. If the user is not able to pay within five minutes, all their reserved seats are freed to become available to other users;
 
-![](https://raw.githubusercontent.com/was48i/mPOST/master/SystemDesign/educative/68.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/68.png)
 
 We need two daemon services, one to keep track of all active reservations and remove any expired reservation from the system; let's call it `ActiveReservationService`. The other service would be keeping track of all the waiting user requests and, as soon as the required number of seats become available, it will notify the (the longest waiting) user to choose the seats; let's call it `WaitingUserService`.
 

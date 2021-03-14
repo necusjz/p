@@ -333,7 +333,7 @@ public class SensitiveWordFilter
 
 ## Servlet Filter
 Servlet Filter 是 Java Servlet 规范中定义的组件，翻译成中文就是过滤器，它可以实现对 HTTP 请求的过滤功能，比如鉴权、限流、记录日志、验证参数等等。因为它是 Servlet 规范的一部分，所以，**只要是支持 Servlet 的 Web 容器（比如，Tomcat、Jetty 等），都支持过滤器功能**。为了帮助你理解，我画了一张示意图阐述它的工作原理，如下所示：
-![](https://raw.githubusercontent.com/was48i/mPOST/master/GoF/21.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/21.png)
 
 在实际项目中，添加一个过滤器，我们只需要**定义一个实现 javax.servlet.Filter 接口的过滤器类，并且将它配置在 web.xml 配置文件中**。Web 容器启动的时候，会读取 web.xml 中的配置，创建过滤器对象。当有请求到来的时候，会先经过过滤器，然后才由 Servlet 来处理：
 ```java
@@ -448,7 +448,7 @@ public void doFilter(ServletRequest request, ServletResponse response)
 
 ## Spring Interceptor
 Spring Interceptor，翻译成中文就是拦截器。尽管英文单词和中文翻译都不同，但和 Servlet Filter 基本上可以看作一个概念，都用来实现对 HTTP 请求进行拦截处理。它们不同之处在于，**Servlet Filter 是 Servlet 规范的一部分，实现依赖于 Web 容器**。**Spring Interceptor 是 Spring MVC 框架的一部分，由 Spring MVC 框架来提供实现**。客户端发送的请求，会先经过 Servlet Filter，然后再经过 Spring Interceptor，最后到达具体的业务代码中。我画了一张图来阐述一个请求的处理流程，具体如下所示：
-![](https://raw.githubusercontent.com/was48i/mPOST/master/GoF/22.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/22.png)
 
 LogInterceptor 实现的功能跟刚才的 LogFilter 完全相同，只是实现方式上稍有区别。LogFilter 对请求和响应的拦截是在 doFilter() 一个函数中实现的，而 LogInterceptor **对请求的拦截在 preHandle() 中实现，对响应的拦截在 postHandle() 中实现**：
 ```java

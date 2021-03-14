@@ -152,7 +152,7 @@ seq[-4:]
 
 >>> [5, 6, 0, 1]
 ```
-![](https://raw.githubusercontent.com/was48i/mPOST/master/python/python_2.jpeg)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/python/python_2.jpeg)
 还可以在第二个冒号后面加上步长（step），实现每隔一位取出一个元素：
 ```python
 seq[::2]

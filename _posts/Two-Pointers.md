@@ -15,7 +15,7 @@ Given that the input array is sorted, an efficient way would be to start with on
 
 <!--more-->
 Here is the visual representation of this algorithm:
-![](https://raw.githubusercontent.com/was48i/mPOST/master/CodingInterview/educative/02.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/CodingInterview/educative/02.png)
 
 The time complexity of the above algorithm will be O(N).
 

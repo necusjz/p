@@ -18,7 +18,7 @@ tags:
 ### 内聚和耦合的关系
 高内聚有助于松耦合，同理，**低内聚也会导致紧耦合**。关于这一点，我画了一张对比图来解释。图中左边部分的代码结构是“高内聚、松耦合”；右边部分正好相反，是“低内聚、紧耦合”：
 <!--more-->
-![](https://raw.githubusercontent.com/was48i/mPOST/master/GoF/00.png)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/00.png)
 
 从图中我们也可以看出，高内聚、低耦合的代码结构更加简单、清晰，相应地，在可维护性和可读性上确实要好很多。
 

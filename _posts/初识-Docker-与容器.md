@@ -34,7 +34,7 @@ Docker 是基于 `Go 语言`实现的开源容器项目。
 - Docker 通过类似 Git 设计理念的操作来方便用户获取、分发和更新应用镜像，存储复用，增量更新。
 - Docker 通过 Dockerfile 支持灵活的自动化创建和部署机制，以提高工作效率，并标准化流程。
 
-![](https://raw.githubusercontent.com/was48i/mPOST/master/Docker/1-1.jpeg)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/Docker/1-1.jpeg)
 ## Docker 与虚拟化
 > 虚拟化的核心是对资源的抽象。
 
@@ -43,5 +43,5 @@ Docker 是基于 `Go 语言`实现的开源容器项目。
 - 准虚拟化（para virtualization）：部分硬件接口以软件的形式提供给客户机操作系统。
 - 操作系统级虚拟化：内核通过创建多个虚拟的操作系统实例（内核和库），来隔离不同的进程。
 
-![](https://raw.githubusercontent.com/was48i/mPOST/master/Docker/1-2.jpeg)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/Docker/1-2.jpeg)
 传统方式需要有额外的虚拟机管理应用和虚拟机操作系统层，Docker 直接复用本地主机的操作系统，更加轻量级。

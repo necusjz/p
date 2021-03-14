@@ -6,7 +6,7 @@ tags:
 ---
 ## The SAP HANA System
 The SAP HANA system consists of multiple servers:
-![](https://raw.githubusercontent.com/was48i/mPOST/master/HANA/3-1.jpg)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/HANA/3-1.jpg)
 The most important component is the `index server`. The index server contains the in-memory data stores and the **engines for processing the data**.
 The `name server` owns the information about the topology of an SAP HANA system. In a distributed system, the name server **knows where the components are running**, and which data is located on which server.
 <!--more-->
@@ -28,7 +28,7 @@ The web-based SAP HANA runtime tools contain functions that are **needed by both
 
 ## Distributed SAP HANA Systems
 SAP HANA supports distribution of its server components **across multiple hosts** – for example for scalability and availability.
-![](https://raw.githubusercontent.com/was48i/mPOST/master/HANA/3-2.jpg)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/HANA/3-2.jpg)
 An installed SAP HANA system is identified by a **System ID** (SID). It is perceived as one unit from the perspective of `the administrator`, who can install, update, start up, shut down, or backup the system as a whole. The different components of the system share the same metadata, and requests from client applications are transparently dispatched to different servers in system, if required:
 -  A distributed SAP HANA `system` is installed on more than one host. Otherwise it is a **single-host system**.
 - A `host` is **a machine** which runs parts of the SAP HANA system.
@@ -37,7 +37,7 @@ An installed SAP HANA system is identified by a **System ID** (SID). It is perce
 The streaming cluster nodes and the extended store servers run on **their own dedicated hosts**, at least in product systems. This means that you **always need a distributed system** if you run one of these options in production.
 ## The Index Server
 This section presents an overview of the architecture of the index server:
-![](https://raw.githubusercontent.com/was48i/mPOST/master/HANA/3-3.jpg)
+![](https://raw.githubusercontent.com/snlndod/mPOST/master/HANA/3-3.jpg)
 The `Connection and Session Management` component at the top creates and manages sessions and connections for the `Database Clients`. Once a session is established, database clients typically use **SQL statements** to communicate with the index server. Analytical applications may use **MDX queries** (MultiDimensional eXpressions). SQL statements and MDX queries are sent over the same connection using the **same network communication protocol**.
 The `Authentication` component is invoked when a new connection is established. Users are authenticated either by the SAP HANA system itself or external provider. The `Authorization Manager` is invoked by other components to check whether the user has the **required privileges** to execute the requested operations.
 Each statement is processed in the context of a transaction. The `Transaction Manager` is the component that coordinates transaction, controls transactional isolation, and keeps track of running and closed transactions. The transaction manager cooperates with the persistence layer to **achieve atomic and durable transactions**.
