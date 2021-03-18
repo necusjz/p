@@ -9,7 +9,7 @@ Given a set of numbers find an optimal solution for a problem considering the cu
 
 ## Approach
 Find all optimal solutions for every interval and return the best possible answer:
-> dp\[i]\[j] = dp\[i]\[k] + result\[k] + dp\[k+1]\[j]
+> dp\[i]\[j] = dp\[i]\[k] + dp\[k+1]\[j] + result\[k]
 
 Get the best from the left and right sides and add a solution for the current position:
 ```cpp
@@ -17,7 +17,7 @@ for (int l = 1; l < n; ++l) {
     for (int i = 0; i < n - l; ++i) {
         int j = i + l;
         for (int k = i; k < j; ++k) {
-            dp[i][j] = max(dp[i][j], dp[i][k] + result[k] + dp[k+1][j]);
+            dp[i][j] = max(dp[i][j], dp[i][k] + dp[k+1][j], result[k]);
         }
     }
 }
