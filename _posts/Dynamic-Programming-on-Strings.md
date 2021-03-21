@@ -5,7 +5,7 @@ tags:
   - CodingInterview
 ---
 ## Statement
-Given two strings s1 and s2, return some result.
+Given two strings `s1` and `s2`, return some result.
 
 ## Approach
 Most of the problems on this pattern requires a solution that can be accepted in O(n^2) complexity:
@@ -21,11 +21,11 @@ for (int i = 1; i <= n; ++i) {
 }
 ```
 
-If you are given one string s the approach may little vary:
+If you are given one string `s` the approach may little vary:
 ```cpp
 for (int l = 1; l < n; ++l) {
-    for (int i = 0; i < n-l; ++i) {
-        int j = i + l;
+    for (int i = 0; i < n - l + 1; ++i) {
+        int j = i + l - 1;
         if (s[i] == s[j]) {
             dp[i][j] = /* code */;
         } else {

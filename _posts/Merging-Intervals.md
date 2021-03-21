@@ -14,8 +14,8 @@ Find all optimal solutions for every interval and return the best possible answe
 Get the best from the left and right sides and add a solution for the current position:
 ```cpp
 for (int l = 1; l < n; ++l) {
-    for (int i = 0; i < n - l; ++i) {
-        int j = i + l;
+    for (int i = 0; i < n - l + 1; ++i) {
+        int j = i + l - 1;
         for (int k = i; k < j; ++k) {
             dp[i][j] = max(dp[i][j], dp[i][k] + result[k] + dp[k+1][j]);
         }
