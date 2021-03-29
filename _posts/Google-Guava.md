@@ -365,11 +365,78 @@ Lambda 表达式包括三部分：输入、函数体、输出：
 实际上，Lambda 表达式的写法非常灵活。我们刚刚给出的是标准写法，还有很多简化写法。比如，如果输入参数只有一个，可以省略 ()，直接写成 a->{...}；如果没有入参，可以直接将输入和箭头都省略掉，只保留函数体；如果函数体只有一个语句，那可以将 {} 省略掉；如果函数没有返回值，return 语句就可以不用写了。
 
 ### 函数接口
-如果我们把之前例子中的 Lambda 表达式，全部替换为函数接口的实现方式，就是下面这样子的
+如果我们把之前例子中的 Lambda 表达式，全部替换为函数接口的实现方式，就是下面这样子的：
+```java
+Optional<Integer> result = Stream.of("f", "ba", "hello")
+    .map(s -> s.length())
+    .filter(l -> l <= 3)
+    .max((o1, o2) -> o1-o2);
+        
+// 还原为函数接口的实现方式
+Optional<Integer> result2 = Stream.of("fo", "bar", "hello")
+    .map(new Function<String, Integer>() {
+        @Override
+        public Integer apply(String s) {
+            return s.length();
+        }
+    })
+    .filter(new Predicate<Integer>() {
+        @Override
+        public boolean test(Integer l) {
+            return l <= 3;
+        }
+    })
+    .max(new Comparator<Integer>() {
+        @Override
+        public int compare(Integer o1, Integer o2) {
+        return o1 - o2;
+        }
+    });
+```
 
+上面一段代码中的 Function、Predicate、Comparator 都是函数接口。我们知道，C 语言支持函数指针，它可以把函数直接当变量来使用。但是，Java 没有函数指针这样的语法，所以，它**通过函数接口，将函数包裹在接口中，当作变量来使用**。实际上，函数接口就是接口，不过，它也有自己特别的地方，那就是要求**只包含一个未实现的方法**。因为只有这样，Lambda 表达式才能明确知道匹配的是哪个接口。如果有两个未实现的方法，并且接口入参、返回值都一样，那 Java 在翻译 Lambda 表达式的时候，就不知道表达式对应哪个方法了。
+
+Java 提供的 Function、Predicate 两个函数接口的源码：
+```java
+@FunctionalInterface
+public interface Function<T, R> {
+    R apply(T t);  // 只有这一个未实现的方法
+    default <V> Function<V, R> compose(Function<? super V, ? extends T> before) {
+        Objects.requireNonNull(before);
+        return (V v) -> apply(before.apply(v));
+    }
+    default <V> Function<T, V> andThen(Function<? super R, ? extends V> after) {
+        Objects.requireNonNull(after);
+        return (T t) -> after.apply(apply(t));
+    }
+    static <T> Function<T, T> identity() {
+        return t -> t;
+    }
+}
+
+@FunctionalInterface
+public interface Predicate<T> {
+    boolean test(T t); // 只有这一个未实现的方法
+    default Predicate<T> and(Predicate<? super T> other) {
+        Objects.requireNonNull(other);
+        return (t) -> test(t) && other.test(t);
+    }
+    default Predicate<T> negate() {
+        return (t) -> !test(t);
+    }
+    default Predicate<T> or(Predicate<? super T> other) {
+        Objects.requireNonNull(other);
+        return (t) -> test(t) || other.test(t);
+    }
+    static <T> Predicate<T> isEqual(Object targetRef) {
+        return (null == targetRef)
+                ? Objects::isNull
+                : object -> targetRef.equals(object);
+    }
+}
+```
 
 ## Guava 对函数式编程的增强
+**颠覆式创新是很难的**。不过我们可以进行一些补充，一方面，可以增加 Stream 类上的操作（类似 map, filter, max 这样的终止操作和中间操作）；另一方面，也可以增加更多的函数接口（类似 Function、Predicate 这样的函数接口）；实际上，我们还可以设计一些类似 Stream 类的新的支持级联操作的类。这样，使用 Java 配合 Guava 进行函数式编程会更加方便。从 Google Guava 的 GitHub Wiki 中，我们发现，Google 对于函数式编程的使用还是很谨慎的，认为**过度地使用函数式编程，会导致代码可读性变差**，强调不要滥用。这跟我前面对函数式编程的观点是一致的。所以，在函数式编程方面，Google Guava 并没有提供太多的支持。
 
-
-
-
+之所以对遍历集合操作做了优化，主要是因为函数式编程一个重要的应用场景就是遍历集合。如果不使用函数式编程，我们只能 for 循环，一个一个的处理集合中的数据。**使用函数式编程，可以大大简化遍历集合操作的代码编写**，一行代码就能搞定，而且在可读性方面也没有太大损失。
