@@ -7,6 +7,7 @@ tags:
 ## Spring 框架简单介绍
 我们常说的 Spring 框架，是指 Spring Framework 基础框架。**Spring Framework 是整个 Spring 生态（也被称作 Spring 全家桶）的基石**。除了 Spring Framework，Spring 全家桶中还有更多基于 Spring Framework 开发出来的、整合更多功能的框架，比如 Spring Boot、Spring Cloud。在 Spring 全家桶中，Spring Framework 是最基础、最底层的一部分。它提供了最基础、最核心的 IoC 和 AOP 功能。当然，它包含的功能还不仅如此，还有其他比如事务管理（Transactions）、MVC 框架（Spring MVC）等很多功能：
 ![](https://raw.githubusercontent.com/snlndod/mPOST/master/OpenSource/geek/23.png)
+<!--more-->
 
 在 Spring Framework 中，Spring MVC 出镜率很高，经常被单独拎出来使用。它是支持 Web 开发的 MVC 框架，提供了 URL 路由、Session 管理、模板引擎等跟 Web 开发相关的一系列功能；`Spring Boot` 是基于 Spring Framework 开发的，它**更加专注于微服务开发**。之所以名字里带有“Boot”一词，跟它的设计初衷有关，Spring Boot 的设计初衷是快速启动一个项目，利用它可以快速地实现一个项目的开发、部署和运行。Spring Boot 支持的所有功能都是围绕着这个初衷设计的，比如：集成很多第三方开发包、简化配置（比如，规约优于配置）、集成内嵌 Web 容器（比如，Tomcat、Jetty）等；单个的微服务开发，使用 Spring Boot 就足够了，但是，如果要构建整个微服务集群，就需要用到 `Spring Cloud` 了。Spring Cloud 主要**负责微服务集群的服务治理**工作，包含很多独立的功能组件，比如 Spring Cloud Sleuth 调用链追踪、Spring Cloud Config 配置中心等。
 

@@ -7,6 +7,7 @@ tags:
 ## Google Guava 介绍
 Google Guava 是 Google 公司内部 Java 开发工具库的开源版本。Google 内部的很多 Java 项目都在使用它。它提供了一些 JDK 没有提供的功能，以及对 JDK 已有功能的增强功能。其中就包括：集合（Collections）、缓存（Caching）、原生类型支持（Primitives Support）、并发库（Concurrency Libraries）、通用注解（Common Annotation）、字符串处理（Strings Processing）、数学计算（Math）、I/O、事件总线（EventBus）等等：
 ![](https://raw.githubusercontent.com/snlndod/mPOST/master/OpenSource/geek/21.png)
+<!--more-->
 
 ## 如何发现通用的功能模块？
 我们要有善于发现、善于抽象的能力，并且具有扎实的设计、开发能力，能够发现这些非业务的、可复用的功能点，并且从业务逻辑中将其解耦抽象出来，设计并开发成独立的功能模块。在业务开发中，跟业务无关的通用功能模块，常见的一般有三类：
