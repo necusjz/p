@@ -301,7 +301,6 @@ public class DemoController {
         return model; 
     }
 }
-
 // 方法二：实现 Controller 接口 + XML 配置文件：配置 DemoController 与 URL 的对应关系
 public class DemoController implements Controller {
     @Override
@@ -311,7 +310,6 @@ public class DemoController implements Controller {
         return model;
     }
 }
-
 // 方法三：实现 Servlet 接口 + XML 配置文件：配置 DemoController 类与 URL 的对应关系
 public class DemoServlet extends HttpServlet {
     @Override
@@ -385,11 +383,272 @@ public class SimpleServletHandlerAdapter implements HandlerAdapter {
 ```
 
 ## 策略模式在 Spring 中的应用
+Spring AOP 是通过动态代理来实现的，Spring 支持两种动态代理实现方式：
+- JDK 提供的动态代理实现方式；
+- `cglib` 提供的动态代理实现方式；
+
+前者需要被代理的类有抽象的接口定义，后者不需要。针对不同的被代理类，Spring 会**在运行时动态地选择不同的动态代理实现方式**，这个应用场景实际上就是策略模式的典型应用场景。策略模式包含三部分，**策略的定义、创建和使用**。在策略模式中，策略的定义这一部分很简单，我们只需要定义一个策略接口，让不同的策略类都实现这一个策略接口。对应到 Spring 源码，AopProxy 是策略接口，JdkDynamicAopProxy、CglibAopProxy 是两个实现了 AopProxy 接口的策略类：
+```java
+public interface AopProxy {
+    Object getProxy();
+    Object getProxy(ClassLoader var1);
+}
+```
+
+在策略模式中，**策略的创建一般通过工厂方法来实现**。对应到 Spring 源码，AopProxyFactory 是一个工厂类接口，DefaultAopProxyFactory 是一个默认的工厂类，用来创建 AopProxy 对象：
+```java
+public interface AopProxyFactory {
+    AopProxy createAopProxy(AdvisedSupport var1) throws AopConfigException;
+}
+
+public class DefaultAopProxyFactory implements AopProxyFactory, Serializable {
+    public DefaultAopProxyFactory() {}
+
+    public AopProxy createAopProxy(AdvisedSupport config) throws AopConfigException {
+        if (!config.isOptimize() && !config.isProxyTargetClass() && !this.hasNoUserSuppliedProxyInterfaces(config)) {
+            return new JdkDynamicAopProxy(config);
+        } else {
+            Class<?> targetClass = config.getTargetClass();
+            if (targetClass == null) {
+                throw new AopConfigException("TargetSource cannot determine target class: Either an interface or a target is required for proxy creation.");
+            } else {
+                return (AopProxy)(!targetClass.isInterface() && !Proxy.isProxyClass(targetClass) ? new ObjenesisCglibAopProxy(config) : new JdkDynamicAopProxy(config));
+            }
+        }
+    }
+    // 用来判断用哪个动态代理实现方式
+    private boolean hasNoUserSuppliedProxyInterfaces(AdvisedSupport config) {
+        Class<?>[] ifcs = config.getProxiedInterfaces();
+        return ifcs.length == 0 || ifcs.length == 1 && SpringProxy.class.isAssignableFrom(ifcs[0]);
+    }
+}
+```
+
+策略模式的典型应用场景，一般是**通过环境变量、状态值、计算结果等动态地决定使用哪个策略**。对应到 Spring 源码中，我们可以参看刚刚给出的 DefaultAopProxyFactory 类中的 createAopProxy() 函数的代码实现。其中，第 9 行代码是动态选择哪种策略的判断条件。
 
 ## 组合模式在 Spring 中的应用
+Spring Cache 提供了一套抽象的 Cache 接口，Spring 中针对不同缓存实现的不同缓存访问类，都依赖这个接口，比如：EhCacheCache、GuavaCache、NoOpCache、RedisCache、JCacheCache、ConcurrentMapCache、CaffeineCache：
+```java
+public interface Cache {
+    String getName();
+    Object getNativeCache();
+    Cache.ValueWrapper get(Object var1);
+    <T> T get(Object var1, Class<T> var2);
+    <T> T get(Object var1, Callable<T> var2);
+    void put(Object var1, Object var2);
+    Cache.ValueWrapper putIfAbsent(Object var1, Object var2);
+    void evict(Object var1);
+    void clear();
+
+    public static class ValueRetrievalException extends RuntimeException {
+        private final Object key;
+        public ValueRetrievalException(Object key, Callable<?> loader, Throwable ex) {
+            super(String.format("Value for key '%s' could not be loaded using '%s'", key, loader), ex);
+            this.key = key;
+        }
+        public Object getKey() {
+            return this.key;
+        }
+    }
+
+    public interface ValueWrapper {
+        Object get();
+    }
+}
+```
+
+在实际的开发中，一个项目有可能会用到多种不同的缓存，比如既用到 Google Guava 缓存，也用到 Redis 缓存。除此之外，同一个缓存实例，也可以根据业务的不同，分割成多个小的逻辑缓存单元（或者叫作命名空间）。**为了管理多个缓存，Spring 还提供了缓存管理功能**。不过，它包含的功能很简单，主要有这样两部分：
+- 根据缓存名字（创建 Cache 对象的时候要设置 name 属性）获取 Cache 对象；
+- 获取管理器管理的所有缓存的名字列表；
+
+对应的 Spring 源码如下所示：
+```java
+public interface CacheManager {
+    Cache getCache(String var1);
+    Collection<String> getCacheNames();
+}
+```
+
+那如何来实现这两个接口呢？实际上，这就要用到组合模式，**组合模式主要应用在能表示成树形结构的一组数据上**。树中的结点分为叶子节点和中间节点两类。对应到 Spring 源码，EhCacheManager、SimpleCacheManager、NoOpCacheManager、RedisCacheManager 等表示叶子节点，CompositeCacheManager 表示中间节点。叶子节点包含的是它所管理的 Cache 对象，中间节点 CompositeCacheManger 如下所示；其中，getCache()、getCacheNames() 两个函数的实现都用到了**递归，这正是树形结构最能发挥优势的地方**：
+```java
+public class CompositeCacheManager implements CacheManager, InitializingBean {
+    private final List<CacheManager> cacheManagers = new ArrayList();
+    private boolean fallbackToNoOpCache = false;
+
+    public CompositeCacheManager() {}
+
+    public CompositeCacheManager(CacheManager... cacheManagers) {
+        this.setCacheManagers(Arrays.asList(cacheManagers));
+    }
+
+    public void setCacheManagers(Collection<CacheManager> cacheManagers) {
+        this.cacheManagers.addAll(cacheManagers);
+    }
+
+    public void setFallbackToNoOpCache(boolean fallbackToNoOpCache) {
+        this.fallbackToNoOpCache = fallbackToNoOpCache;
+    }
+
+    public void afterPropertiesSet() {
+        if (this.fallbackToNoOpCache) {
+            this.cacheManagers.add(new NoOpCacheManager());
+        }
+    }
+
+    public Cache getCache(String name) {
+        Iterator var2 = this.cacheManagers.iterator();
+        Cache cache;
+        do {
+            if (!var2.hasNext()) {
+                return null;
+            }
+            CacheManager cacheManager = (CacheManager)var2.next();
+            cache = cacheManager.getCache(name);
+        } while(cache == null);
+        return cache;
+    }
+
+    public Collection<String> getCacheNames() {
+        Set<String> names = new LinkedHashSet();
+        Iterator var2 = this.cacheManagers.iterator();
+        while(var2.hasNext()) {
+            CacheManager manager = (CacheManager)var2.next();
+            names.addAll(manager.getCacheNames());
+        }
+        return Collections.unmodifiableSet(names);
+    }
+}
+```
 
 ## 装饰器模式在 Spring 中的应用
+缓存一般都是配合数据库来使用的，如果写缓存成功，但数据库事务回滚了，那缓存中就会有脏数据。为了解决这个问题，我们需要**将缓存的写操作和数据库的写操作，放到同一个事务中，要么都成功，要么都失败**。实现这样一个功能，Spring 使用到了装饰器模式。TransactionAwareCacheDecorator 增加了对事务的支持，在事务提交、回滚的时候分别对 Cache 的数据进行处理。TransactionAwareCacheDecorator 实现 Cache 接口，并且将所有的操作都委托给 targetCache 来实现，对其中的写操作添加了事务功能：
+```java
+public class TransactionAwareCacheDecorator implements Cache {
+    private final Cache targetCache;
+
+    public TransactionAwareCacheDecorator(Cache targetCache) {
+        Assert.notNull(targetCache, "Target Cache must not be null");
+        this.targetCache = targetCache;
+    }
+
+    public Cache getTargetCache() {
+        return this.targetCache;
+    }
+
+    public String getName() {
+        return this.targetCache.getName();
+    }
+
+    public Object getNativeCache() {
+        return this.targetCache.getNativeCache();
+    }
+
+    public ValueWrapper get(Object key) {
+        return this.targetCache.get(key);
+    }
+
+    public <T> T get(Object key, Class<T> type) {
+        return this.targetCache.get(key, type);
+    }
+
+    public <T> T get(Object key, Callable<T> valueLoader) {
+        return this.targetCache.get(key, valueLoader);
+    }
+
+    public void put(final Object key, final Object value) {
+        if (TransactionSynchronizationManager.isSynchronizationActive()) {
+            TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
+                public void afterCommit() {
+                TransactionAwareCacheDecorator.this.targetCache.put(key, value);
+                }
+            });
+        } else {
+            this.targetCache.put(key, value);
+        }
+    }
+    
+    public ValueWrapper putIfAbsent(Object key, Object value) {
+        return this.targetCache.putIfAbsent(key, value);
+    }
+
+    public void evict(final Object key) {
+        if (TransactionSynchronizationManager.isSynchronizationActive()) {
+            TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
+                public void afterCommit() {
+                    TransactionAwareCacheDecorator.this.targetCache.evict(key);
+                }
+            });
+        } else {
+            this.targetCache.evict(key);
+        }
+    }
+
+    public void clear() {
+        if (TransactionSynchronizationManager.isSynchronizationActive()) {
+            TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
+                public void afterCommit() {
+                    TransactionAwareCacheDecorator.this.targetCache.clear();
+                }
+            });
+        } else {
+            this.targetCache.clear();
+        }
+    }
+}
+```
 
 ## 工厂模式在 Spring 中的应用
+在 Spring 中，工厂模式最经典的应用莫过于实现 IoC 容器，对应的 Spring 源码主要是 BeanFactory 类和 ApplicationContext 相关类。在 Spring 中，创建 Bean 的方式有很多种，比如前面提到的纯构造函数、无参构造函数加 setter 方法：
+```java
+public class Student {
+    private long id;
+    private String name;
+    
+    public Student(long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+    
+    public void setId(long id) {
+        this.id = id;
+    }
+    
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+// 使用构造函数来创建 Bean
+<bean id="student" class="com.xzg.cd.Student">
+    <constructor-arg name="id" value="1"/>
+    <constructor-arg name="name" value="wangzheng"/>
+</bean>
+// 使用无参构造函数 + setter 方法来创建 Bean
+<bean id="student" class="com.xzg.cd.Student">
+    <property name="id" value="1"></property>
+    <property name="name" value="wangzheng"></property>
+</bean>
+```
+
+实际上，除了这两种创建 Bean 的方式之外，我们还可以通过工厂方法来创建 Bean：
+```java
+public class StudentFactory {
+    private static Map<Long, Student> students = new HashMap<>();
+    
+    static {
+        map.put(1, new Student(1,"wang"));
+        map.put(2, new Student(2,"zheng"));
+        map.put(3, new Student(3,"xzg"));
+    }
+    
+    public static Student getStudent(long id) {
+        return students.get(id);
+    }
+}
+// 通过工厂方法 getStudent(2) 来创建 BeanId="zheng" 的 Bean
+<bean id="zheng" class="com.xzg.cd.StudentFactory" factory-method="getStudent">
+    <constructor-arg value="2"></constructor-arg>           
+</bean>
+```
 
 ## 其他模式在 Spring 中的应用
+`SpEL`，全称叫 Spring Expression Language，是 Spring 中常用来编写配置的表达式语言。它定义了一系列的语法规则。我们只要按照这些语法规则来编写表达式，Spring 就能解析出表达式的含义。实际上，这就是我们前面讲到的解释器模式的典型应用场景，代码主要集中在 spring-expression 这个模块下面；单例模式有很多弊端，比如单元测试不友好等。应对策略是通过 IoC 容器来管理对象，**通过 IoC 容器来实现对象的唯一性的控制**。实际上，这样实现的单例并非真正的单例，它的唯一性的作用范围仅仅在同一个 IoC 容器内；实际上，在 Spring 中，只要后缀带有 Template 的类，基本上都是模板类，而且大部分都是用 Callback 回调来实现的，比如 JdbcTemplate、RedisTemplate 等；剩下的两个模式在 Spring 中的应用应该人尽皆知了：职责链模式在 Spring 中的应用是拦截器（Interceptor），**代理模式经典应用是 AOP**。
