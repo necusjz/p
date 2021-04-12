@@ -67,27 +67,28 @@ In some problems, the size of the sliding window is not fixed. We have to expand
 
 ## Snippet
 ```python
-def checkInclusion(self, s1: str, s2: str) -> bool:
-    matched, start = 0, 0
+def minWindow(self, s: str, t: str) -> str:
     freq = dict()
-    for char in s1:
+    for char in t:
         freq[char] = freq.get(char, 0) + 1
+    ans = ""
+    start, matched = 0, 0
     # sliding window
-    for end in range(len(s2)):
-        if s2[end] in freq:
-            freq[s2[end]] -= 1
-            if freq[s2[end]] == 0:
+    for end in range(len(s)):
+        if s[end] in freq:
+            freq[s[end]] -= 1
+            if freq[s[end]] == 0:
                 matched += 1
-        if matched == len(s1):
-            return True
         # shrink
-        if end - start + 1 == len(s1):
-            if s2[start] in freq:
-                if freq[s2[start]] == 0:
+        while matched == len(freq):
+            if not ans or end - start + 1 < len(ans):
+                ans = s[start:end+1]
+            if s[start] in freq:
+                if freq[s[start]] == 0:
                     matched -= 1
-                freq[s2[start]] += 1
+                freq[s[start]] += 1
             start += 1
-    return False
+    return ans
 ```
 
 ## LeetCode
