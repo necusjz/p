@@ -7,22 +7,17 @@ tags:
 ## 控制反转（IoC）
 控制反转的英文翻译是 Inversion of Control，缩写为 IoC。我们先通过一个例子来看一下，什么是控制反转：
 ```java
-public class UserServiceTest 
-{
-    public static boolean doTest() 
-    {
+public class UserServiceTest {
+    public static boolean doTest() {
         //... 
     }
     
-    public static void main(String[] args) 
-    {
+    public static void main(String[] args) {
         // 这部分逻辑可以放到框架中
-        if (doTest()) 
-        {
+        if (doTest()) {
             System.out.println("Test succeed.");
         } 
-        else 
-        {
+        else {
             System.out.println("Test failed.");
         }
     }
@@ -32,16 +27,12 @@ public class UserServiceTest
 在上面的代码中，**所有的流程都由程序员来控制**。如果我们抽象出一个下面这样一个框架，我们再来看，如何利用框架来实现同样的功能。具体的代码实现如下所示：
 <!--more-->
 ```java
-public abstract class TestCase 
-{
-    public void run() 
-    {
-        if (doTest()) 
-        {
+public abstract class TestCase {
+    public void run() {
+        if (doTest()) {
             System.out.println("Test succeed.");
         } 
-        else 
-        {
+        else {
             System.out.println("Test failed.");
         }
     }
@@ -49,19 +40,15 @@ public abstract class TestCase
     public abstract boolean doTest();
 }
 
-public class JunitApplication 
-{
+public class JunitApplication {
     private static final List<TestCase> testCases = new ArrayList<>();
     
-    public static void register(TestCase testCase) 
-    {
+    public static void register(TestCase testCase) {
         testCases.add(testCase);
     }
     
-    public static final void main(String[] args) 
-    {
-        for (TestCase case: testCases) 
-        {
+    public static final void main(String[] args) {
+        for (TestCase case: testCases) {
             case.run();
         }
     }
@@ -70,11 +57,9 @@ public class JunitApplication
 
 把这个简化版本的测试框架引入到工程中之后，我们只需要**在框架预留的扩展点，也就是 TestCase 类中的 doTest() 抽象函数中，填充具体的测试代码就可以实现之前的功能**了，完全不需要写负责执行流程的 main() 函数了。 具体的代码如下所示：
 ```java
-public class UserServiceTest extends TestCase 
-{
+public class UserServiceTest extends TestCase {
     @Override
-    public boolean doTest() 
-    {
+    public boolean doTest() {
         //... 
     }
 }
@@ -93,26 +78,21 @@ JunitApplication.register(new UserServiceTest();
 那到底什么是依赖注入呢？我们用一句话来概括就是：不通过 new() 的方式在类内部创建依赖类对象，而是**将依赖的类对象在外部创建好之后，通过构造函数、函数参数等方式传递（或注入）给类使用**。我们还是通过一个例子来解释一下。在这个例子中，Notification 类负责消息推送，依赖 MessageSender 类实现推送商品促销、验证码等消息给用户。我们分别用依赖注入和非依赖注入两种方式来实现一下。具体的实现代码如下所示：
 ```java
 // 非依赖注入实现方式
-public class Notification 
-{
+public class Notification {
     private MessageSender messageSender;
     
-    public Notification() 
-    {
+    public Notification() {
         this.messageSender = new MessageSender(); // 此处有点像 hard code
     }
     
-    public void sendMessage(String cellphone, String message) 
-    {
+    public void sendMessage(String cellphone, String message) {
         //...省略校验逻辑等...
         this.messageSender.send(cellphone, message);
     }
 }
 
-public class MessageSender 
-{
-    public void send(String cellphone, String message) 
-    {
+public class MessageSender {
+    public void send(String cellphone, String message) {
         //...
     }
 }
@@ -120,18 +100,15 @@ public class MessageSender
 Notification notification = new Notification();
 
 // 依赖注入的实现方式
-public class Notification 
-{
+public class Notification {
     private MessageSender messageSender;
     
     // 通过构造函数将 messageSender 传递进来
-    public Notification(MessageSender messageSender) 
-    {
+    public Notification(MessageSender messageSender) {
         this.messageSender = messageSender;
     }
     
-    public void sendMessage(String cellphone, String message) 
-    {
+    public void sendMessage(String cellphone, String message) {
         //...省略校验逻辑等...
         this.messageSender.send(cellphone, message);
     }
@@ -143,42 +120,34 @@ Notification notification = new Notification(messageSender);
 
 通过依赖注入的方式来将依赖的类对象传递进来，这样就**提高了代码的扩展性，我们可以灵活地替换依赖的类**。这一点在我们之前讲“开闭原则”的时候也提到过。当然，上面代码还有继续优化的空间，我们还可以**把 MessageSender 定义成接口，基于接口而非实现编程**。改造后的代码如下所示：
 ```java
-public class Notification 
-{
+public class Notification {
     private MessageSender messageSender;
     
-    public Notification(MessageSender messageSender) 
-    {
+    public Notification(MessageSender messageSender) {
         this.messageSender = messageSender;
     }
     
-    public void sendMessage(String cellphone, String message) 
-    {
+    public void sendMessage(String cellphone, String message) {
         this.messageSender.send(cellphone, message);
     }
 }
 
-public interface MessageSender 
-{
+public interface MessageSender {
     void send(String cellphone, String message);
 }
 
 // 短信发送类
-public class SmsSender implements MessageSender 
-{
+public class SmsSender implements MessageSender {
     @Override
-    public void send(String cellphone, String message) 
-    {
+    public void send(String cellphone, String message) {
         //...
     }
 }
 
 // 站内信发送类
-public class InboxSender implements MessageSender 
-{
+public class InboxSender implements MessageSender {
     @Override
-    public void send(String cellphone, String message) 
-    {
+    public void send(String cellphone, String message) {
         //...
     }
 }
@@ -191,10 +160,8 @@ Notification notification = new Notification(messageSender);
 ## 依赖注入框架（DI Framework）
 在采用依赖注入实现的 Notification 类中，虽然我们不需要用类似 hard code 的方式，在类内部通过 new 来创建 MessageSender 对象，但是，这个**创建对象、组装（或注入）对象的工作仅仅是被移动到了更上层代码而已，还是需要我们程序员自己来实现**。具体代码如下所示：
 ```java
-public class Demo 
-{
-    public static final void main(String args[]) 
-    {
+public class Demo {
+    public static final void main(String args[]) {
         MessageSender sender = new SmsSender(); // 创建对象
         Notification notification = new Notification(sender); // 依赖注入
         notification.sendMessage("13918942177", "短信验证码：2346");
@@ -212,6 +179,6 @@ public class Demo
 
 我们将它翻译成中文，大概意思就是：高层模块（high-level modules）不要依赖低层模块（low-level modules）。**高层模块和低层模块应该通过抽象（abstractions）来互相依赖**。除此之外，抽象（abstractions）不要依赖具体实现细节（details），具体实现细节（details）依赖抽象（abstractions）。
 
-所谓高层模块和低层模块的划分，简单来说就是，**在调用链上，调用者属于高层，被调用者属于低层**。在平时的业务代码开发中，高层模块依赖底层模块是没有任何问题的。实际上，**这条原则主要还是用来指导框架层面的设计**，跟前面讲到的控制反转类似。我们拿 Tomcat 这个 Servlet 容器作为例子来解释一下。
+所谓高层模块和低层模块的划分，简单来说就是，**在调用链上，调用者属于高层，被调用者属于低层**。在平时的业务代码开发中，高层模块依赖低层模块是没有任何问题的。实际上，**这条原则主要还是用来指导框架层面的设计**，跟前面讲到的控制反转类似。
 
-Tomcat 是运行 Java Web 应用程序的容器。我们编写的 Web 应用程序代码只需要部署在 Tomcat 容器下，便可以被 Tomcat 容器调用执行。按照之前的划分原则，Tomcat 就是高层模块，我们编写的 Web 应用程序代码就是低层模块。Tomcat 和应用程序代码之间并没有直接的依赖关系，**两者都依赖同一个“抽象”，也就是 Servlet 规范**。Servlet 规范不依赖具体的 Tomcat 容器和应用程序的实现细节，而 Tomcat 容器和应用程序依赖 Servlet 规范。
+我们拿 Tomcat 这个 Servlet 容器作为例子来解释一下：Tomcat 是运行 Java Web 应用程序的容器。我们编写的 Web 应用程序代码只需要部署在 Tomcat 容器下，便可以被 Tomcat 容器调用执行。按照之前的划分原则，Tomcat 就是高层模块，我们编写的 Web 应用程序代码就是低层模块。Tomcat 和应用程序代码之间并没有直接的依赖关系，**两者都依赖同一个“抽象”，也就是 Servlet 规范**。Servlet 规范不依赖具体的 Tomcat 容器和应用程序的实现细节，而 Tomcat 容器和应用程序依赖 Servlet 规范。

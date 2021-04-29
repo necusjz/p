@@ -136,13 +136,13 @@ We can divide our datastore layer into two:
 ![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/27.png)
 
 ## Purging or DB Cleanup
-Please see [Designing a URL Shortening Service Like TinyURL](https://snlndod.github.io/2021/02/08/Designing-a-URL-Shortening-Service-Like-TinyURL/).
+Please see [Designing TinyURL](https://snlndod.github.io/2021/02/08/Designing-TinyURL/).
 
 ## Data Partitioning and Replication
-Please see [Designing a URL Shortening Service Like TinyURL](https://snlndod.github.io/2021/02/08/Designing-a-URL-Shortening-Service-Like-TinyURL/).
+Please see [Designing TinyURL](https://snlndod.github.io/2021/02/08/Designing-TinyURL/).
 
 ## Cache and Load Balancer
-Please see [Designing a URL Shortening Service Like TinyURL](https://snlndod.github.io/2021/02/08/Designing-a-URL-Shortening-Service-Like-TinyURL/).
+Please see [Designing TinyURL](https://snlndod.github.io/2021/02/08/Designing-TinyURL/).
 
 ## Security and Permissions
-Please see [Designing a URL Shortening Service Like TinyURL](https://snlndod.github.io/2021/02/08/Designing-a-URL-Shortening-Service-Like-TinyURL/).
+Please see [Designing TinyURL](https://snlndod.github.io/2021/02/08/Designing-TinyURL/).

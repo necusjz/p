@@ -1,5 +1,5 @@
 ---
-title: Designing a URL Shortening Service Like TinyURL
+title: Designing TinyURL
 date: 2021-02-08 21:38:19
 tags:
   - SystemDesign
