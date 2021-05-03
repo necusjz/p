@@ -16,7 +16,7 @@ Here, we are asked to find the average of all contiguous subarrays of size "5" i
 1. For the first 5 numbers (subarray from index 0~4), the average is: (1+3+2+6-1)/5 = 2.2;
 2. The average of next 5 numbers (subarray from index 1~5) is: (3+2+6-1+4)/5 = 2.8;
 3. For the next 5 numbers (subarray from index 2~6), the average is: (2+6-1+4+1)/5 = 2.4;
-...
+4. ...
 
 Here is the final output containing the averages of all contiguous subarrays of size 5:
 ```python
@@ -33,7 +33,8 @@ def find_averages_of_subarrays(k, arr):
         # find sum of next `K` elements
         for j in range(i, i + k):
             element_sum += arr[j]
-            result.append(element_sum / k) # calculate average
+            # calculate average
+            result.append(element_sum / k)
     return result
 ```
 
@@ -47,19 +48,18 @@ As you can see, there are four overlapping elements between the subarray (indexe
 The efficient way to solve this problem would be to visualize each contiguous subarray as a sliding window of "5" elements. This means that we will slide the window by one element when we move on to the next subarray. To reuse the sum from the previous subarray, we will subtract the element going out of the window and add the element now being included in the sliding window. This will save us from going through the whole subarray to find the sum and, as a result, the algorithm complexity will reduce to O(N):
 ![](https://raw.githubusercontent.com/snlndod/mPOST/master/CodingInterview/educative/01.png)
 
-Here is the algorithm for the Sliding Window approach:
+Here is the algorithm for the _Sliding Window_ approach:
 ```python
 def find_averages_of_subarrays(k, arr):
     result = []
     window_sum, start = 0.0, 0
     for end in range(len(arr)):
-        # add the next element
         window_sum += arr[end]
-        # slide the window, we don't need to slide if we've not hit the required window size of `K`
+        # shrink
         if end >= k - 1:
-            result.append(window_sum / k) # calculate the average
-            window_sum -= arr[start]      # subtract the element going out
-            start += 1                    # slide the window ahead
+            result.append(window_sum / k)
+            window_sum -= arr[start]
+            start += 1
     return result
 ```
 

@@ -4,7 +4,7 @@ date: 2021-01-30 15:49:52
 tags:
   - CodingInterview
 ---
-In problems where we deal with sorted arrays (or LinkedLists) and need to find a set of elements that fulfill certain constraints, the Two Pointers approach becomes quite useful. The set of elements could be a pair, a triplet or even a subarray. For example, take a look at the following problem:
+In problems where we deal with sorted arrays (or LinkedLists) and need to find a set of elements that fulfill certain constraints, the _Two Pointers_ approach becomes quite useful. The set of elements could be a pair, a triplet or even a subarray. For example, take a look at the following problem:
 > Given an array of sorted numbers and a target sum, find a pair in the array whose sum is equal to the given target.
 
 To solve this problem, we can consider each element one by one (pointed out by the first pointer) and iterate through the remaining elements (pointed out by the second pointer) to find a pair with the given sum. The time complexity of this algorithm will be O(N^2) where "N" is the number of elements in the input array.
@@ -22,7 +22,7 @@ The time complexity of the above algorithm will be O(N).
 ## Snippet
 ```python
 def threeSum(self, nums: List[int]) -> List[List[int]]:
-    triplets = []
+    ans = []
     nums.sort()
     for i in range(len(nums)):
         if i > 0 and nums[i] == nums[i-1]:
@@ -31,17 +31,19 @@ def threeSum(self, nums: List[int]) -> List[List[int]]:
         # two pointers
         while l < r:
             curr_sum = nums[i] + nums[l] + nums[r]
-            if curr_sum < 0:
+            if curr_sum == 0:
+                ans.append([nums[i], nums[l], nums[r]])
                 l += 1
-            elif curr_sum > 0:
                 r -= 1
-            else:
-                triplets.append([nums[i], nums[l], nums[r]])
-                l += 1
                 while l < r and nums[l] == nums[l-1]:
                     l += 1
-    return triplets
-    
+                while l < r and nums[r] == nums[r+1]:
+                    r -= 1
+            elif curr_sum < 0:
+                l += 1
+            else:
+                r -= 1
+    return ans
 ```
 
 ## LeetCode
