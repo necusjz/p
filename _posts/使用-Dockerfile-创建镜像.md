@@ -128,7 +128,7 @@ COPY 与 ADD 指令功能类似，当**本地目录为源目录**时，推荐使
 编写完成 Dockerfile 之后，可以通过 docker build 命令来创建镜像。该命令将读取指定路径下的 Dockerfile，并**将该路径下所有数据作为 context** 发送给 Docker 服务端。
 逐条执行其中定义的指令，碰到 `ADD、COPY、RUN 指令`会生成一层新的镜像，最终如果创建镜像成功，会返回最终镜像的 ID。
 例如，上下文路径为：/tmp/docker_builder/，并且希望生成镜像标签为：builder／first_image:1.0.0，可以使用下面的命令：
-```bash
+```
 $ docker build -t builder/first_image:1.0.0 /tmp/docker_builder/
 ```
 ### 命令选项
