@@ -12,23 +12,20 @@ By moving at different speeds (say, in a cyclic LinkedList), the algorithm prove
 ```python
 def isPalindrome(self, head: ListNode) -> bool:
     l = r = head
-    # obtain pointer of middle
+    # two pointers
     while r and r.next:
         l = l.next
         r = r.next.next
     stack = []
-    # push second half to stack
     while l:
         stack.append(l.val)
         l = l.next
     r = head
-    # compare with first half
     while stack:
         if stack.pop() != r.val:
             return False
         r = r.next
     return True
-    
 ```
 
 ## LeetCode
