@@ -10,17 +10,19 @@ By moving at different speeds (say, in a cyclic LinkedList), the algorithm prove
 
 ## Snippet
 ```python
-def isPalindrome(self, head: ListNode) -> bool:
+def is_palindrome(head: ListNode) -> bool:
     l = r = head
-    # two pointers
+    # obtain middle pointer
     while r and r.next:
         l = l.next
         r = r.next.next
     stack = []
+    # push second half to stack
     while l:
         stack.append(l.val)
         l = l.next
     r = head
+    # compare with first half
     while stack:
         if stack.pop() != r.val:
             return False

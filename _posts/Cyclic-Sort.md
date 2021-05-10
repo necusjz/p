@@ -11,22 +11,16 @@ To efficiently solve this problem, we can use the fact that the input array cont
 
 ## Snippet
 ```python
-def firstMissingPositive(self, nums: List[int]) -> int:
-    max_value = len(nums) + 1
-    # remove useless items
-    for i in range(len(nums)):
-        if nums[i] < 1 or nums[i] > len(nums):
-            nums[i] = 0
-    nums.append(0)
+def find_duplicate(nums: List[int]) -> int:
+    max_len = len(nums)
     # record frequency
-    for num in nums[:-1]:
-        nums[num % max_value] += max_value
-    # obtain missing
-    for i in range(1, max_value):
-        if nums[i] // max_value == 0:
+    for num in nums:
+        nums[num % max_len] += max_len
+    # obtain duplicate
+    for i in range(1, max_len):
+        if nums[i] // max_len > 1:
             return i
-    return max_value
-    
+    return -1
 ```
 
 ## LeetCode

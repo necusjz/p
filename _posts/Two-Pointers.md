@@ -21,18 +21,19 @@ The time complexity of the above algorithm will be O(N).
 
 ## Snippet
 ```python
-def threeSum(self, nums: List[int]) -> List[List[int]]:
+def three_sum(nums: List[int]) -> List[List[int]]:
     ans = []
     nums.sort()
     for i in range(len(nums)):
+        # handle duplicates
         if i > 0 and nums[i] == nums[i-1]:
             continue
         l, r = i + 1, len(nums) - 1
-        # two pointers
         while l < r:
             curr_sum = nums[i] + nums[l] + nums[r]
             if curr_sum == 0:
                 ans.append([nums[i], nums[l], nums[r]])
+                # shrink left/right
                 l += 1
                 r -= 1
                 while l < r and nums[l] == nums[l-1]:

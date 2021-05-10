@@ -4,9 +4,9 @@ date: 2021-01-30 17:34:51
 tags:
   - CodingInterview
 ---
-This pattern is based on the Depth-First Search (DFS) technique to traverse a tree.
+This pattern is based on the _Depth-First Search_ technique to traverse a tree.
 
-We will be using recursion (or we can also use a stack for the iterative approach) to keep track of all the previous (parent) nodes while traversing. This also means that the space complexity of the algorithm will be O(H), where "H" is the maximum height of the tree.
+We will be using recursion (or we can also use a **Stack** for the iterative approach) to keep track of all the previous (parent) nodes while traversing. This also means that the space complexity of the algorithm will be O(H), where "H" is the **maximum height of the tree**.
 
 ## Snippet
 ```python

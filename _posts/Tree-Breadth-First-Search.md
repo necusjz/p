@@ -4,18 +4,19 @@ date: 2021-01-30 17:22:57
 tags:
   - CodingInterview
 ---
-This pattern is based on the Breadth-First Search (BFS) technique to traverse a tree.
+This pattern is based on the _Breadth-First Search_ technique to traverse a tree.
 
-Any problem involving the traversal of a tree in a level-by-level order can be efficiently solved using this approach. We will use a `Queue` to keep track of all the nodes of a level before we jump onto the next level. This also means that the space complexity of the algorithm will be O(W), where "W" is the maximum number of nodes on any level.
+Any problem involving the traversal of a tree in a level-by-level order can be efficiently solved using this approach. We will use a **Queue** to keep track of all the nodes of a level before we jump onto the next level. This also means that the space complexity of the algorithm will be O(W), where "W" is the **maximum number of nodes on any level**.
 
 ## Snippet
 ```python
 from collections import deque
 
-def averageOfLevels(self, root: TreeNode) -> List[float]:
-    result = []
+
+def average_of_levels(root: TreeNode) -> List[float]:
     if not root:
-        return None
+        return root
+    ans = []
     queue = deque([root])
     while queue:
         curr_sum, curr_len = 0.0, len(queue)
@@ -26,8 +27,8 @@ def averageOfLevels(self, root: TreeNode) -> List[float]:
                 queue.append(node.left)
             if node.right:
                 queue.append(node.right)
-        result.append(curr_sum / curr_len)
-    return result
+        ans.append(curr_sum / curr_len)
+    return ans
 ```
 
 ## LeetCode

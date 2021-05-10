@@ -67,7 +67,7 @@ In some problems, the size of the sliding window is not fixed. We have to expand
 
 ## Snippet
 ```python
-def minWindow(self, s: str, t: str) -> str:
+def min_window(s: str, t: str) -> str:
     freq = dict()
     for char in t:
         freq[char] = freq.get(char, 0) + 1
