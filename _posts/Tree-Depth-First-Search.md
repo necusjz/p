@@ -11,48 +11,38 @@ We will be using recursion (or we can also use a **Stack** for the iterative app
 ## Snippet
 ```python
 """
-One Direction
+No Return Value
 """
-def __init__(self):
-    self.paths = []
-
-def obtain_path(self, root, targetSum, curr_path):
-    if not root:
-        return None
-    curr_path.append(root.val)
-    if not root.left and not root.right and root.val == targetSum:
-        self.paths.append(curr_path[:])
-    targetSum -= root.val
-    # DFS
-    self.obtain_path(root.left, targetSum, curr_path)
-    self.obtain_path(root.right, targetSum, curr_path)
-    # backtracking
-    curr_path.pop()
-
-def pathSum(self, root: TreeNode, targetSum: int) -> List[List[int]]:
-    self.obtain_path(root, targetSum, [])
-    return self.paths
-
+def path_sum(root: TreeNode, target: int) -> List[List[int]]:
+    def dfs(node, path):
+        if not node:
+            return
+        # deep copy
+        path = path + [node.val]
+        if not node.left and not node.right and sum(path) == target:
+            self.ans.append(path)
+        dfs(node.left, path)
+        dfs(node.right, path)
+    
+    self.ans = []
+    dfs(root, [])
+    return self.ans
 """
-Both Directions
+Has a Return Value
 """
-def __init__(self):
-    self.max_sum = -sys.maxsize
-
-def calc_max(self, root):
-    if not root:
-        return 0
-    # DFS
-    l_max = max(0, self.calc_max(root.left))
-    r_max = max(0, self.calc_max(root.right))
-    curr_sum = l_max + r_max + root.val
-    self.max_sum = max(self.max_sum, curr_sum)
-    return max(l_max, r_max) + root.val
-
-def maxPathSum(self, root: TreeNode) -> int:
-    self.calc_max(root)
-    return self.max_sum
-
+def max_path_sum(root: TreeNode) -> int:
+    def dfs(node):
+        if not node:
+            return 0
+        # obtain intermediate results
+        l = max(dfs(node.left), 0)
+        r = max(dfs(node.right), 0)
+        self.ans = max(self.ans, l + r + node.val)
+        return max(l, r) + node.val
+    
+    self.ans = -sys.maxsize
+    dfs(root)
+    return self.ans
 ```
 
 ## LeetCode

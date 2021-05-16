@@ -15,19 +15,20 @@ from collections import deque
 
 def average_of_levels(root: TreeNode) -> List[float]:
     if not root:
-        return root
+        return []
     ans = []
     queue = deque([root])
     while queue:
-        curr_sum, curr_len = 0.0, len(queue)
+        total = 0.0
+        curr_len = len(queue)
         for _ in range(curr_len):
             node = queue.popleft()
-            curr_sum += node.val
+            total += node.val
             if node.left:
                 queue.append(node.left)
             if node.right:
                 queue.append(node.right)
-        ans.append(curr_sum / curr_len)
+        ans.append(total / curr_len)
     return ans
 ```
 
