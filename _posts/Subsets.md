@@ -4,45 +4,51 @@ date: 2021-01-31 20:35:10
 tags:
   - CodingInterview
 ---
-A huge number of coding interview problems involve dealing with `Permutations` and `Combinations` of a given set of elements. This pattern describes an efficient Breadth-First Search (BFS) approach to handle all these problems.
+A huge number of coding interview problems involve dealing with _Permutations_ and _Combinations_ of a given set of elements. This pattern describes an efficient **Breadth-First Search** approach to handle all these problems.
 
 ## Snippet
 ```python
 """
 Iteration
 """
-def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
-    subsets = [[]]
+def subsets_with_dup(nums: List[int]) -> List[List[int]]:
     nums.sort()
+    ans = [[]]
     for i in range(len(nums)):
         start = 0
         # handle duplicates
         if i > 0 and nums[i] == nums[i-1]:
-            start = end + 1
-        end = len(subsets) - 1
-        for j in range(start, end + 1):
-            subsets.append(subsets[j] + [nums[i]])
-    return subsets
-
+            start = end
+        end = len(ans)
+        for j in range(start, end):
+            # deep copy
+            ans.append(ans[j] + [nums[i]])
+    return ans
 """
 Recursion
 """
-def __init__(self):
-    self.map = dict()
+from functools import lru_cache
 
-def numTrees(self, n: int) -> int:
-    if n <= 1:
-        return 1
-    if n in self.map:
-        return self.map[n]
-    count = 0
-    for i in range(1, n + 1):
-        cnt_l = self.numTrees(i - 1)
-        cnt_r = self.numTrees(n - i)
-        count += cnt_l * cnt_r
-    # memorization
-    self.map[n] = count
-    return count
+
+def generate_trees(n: int) -> List[TreeNode]:
+    @lru_cache(maxsize=None)
+    def dfs(start, end):
+        if start > end:
+            return [None]
+        ret = []
+        for i in range(start, end + 1):
+            # divide and conquer
+            l = dfs(start, i - 1)
+            r = dfs(i + 1, end)
+            for x in l:
+                for y in r:
+                    root = TreeNode(val=i)
+                    root.left = x
+                    root.right = y
+                    ret.append(root)
+        return ret
+    
+    return dfs(1, n)
 ```
 
 ## LeetCode
