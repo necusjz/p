@@ -4,7 +4,7 @@ date: 2021-01-31 23:14:52
 tags:
   - CodingInterview
 ---
-Topological Sort is used to find a linear ordering of elements that have dependencies on each other. For example, if event "B" is dependent on event "A", "A" comes before "B" in topological ordering.
+_Topological Sort_ is used to find a linear ordering of elements that have dependencies on each other. For example, if event "B" is dependent on event "A", "A" comes before "B" in topological ordering.
 
 This pattern defines an easy way to understand the technique for performing topological sorting of a set of elements and then solves a few problems using it.
 
@@ -12,8 +12,8 @@ This pattern defines an easy way to understand the technique for performing topo
 ```python
 from collections import defaultdict, deque
 
-def findMinHeightTrees(self, n: int, edges: List[List[int]]) -> List[int]:
-    # handle single vertex
+
+def find_min_height_trees(n: int, edges: List[List[int]]) -> List[int]:
     if n == 1:
         return [0]
     graph, degree = defaultdict(list), defaultdict(int)
@@ -23,21 +23,21 @@ def findMinHeightTrees(self, n: int, edges: List[List[int]]) -> List[int]:
         graph[v].append(u)
         degree[u] += 1
         degree[v] += 1
-    sources = deque()
+    queue = deque()
     # obtain sources
     for num in range(n):
         if degree[num] == 1:
-            sources.append(num)
+            queue.append(num)
     while n > 2:
-        curr_len = len(sources)
-        n -= curr_len
+        curr_len = len(queue)
         for _ in range(curr_len):
-            u = sources.popleft()
+            u = queue.popleft()
             for v in graph[u]:
                 degree[v] -= 1
                 if degree[v] == 1:
-                    sources.append(v)
-    return sources  
+                    queue.append(v)
+        n -= curr_len
+    return queue 
 ```
 
 ## LeetCode

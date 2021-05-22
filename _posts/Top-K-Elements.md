@@ -4,33 +4,39 @@ date: 2021-01-31 22:56:12
 tags:
   - CodingInterview
 ---
-Any problem that asks us to find the top/smallest/frequent "K" elements among a given set falls under this pattern.
+Any problem that asks us to find the _Top K Elements_ among a given set falls under this pattern.
 
-The best data structure that comes to mind to keep track of "K" elements is `Heap`. This pattern will make use of the Heap to solve multiple problems dealing with "K" elements at a time from a set of given elements.
+The best data structure that comes to mind to keep track of "K" elements is **Heap**. This pattern will make use of the Heap to solve multiple problems dealing with "K" elements at a time from a set of given elements.
 
 ## Snippet
 ```python
 from heapq import heappush, heappop
 
-def reorganizeString(self, S: str) -> str:
+
+def reorganize_string(s: str) -> str:
     freq = dict()
-    # obtain frequency map
-    for char in S:
+    for char in s:
         freq[char] = freq.get(char, 0) + 1
     max_heap = []
-    # initialize max heap
-    for char, count in freq.items():
-        heappush(max_heap, (-count, char))
-    result = ""
-    prev_char, prev_count = "", 0
+    for char in freq:
+        heappush(max_heap, (-freq[char], char))
+    ans = ""
     while max_heap:
-        count, char = heappop(max_heap)
-        if prev_count > 0:
-            heappush(max_heap, (-prev_count, prev_char))
-        result += char
-        prev_char = char
-        prev_count = -count - 1
-    return result if len(result) == len(S) else ""
+        # store popped elements
+        queue, n = [], 2
+        while n > 0 and max_heap:
+            count, char = heappop(max_heap)
+            count = -count - 1
+            if count > 0:
+                queue.append((-count, char))
+            ans += char
+            n -= 1
+        if n > 0:
+            break
+        # push back
+        for element in queue:
+            heappush(max_heap, element)
+    return ans if len(ans) == len(s) else ""
 ```
 
 ## LeetCode

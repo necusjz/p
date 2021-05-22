@@ -4,10 +4,10 @@ date: 2021-01-31 20:56:43
 tags:
   - CodingInterview
 ---
-XOR is a logical bitwise operator that returns 0 (false) if both bits are the same and returns 1 (true) otherwise. In other words, it only returns 1 if exactly one bit is set to 1 out of the two bits in comparison:
+_XOR_ is a logical bitwise operator that returns 0 (false) if both bits are the same and returns 1 (true) otherwise. In other words, it only returns 1 if exactly one bit is set to 1 out of the two bits in comparison:
 ![](https://raw.githubusercontent.com/snlndod/mPOST/master/CodingInterview/educative/04.png)
 
-It is surprising to know the approaches that the XOR operator enables us to solve certain problems. For example, let's take a look at the following problem:
+It is surprising to know the approaches that the _XOR_ operator enables us to solve certain problems. For example, let's take a look at the following problem:
 > Given an array of n-1 integers in the range from 1 to n, find the one number that is missing from the array.
 
 Example:
@@ -23,15 +23,15 @@ A straight forward approach to solve this problem can be:
 <!--more-->
 This is what the algorithm will look like:
 ```python
-def find_missing_number(arr):
-    n = len(arr) + 1
+def find_missing_number(nums):
+    n = len(nums) + 1
     s1 = 0
     # find sum of all numbers from 1 to n
-    for i in range (1, n + 1):
-        s1 += i
+    for num in range(1, n + 1):
+        s1 += num
     # subtract all numbers in input from sum
-    for i in arr:
-        s1 -= i
+    for num in nums:
+        s1 -= num
     # s1, now, is the missing number
     return s1
 ```
@@ -47,16 +47,16 @@ Remember the important property of XOR that it returns 0 if both the bits in com
 
 Here is what the algorithm will look like:
 ```python
-def find_missing_number(arr):
-    n = len(arr) + 1
+def find_missing_number(nums):
+    n = len(nums) + 1
     x1 = 1
     # x1 represents XOR of all values from 1 to n
-    for i in range(2, n + 1):
-        x1 = x1 ^ i
-    x2 = arr[0]
-    # x2 represents XOR of all values in arr
-    for i in range(1, n - 1):
-        x2 = x2 ^ arr[i]
+    for num in range(2, n + 1):
+        x1 = x1 ^ num
+    x2 = nums[0]
+    # x2 represents XOR of all values in array
+    for num in nums[1:]:
+        x2 = x2 ^ num
     # missing number is the XOR of x1 and x2
     return x1 ^ x2
 ```
@@ -76,30 +76,30 @@ Following are some important properties of XOR to remember:
 
 ## Snippet
 ```python
-def singleNumber(self, nums: List[int]) -> List[int]:
-    n1xn2 = 0
-    for num in nums:
+def single_number(nums: List[int]) -> List[int]:
+    n1xn2 = nums[0]
+    for num in nums[1:]:
         n1xn2 = n1xn2 ^ num
     last = 1
-    # obtain the last one
-    while last & n1xn2 == 0:
+    # obtain last one
+    while not last & n1xn2:
         last = last << 1
-    num1, num2 = 0, 0
+    num1 = num2 = 0
     # divide into two parts
     for num in nums:
-        if last & num == 0:
+        if num & last:
             num1 = num1 ^ num
         else:
             num2 = num2 ^ num
     return [num1, num2]
-
 """
 Two's Complement
 """
-def findComplement(self, num: int) -> int:
-    bit_cnt, n = 0, num
+def find_complement(num: int) -> int:
+    n = num
+    bit_cnt = 0
     # obtain bit count
-    while n > 0:
+    while n:
         bit_cnt += 1
         n = n >> 1
     all_sets = 2 ** bit_cnt - 1
