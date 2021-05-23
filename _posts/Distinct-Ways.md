@@ -9,7 +9,7 @@ Given a target find a number of distinct ways to reach the target.
 
 ## Approach
 Sum all possible ways to reach the current state:
-> routes\[i] = routes\[i-1] + routes\[i-2] + ... + routes\[i-k]
+> dp\[i] = dp\[i-1] + dp\[i-2] + ... + dp\[i-k]
 
 Generate sum for all values in the target and return the value for the target:
 ```cpp

@@ -1,11 +1,11 @@
 ---
-title: Dynamic Programming on Strings
+title: DP on Strings
 date: 2021-03-01 15:00:41
 tags:
   - CodingInterview
 ---
 ## Statement
-Given two strings _s1_ and _s2_, return some result.
+Given two strings **s1** and **s2**, return a result.
 
 ## Approach
 Most of the problems on this pattern requires a solution that can be accepted in O(n^2) complexity:
@@ -21,7 +21,7 @@ for (int i = 1; i <= n; ++i) {
 }
 ```
 
-If you are given one string _s_ the approach may little vary:
+If you are given one string **s** the approach may little vary:
 ```cpp
 for (int l = 1; l < n; ++l) {
     for (int i = 0; i < n - l + 1; ++i) {

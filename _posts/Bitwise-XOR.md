@@ -4,10 +4,10 @@ date: 2021-01-31 20:56:43
 tags:
   - CodingInterview
 ---
-_XOR_ is a logical bitwise operator that returns 0 (false) if both bits are the same and returns 1 (true) otherwise. In other words, it only returns 1 if exactly one bit is set to 1 out of the two bits in comparison:
+_Bitwise XOR_ returns 0 (false) if both bits are the same and returns 1 (true) otherwise. In other words, it only returns 1 if exactly one bit is set to 1 out of the two bits in comparison:
 ![](https://raw.githubusercontent.com/snlndod/mPOST/master/CodingInterview/educative/04.png)
 
-It is surprising to know the approaches that the _XOR_ operator enables us to solve certain problems. For example, let's take a look at the following problem:
+It is surprising to know the approaches that the **XOR** operator enables us to solve certain problems. For example, let's take a look at the following problem:
 > Given an array of n-1 integers in the range from 1 to n, find the one number that is missing from the array.
 
 Example:
