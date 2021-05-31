@@ -8,7 +8,7 @@ tags:
 `迭代器模式`（Iterator Design Pattern），也叫作游标模式（Cursor Design Pattern）。它用来遍历集合对象，这里说的“集合对象”也可以叫“容器”、“聚合对象”，实际上就是包含一组对象的对象，比如数组、链表、树、图、跳表。**迭代器模式将集合对象的遍历操作从集合类中拆分出来，放到迭代器类中，让两者的职责更加单一**。
 
 迭代器是用来遍历容器的，所以，一个完整的迭代器模式一般会涉及`容器`和`容器迭代器`两部分内容。为了达到基于接口而非实现编程的目的，容器又包含容器接口、容器实现类，迭代器又包含迭代器接口、迭代器实现类：
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/25.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/GoF/25.png)
 
 大部分编程语言都提供了遍历容器的迭代器类，我们在平时开发中，直接拿来用即可，几乎不大可能从零编写一个迭代器。不过，这里为了讲解迭代器的实现原理，我们**假设某个新的编程语言的基础类库中，还没有提供线性容器对应的迭代器，需要我们从零开始开发**。线性数据结构包括数组和链表，假设在这种新的编程语言中，这两个数据结构分别对应 ArrayList 和 LinkedList 两个类。除此之外，我们**从两个类中抽象出公共的接口，定义为 List 接口，以方便开发者基于接口而非实现编程**，编写的代码能在两种数据存储结构之间灵活切换。
 
@@ -131,7 +131,7 @@ public class Demo
 3. 容器通过 iterator() 方法来创建迭代器；
 
 这里我画了一张类图，如下所示。实际上就是对上面那张类图的细化：
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/26.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/GoF/26.png)
 
 ## 迭代器模式的优势
 一般来讲，遍历集合数据有三种方法：`for 循环`、`foreach 循环`、`iterator 迭代器`。具体的代码如下所示：
@@ -247,7 +247,7 @@ public class Demo
 我们知道，ArrayList 底层对应的是数组这种数据结构，在执行完第 67 行代码的时候，数组中存储的是 a、b、c、d 四个元素，迭代器的游标 cursor 指向元素 a。当执行完第 68 行代码的时候，游标指向元素 b，到这里都没有问题。
 
 **为了保持数组存储数据的连续性，数组的删除操作会涉及元素的搬移**。当执行到第 69 行代码的时候，我们从数组中将元素 a 删除掉，b、c、d 三个元素会依次往前搬移一位，这就会导致游标本来指向元素 b，现在变成了指向元素 c。原本在执行完第 68 行代码之后，我们还可以遍历到 b、c、d 三个元素，但在执行完第 69 行代码之后，我们只能遍历到 c、d 两个元素，b 遍历不到了：
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/27.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/GoF/27.png)
 
 还是结合刚刚那个例子来讲解，我们将上面的代码稍微改造一下，**把删除元素改为添加元素**。具体的代码如下所示：
 ```java
@@ -269,7 +269,7 @@ public class Demo
 ```
 
 在执行完第 12 行代码之后，数组中包含 a、b、c、d 四个元素，游标指向 b 这个元素，已经跳过了元素 a。在执行完第 13 行代码之后，我们将 x 插入到下标为 0 的位置，a、b、c、d 四个元素依次往后移动一位。这个时候，游标又重新指向了元素 a。元素 a 被游标重复指向两次，也就是说，元素 a 存在被重复遍历的情况：
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/28.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/GoF/28.png)
 
 ## 如何应对遍历时改变集合导致的未决行为？
 当通过迭代器来遍历集合的时候，增加、删除集合元素会导致不可预期的遍历结果。实际上，**不可预期比直接出错更加可怕**，有的时候运行正确，有的时候运行错误，一些隐藏很深、很难 debug 的 bug 就是这么产生的。

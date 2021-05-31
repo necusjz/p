@@ -78,7 +78,7 @@ The above query is not completely accurate, as we know that to find the distance
 
 ### Grids
 We can divide the whole map into smaller grids to group locations into smaller sets. Each grid will store all the Places residing within a specific range of longitude and latitude. This scheme would enable us to query only a few grids to find nearby places. Based on a given location and radius, we can find all the neighboring grids and then query these grids to find nearby places:
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/62.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/62.png)
 
 Let's assume that GridID (a four bytes number) would uniquely identify grids in our system.
 
@@ -104,7 +104,7 @@ This problem can be solved if we can dynamically adjust our grid size such that 
 Let's assume we don't want to have more than 500 places in a grid so that we can have a faster searching. So, whenever a grid reaches this limit, we break it down into four grids of equal size and distribute places among them. This means thickly populated areas like downtown San Francisco will have a lot of grids, and sparsely populated area like the Pacific Ocean will have large grids with places only around the coastal lines.
 
 **What data-structure can hold this information**? A tree in which each node has four children can serve our purpose. Each node will represent a grid and will contain information about all the places in that grid. If a node reaches our limit of 500 places, we will break it down to create four child nodes under it and distribute places among them. In this way, all the leaf nodes will represent the grids that cannot be further broken down. So leaf nodes will keep a list of places with them. This tree structure in which each node can have four children is called a `QuadTree`:
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/63.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/63.png)
 
 **How will we build a QuadTree**? We will start with one node that will represent the whole world in one grid. Since it will have more than 500 locations, we will break it down into four nodes and distribute locations among them. We will keep repeating this process with each child node until there are no nodes left with more than 500 locations.
 
@@ -148,7 +148,7 @@ What will happen when a QuadTree server dies? We can have a secondary replica of
 **What if both primary and secondary servers die at the same time**? We have to allocate a new server and rebuild the same QuadTree on it. How can we do that, since we don't know what places were kept on this server? The brute-force solution would be to iterate through the whole database and filter LocationIDs using our hash function to figure out all the required places that will be stored on this server. This would be inefficient and slow; also, during the time when the server is being rebuilt, we will not be able to serve any query from it, thus missing some places that should have been seen by users.
 
 **How can we efficiently retrieve a mapping between Places and QuadTree server**? We have to build a reverse index that will map all the Places to their QuadTree server. We can have a separate QuadTree Index server that will hold this information. We will need to build a HashMap where the "key" is the QuadTree server number and the "value" is a HashSet containing all the Places being kept on that QuadTree server. We need to store LocationID and Lat/Long with each place because information servers can build their QuadTrees through this. Notice that we are keeping Places' data in a HashSet, this will enable us to add/remove Places from our index quickly. So now, whenever a QuadTree server needs to rebuild itself, it can simply ask the QuadTree Index server for all the Places it needs to store. This approach will surely be quite fast. We should also have a replica of the QuadTree Index server for fault tolerance. If a QuadTree Index server dies, it can always rebuild its index from iterating through the database:
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/64.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/64.png)
 
 ## Cache
 To deal with hot Places, we can introduce a cache in front of our database. We can use an off-the-shelf solution like Memcache, which can store all data about hot places. Application servers, before hitting the backend database, can quickly check if the cache has that Place. Based on clients‘ usage pattern, we can adjust how many cache servers we need. For cache eviction policy, Least Recently Used (LRU) seems suitable for our system.

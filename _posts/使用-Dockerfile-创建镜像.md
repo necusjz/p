@@ -33,7 +33,7 @@ CMD /usr/sbin/nginx
 首行可以通过注释来指定解析器命令，后续通过注释说明镜像的相关信息。主体部分首先使用 `FROM` 指令指明所基于的镜像名称，接下来一般是使用 `LABEL` 指令说明维护者信息。每运行一条 `RUN` 指令，镜像添加新的一层并提交，最后是 `CMD` 指令，来指定运行容器时的操作命令。
 ## 指令说明
 Dockerfile 中指令的一般格式为：INSTRUCTION arguments，包括`配置指令`（配置镜像信息）和`操作指令`（具体执行操作）。
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/Docker/8-1.jpg)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/Docker/8-1.jpg)
 ### 配置指令
 #### ARG
 定义创建镜像过程中使用的变量，在执行 docker build 时，可以通过 `-build-arg[=]` 来为变量赋值。当镜像编译成功后，ARG 指定的变量将不再存在（**ENV 指定的变量将在镜像中保留**），一些内置的变量：HTTP_PROXY、HTTPS_PROXY、FTP_PROXY、NO_PROXY 等。
@@ -140,7 +140,7 @@ docker build 命令支持一系列的选项，可以**调整创建镜像过程�
 - **普通镜像**也可以作为父镜像来使用，包括常见的 busybox、debian、ubuntu 等。
 
 Docker 不同类型镜像之间的继承关系如图：
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/Docker/8-2.jpg)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/Docker/8-2.jpg)
 ### 使用 .dockerignore 文件
 可以通过 .dockerignore 来让 Docker 忽略匹配路径或文件，在创建镜像的时候，**不将无关数据发送到服务端**。
 语法支持 Golang 风格的正则格式：

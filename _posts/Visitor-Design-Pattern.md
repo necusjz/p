@@ -409,7 +409,7 @@ public class ToolApplication
 > Allows for one or more operation to be applied to a set of objects at runtime, decoupling the operations from the object structure.
 
 翻译成中文就是：**允许一个或者多个操作应用到一组对象上，解耦操作和对象本身**。对于访问者模式的代码实现，实际上，在上面例子中，经过层层重构之后的最终代码，就是标准的访问者模式的实现代码。这里，我又总结了一张类图，贴在了下面：
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/29.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/GoF/29.png)
 
 一般来说，访问者模式针对的是一组类型不同的对象（PDFFile、PPTFile、WORDFile）。不过，尽管这组对象的类型是不同的，但是，它们继承相同的父类（ResourceFile）或者实现相同的接口。在不同的应用场景下，我们需要对这组对象进行一系列不相关的业务操作（抽取文本、压缩等），但**为了避免不断添加功能导致类不断膨胀，职责越来越不单一，以及避免频繁地添加功能导致的频繁代码修改**，我们使用访问者模式，将对象与操作解耦，将这些业务操作抽离出来，定义在独立细分的访问者类（Extractor、Compressor）中。
 

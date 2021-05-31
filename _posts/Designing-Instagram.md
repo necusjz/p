@@ -43,13 +43,13 @@ The system would be read-heavy, so we will focus on building a system that can r
 
 ## High-Level System Design
 At a high level, we need to support two scenarios, one to upload photos and the other to view/search photos. Our service would need some object storage servers to store photos and some database servers to store metadata information about the photos:
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/28.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/28.png)
 
 ## Database Schema
 > Defining the DB schema in the early stages of the interview would help to understand the data flow among various components and later would guide towards data partitioning.
 
 We need to store data about users, their uploaded photos, and the people they follow. The Photo table will store all data related to a photo; we need to have an index on (PhotoID, CreationDate) since we need to fetch recent photos first:
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/29.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/29.png)
 
 A straightforward approach for storing the above schema would be to use an RDBMS like MySQL since we require joins. But relational databases come with their challenges, especially when we need to scale them.
 
@@ -87,14 +87,14 @@ Total space required for all tables for 10 years will be 3.7TB:
 Photo uploads (or writes) can be slow as they have to go to the disk, whereas reads will be faster, especially if they are being served from cache.
 
 Uploading users can consume all the available connections, as uploading is a slow process. This means that "reads" cannot be served if the system gets busy with all the "write" requests. We should keep in mind that web servers have a connection limit before designing our system. If we assume that a web server can have a maximum of 500 connections at any time, then it can't have more than 500 concurrent uploads or reads. To handle this bottleneck, we can split reads and writes into separate services. We will have dedicated servers for reads and different servers for writes to ensure that uploads don't hog the system:
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/30.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/30.png)
 
 Separating photos' read and write requests will also allow us to scale and optimize each of these operations independently.
 
 ## Reliability and Redundancy
 Losing files is not an option for our service. Therefore, we will store multiple copies of each file so that if one storage server dies, we can retrieve the photo from the other copy present on a different storage server.
 This same principle also applies to other components of the system. If we want to have high availability of the system, we need to have multiple replicas of services running in the system so that even if a few services die down, the system remains available and running. Redundancy removes the single point of failure in the system:
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/31.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/31.png)
 
 If only one instance of a service is required to run at any point, we can run a redundant secondary copy of the service that is not serving any traffic, but it can take control after the failover when the primary has a problem.
 Creating redundancy in a system can remove single points of failure and provide a backup or spare functionality if needed in a crisis. For example, if there are two instances of the same service running in production and one fails or degrades, the system can failover to the healthy copy. Failover can happen automatically or require manual intervention.

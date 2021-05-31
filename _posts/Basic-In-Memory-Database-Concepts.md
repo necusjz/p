@@ -9,7 +9,7 @@ tags:
 In the past database management systems were designed for optimizing performance on hardware with limited main memory and with slow disk I/O as the main bottleneck. The focus was on **optimizing disk access**, for example by minimizing the number of disk pages to be read into main memory when processing a query.
 Today's computer architectures have changed. With `multi-core processors`, parallel processing is possible with fast communication between processor cores. Very large main memory configurations are now commercially available and affordable.
 With all relevant data in memory, disk access is no longer a limiting factor for performance. With the increasing number of cores, CPUs are able to process more and more data per time interval. That means the performance bottleneck is now **between the CPU cache and main memory**.
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/HANA/2-1.jpg)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/HANA/2-1.jpg)
 A `high performance data management system` for modern hardware must have the following characteristics:
 <!--more-->
 - In-memory database
@@ -21,7 +21,7 @@ In recent years CPUs did not become faster by increasing clock rates. Instead th
 
 ## Columnar and Row-Based Data Storage
 For storing a table in linear memory, two options can be chosen. A row store stores a sequence of records that contains the fields of one row in the table. In a column store, the entries of column are stored in contiguous memory locations.
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/HANA/2-2.jpg)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/HANA/2-2.jpg)
 ### Choosing Between Column and Row Store
 Column-based tables have advantages if:
 - Calculations are typically executed on single of few columns only.
@@ -59,7 +59,7 @@ Eliminating materialized aggregates has several advantages:
 
 #### Parallelization
 `Column-based storage` also simplifies parallel execution using multiple processor cores. That means operations on different columns can easily be processed in parallel.
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/HANA/2-3.jpg)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/HANA/2-3.jpg)
 If multiple columns **need to be searched or aggregated**, each of these operations can be assigned to a different processor core. In addition, the execution of operations on one column can be parallelized by dividing the column into multiple sections that are processed by different processor cores.
 ## History Tables
 SAP HANA supports history tables which allow queries on historical data. Applications may use this feature for example **for time-based reporting and analysis**. Write operations on history tables do not physically overwrite existing records. Instead, write operations always **insert new versions** of the data record into the database. Each row in a history table has **timestamp-like system attributes** that indicate the time period when the record version in this row was the current one.

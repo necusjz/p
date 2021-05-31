@@ -31,11 +31,11 @@ Here's how consistent hashing works:
     - Move clockwise on the ring until finding the first cache it encounters;
     - That cache is the one that contains the key. See animation below as an example: key1 maps to cache A; key2 maps to cache C;
 
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/08.png)
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/09.png)
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/10.png)
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/11.png)
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/12.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/08.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/09.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/10.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/11.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/12.png)
 
 To add a new server, say D, keys that were originally residing at C will be split. Some of them will be shifted to D, while other keys will not be touched.
 To remove a cache or, if a cache fails, say A, all keys that were originally mapped to A will fall into B, and only those keys need to be moved to B; other keys will not be affected.

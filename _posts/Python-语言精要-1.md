@@ -47,7 +47,7 @@ result = f(a, b, c, d=5, e='foo')
 ### 变量和按引用传递
 在 Python 中对变量赋值时，其实是在创建等号右侧对象的一个**引用**。
 只是传入了一个引用而已，不会发生任何复制：
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/python/python_1.jpeg)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/python/python_1.jpeg)
 > 按引用传递，Python 函数可以修改其参数的内容。
 
 ```python

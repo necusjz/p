@@ -6,7 +6,7 @@ tags:
 ---
 ## Google Guava 介绍
 Google Guava 是 Google 公司内部 Java 开发工具库的开源版本。Google 内部的很多 Java 项目都在使用它。它提供了一些 JDK 没有提供的功能，以及对 JDK 已有功能的增强功能。其中就包括：集合（Collections）、缓存（Caching）、原生类型支持（Primitives Support）、并发库（Concurrency Libraries）、通用注解（Common Annotation）、字符串处理（Strings Processing）、数学计算（Math）、I/O、事件总线（EventBus）等等：
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/OpenSource/geek/21.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/OpenSource/geek/21.png)
 <!--more-->
 
 ## 如何发现通用的功能模块？
@@ -73,7 +73,7 @@ private void checkWeightWithWeigher() {
 
 ## Wrapper 模式在 Guava 中的应用
 在 Google Guava 的 collection 包路径下，有一组以 Forwarding 开头命名的类：
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/OpenSource/geek/22.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/OpenSource/geek/22.png)
 
 这组 Forwarding 类很多，但实现方式都很相似：
 ```java

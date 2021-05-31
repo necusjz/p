@@ -279,6 +279,6 @@ for line in f:
     pass
 ```
 Python 的文件模式：
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/python/python_3.jpeg)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/python/python_3.jpeg)
 重要的 Python 文件方法或属性：
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/python/python_4.jpeg)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/python/python_4.jpeg)

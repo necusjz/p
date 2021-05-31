@@ -41,12 +41,12 @@ def find_averages_of_subarrays(k, arr):
 **Time Complexity**: Since for every element of the input array, we are calculating the sum of its next "K" elements, the time complexity of the above algorithm will be O(N\*K) where "N" is the number of elements in the input array.
 
 The inefficiency is that for any two consecutive subarrays of size "5", the overlapping part (which will contain four elements) will be evaluated twice. For example, take the above-mentioned input:
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/CodingInterview/educative/00.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/CodingInterview/educative/00.png)
 
 As you can see, there are four overlapping elements between the subarray (indexed from 0\~4) and the subarray (indexed from 1\~5). Can we somehow reuse the sum we have calculated for the overlapping elements?
 
 The efficient way to solve this problem would be to visualize each contiguous subarray as a sliding window of "5" elements. This means that we will slide the window by one element when we move on to the next subarray. To reuse the sum from the previous subarray, we will subtract the element going out of the window and add the element now being included in the sliding window. This will save us from going through the whole subarray to find the sum and, as a result, the algorithm complexity will reduce to O(N):
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/CodingInterview/educative/01.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/CodingInterview/educative/01.png)
 
 Here is the algorithm for the _Sliding Window_ approach:
 ```python

@@ -8,18 +8,18 @@ tags:
 Trie 树，也叫“字典树”。顾名思义，它是一个树形结构。它是一种专门处理字符串匹配的数据结构，用来**解决在一组字符串集合中快速查找某个字符串的问题**。我举个简单的例子来说明一下。我们有 6 个字符串，它们分别是：how, hi, her, hello, so, see。我们希望在里面多次查找某个字符串是否存在。如果每次查找，都是拿要查找的字符串跟这 6 个字符串依次进行字符串匹配，那效率就比较低。
 
 这个时候，我们就可以先对这 6 个字符串做一下预处理，组织成 Trie 树的结构，之后每次查找，都是在 Trie 树中进行匹配查找。Trie 树的本质，就是**利用字符串之间的公共前缀，将重复的前缀合并在一起**。最后构造出来的就是下面这个图中的样子：
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/208.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/208.png)
 <!--more-->
 
 其中，根节点不包含任何信息。每个节点表示一个字符串中的字符，从根节点到红色节点的一条路径表示一个字符串（注意：**红色节点并不都是叶子节点**）。为了让你更容易理解 Trie 树是怎么构造出来的，我画了一个 Trie 树构造的分解过程。**构造过程的每一步，都相当于往 Trie 树中插入一个字符串**。当所有字符串都插入完成之后，Trie 树就构造好了：
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/209.png)
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/210.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/209.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/210.png)
 
 当我们在 Trie 树中查找一个字符串的时候，比如查找字符串“her”，那我们将要查找的字符串分割成单个的字符 h, e, r，然后从 Trie 树的根节点开始匹配。如图所示，绿色的路径就是在 Trie 树中匹配的路径：
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/211.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/211.png)
 
 如果我们要查找的是字符串“he”呢？我们还用上面同样的方法，从根节点开始，沿着某条路径来匹配，如图所示，绿色的路径，是字符串“he”匹配的路径。但是，路径的最后一个节点“e”并不是红色的。也就是说，**“he”是某个字符串的前缀子串，但并不能完全匹配任何字符串**：
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/212.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/212.png)
 
 ## 如何实现一棵 Trie 树？
 Trie 树主要有两个操作：
@@ -27,7 +27,7 @@ Trie 树主要有两个操作：
 2. 在 Trie 树中查询一个字符串；
 
 借助散列表的思想，我们通过一个下标与字符一一映射的数组，来存储子节点的指针。这句话稍微有点抽象，不怎么好懂，我画了一张图：
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/213.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/213.png)
 
 假设我们的字符串中只有从 a 到 z 这 26 个小写字母，我们在数组中下标为 0 的位置，存储指向子节点 a 的指针，下标为 1 的位置存储指向子节点 b 的指针，以此类推，下标为 25 的位置，存储的是指向的子节点 z 的指针。如果某个字符的子节点不存在，我们就在对应的下标的位置存储 null：
 ```java
@@ -105,7 +105,7 @@ Trie 树是一种非常独特的、高效的字符串匹配方法。但是，关
 如果字符串中不仅包含小写字母，还包含大写字母、数字、甚至是中文，那需要的存储空间就更多了。所以，也就是说，在某些情况下，Trie 树不一定会节省存储空间。**在重复的前缀并不多的情况下，Trie 树不但不能节省内存，还有可能会浪费更多的内存**。我们可以稍微牺牲一点查询的效率，将每个节点中的数组换成其他数据结构，来存储一个节点的子节点指针。用哪种数据结构呢？我们的选择其实有很多，比如有序数组、跳表、散列表、红黑树等。
 
 假设我们用有序数组，数组中的指针按照所指向的子节点中的字符的大小顺序排列。查询的时候，我们可以通过二分查找的方法，快速查找到某个字符应该匹配的子节点的指针。但是，在往 Trie 树中插入一个字符串的时候，我们**为了维护数组中数据的有序性，就会稍微慢了点**。实际上，Trie 树的变体有很多，都可以在一定程度上解决内存消耗的问题。比如，`缩点优化`，就是**对只有一个子节点的节点，而且此节点不是一个串的结束节点，可以将此节点与子节点合并**。这样可以节省空间，但却增加了编码难度：
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/214.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/214.png)
 
 ## Trie 树与散列表、红黑树的比较
 在一组字符串中查找字符串，Trie 树实际上表现得并不好。它对要处理的字符串有及其严苛的要求：
@@ -118,7 +118,7 @@ Trie 树是一种非常独特的、高效的字符串匹配方法。但是，关
 
 ## 如何实现搜索关键词的提示功能
 我们假设关键词库由用户的热门搜索关键词组成。我们将这个词库构建成一个 Trie 树。当用户输入其中某个单词的时候，把这个词作为一个前缀子串在 Trie 树中匹配。为了讲解方便，我们假设词库里只有 hello, her, hi, how, so, see 这 6 个关键词。当用户输入了字母 h 的时候，我们就把以 h 为前缀的 hello, her, hi, how 展示在搜索提示框内。当用户继续键入字母 e 的时候，我们就把以 he 为前缀的 hello, her 展示在搜索提示框内。这就是**搜索关键词提示的最基本的算法原理**：
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/215.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/215.png)
 
 实际上，搜索引擎的搜索关键词提示功能远非我讲的这么简单。如果再稍微深入一点，你就会想到，上面的解决办法遇到下面几个问题：
 - 我刚讲的思路是针对英文的搜索关键词提示，对于更加复杂的中文来说，词库中的数据又该如何构建成 Trie 树呢；

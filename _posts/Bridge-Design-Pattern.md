@@ -104,7 +104,7 @@ public class DriverManager
 ```
 
 实际上，JDBC 本身就相当于“抽象”。注意，这里所说的“抽象”，指的并非“抽象类”或“接口”，而是跟具体的数据库无关的、被抽象出来的一套“类库”。具体的 Driver（比如，com.mysql.jdbc.Driver）就相当于“实现”。注意，这里所说的“实现”，也并非指“接口的实现类”，而是跟具体数据库相关的一套“类库”。**JDBC 和 Driver 独立开发，通过对象之间的组合关系，组装在一起**。JDBC 的所有逻辑操作，最终都委托给 Driver 来执行：
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/12.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/GoF/12.png)
 
 ## 桥接模式的应用举例
 一个 API 接口监控告警的例子：根据不同的告警规则，触发不同类型的告警。告警支持多种通知渠道，包括：邮件、短信、微信、自动语音电话。通知的紧急程度有多种类型，包括：SEVERE（严重）、URGENCY（紧急）、NORMAL（普通）、TRIVIAL（无关紧要）。不同的紧急程度对应不同的通知渠道：

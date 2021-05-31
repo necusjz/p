@@ -40,7 +40,7 @@ search(api_dev_key, search_terms, maximum_results_to_return, sort, page_token)
 
 ## High-Level Design
 At the high level, we need to store all the tweets in a database and also build an index that can keep track of which word appears in which tweet. This index will help us quickly find tweets that the users are trying to search for:
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/56.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/56.png)
 
 ## Detailed Component Design
 ### Storage
@@ -77,7 +77,7 @@ We have a couple of issues with this approach:
 To recover from these situations we either have to repartition our data or use Consistent Hashing.
 
 **Sharding based on the tweet object**: While storing, we will pass the TweetID to our hash function to find the server and index all the words of the tweet on that server. While querying for a particular word, we have to query all the servers, and each server will return a set of TweetIDs. A centralized server will aggregate these results to return them to the user:
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/57.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/57.png)
 
 ## Fault Tolerance
 What will happen when an index server dies? We can have a secondary replica of each server and if the primary server dies it can take control after the failover. Both primary and secondary servers will have the same copy of the index.

@@ -14,10 +14,10 @@ Redis 是一种键值（Key-Value）数据库。相对于关系型数据库（�
 - 列表中数据个数少于 512 个；
 
 压缩列表并不是基础数据结构，而是 Redis 自己设计的一种数据存储结构。它有点儿类似数组，通过一片连续的内存空间，来存储数据。不过，它跟数组不同的一点是，它**允许存储的数据大小不同**：
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/OpenSource/geek/00.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/OpenSource/geek/00.png)
 
 听到“压缩”两个字，直观的反应就是节省内存。之所以说这种存储结构节省内存，是相较于数组的存储思路而言的。我们知道，数组要求每个元素的大小相同，如果我们要存储不同长度的字符串，那我们就需要用最大长度的字符串大小作为元素的大小（假设是 20 个字节）。那当我们存储小于 20 个字节长度的字符串的时候，便会浪费部分存储空间：
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/OpenSource/geek/01.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/OpenSource/geek/01.png)
 
 压缩列表这种存储结构，一方面比较节省内存，另一方面可以支持不同类型数据的存储。而且，因为数据存储在一片连续的内存空间，**通过键来获取值为列表类型的数据，读取的效率也非常高**。当列表中存储的数据量比较大的时候，也就是不能同时满足刚刚讲的两个条件的时候，列表就要通过`双向循环链表`来实现了。Redis 的这种双向链表的实现方式，非常值得借鉴。它**额外定义一个 list 结构体，来组织链表的首、尾指针，还有长度等信息**。这样，在使用的时候就会非常方便：
 ```c

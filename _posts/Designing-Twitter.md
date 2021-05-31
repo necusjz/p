@@ -70,13 +70,13 @@ tweet(api_dev_key, tweet_data, tweet_location, user_location, media_ids)
 ## High-Level System Design
 We need a system that can efficiently store all the new tweets, "100M/86400s ≈ 1150" tweets per second and read "28B/86400s ≈ 325K" tweets per second. It is clear from the requirements that this will be a read-heavy system.
 At a high level, we need multiple application servers to serve all these requests with load balancers in front of them for traffic distributions. On the backend, we need an efficient database that can store all the new tweets and can support a huge number of reads. We also need some file storage to store photos and videos:
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/40.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/40.png)
 
 Although our expected daily write load is 100 million and read load is 28 billion tweets. This means on average our system will receive around 1160 new tweets and 325K read requests per second. This traffic will be distributed unevenly throughout the day, though, at peak time we should expect at least a few thousand write requests and around 1M read requests per second. We should keep this in mind while designing the architecture of our system.
 
 ## Database Schema
 We need to store data about users, their tweets, their favorite tweets, and people they follow:
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/41.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/41.png)
 
 For choosing between SQL and NoSQL databases to store the above schema, please see "Database Schema" under Designing Instagram.
 
@@ -102,7 +102,7 @@ We can further improve our performance by introducing cache to store hot tweets 
 
 **What if we can combine sharding by TweetID and Tweet creation time**? If we don't store tweet creation time separately and use TweetID to reflect that, we can get benefits of both the approaches. This way it will be quite quick to find the latest Tweets. For this, we must make each TweetID universally unique in our system and each TweetID should contain a timestamp too.
 We can use epoch time for this. Let's say our TweetID will have two parts: the first part will be representing epoch seconds and the second part will be an auto-incrementing sequence. So, to make a new TweetID, we can take the current epoch time and append an auto-incrementing number to it. We can figure out the shard number from this TweetID and store it there:
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/42.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/42.png)
 
 What could be the size of our TweetID? Let's say our epoch time starts today, how many bits we would need to store the number of seconds for the next 50 years:
 > 86400 sec/day * 365 (days a year) * 50 (years) ≈ 1.6 B
@@ -131,7 +131,7 @@ We can introduce a cache for database servers to cache hot tweets and users. We 
 
 **What if we cache the latest data**? Our service can benefit from this approach. Let's say if 80% of our users see tweets from the past three days only; we can try to cache all the tweets from the past three days. Let's say we have dedicated cache servers that cache all the tweets from all the users from the past three days. As estimated above, we are getting 100 million new tweets or 30GB of new data every day (without photos and videos). If we want to store all the tweets from last three days, we will need less than 100GB of memory. This data can easily fit into one server, but we should replicate it onto multiple servers to distribute all the read traffic to reduce the load on cache servers. So whenever we are generating a user's timeline, we can ask the cache servers if they have all the recent tweets for that user. If yes, we can simply return all the data from the cache. If we don't have enough tweets in the cache, we have to query the backend server to fetch that data. On a similar design, we can try caching photos and videos from the last three days.
 Our cache would be like a hash table where "key" would be "OwnerID" and "value" would be a doubly linked list containing all the tweets from that user in the past three days. Since we want to retrieve the most recent data first, we can always insert new tweets at the head of the linked list, which means all the older tweets will be near the tail of the linked list. Therefore, we can remove tweets from the tail to make space for newer tweets:
-![](https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/43.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/43.png)
 
 ## Timeline Generation
 For a detailed discussion about timeline generation, take a look at [Designing Facebook's News Feed]().
