@@ -24,9 +24,9 @@ return dp[target];
 ```
 
 **Note**:
-> Some questions point out the number of repetitions, in that case, add one more loop to simulate every repetition.
-
+Some questions point out the number of repetitions, in that case, **add one more loop** to simulate every repetition.
 <!--more-->
+
 ## LeetCode
 [Climbing Stairs](https://leetcode.com/problems/climbing-stairs/)
 [Unique Paths](https://leetcode.com/problems/unique-paths/)
