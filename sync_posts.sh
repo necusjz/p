@@ -8,4 +8,3 @@ cp -r ../BLOG/source/$dir/* $dir/
 git add $dir
 git commit -m "synchronize _posts"
 git push
-
