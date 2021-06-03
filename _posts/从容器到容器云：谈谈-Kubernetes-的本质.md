@@ -4,6 +4,7 @@ date: 2021-05-25 19:13:33
 tags:
   - Kubernetes
 ---
+## 容器的核心知识
 一个容器，实际上是一个由 Linux Namespace、Linux Cgroups 和 rootfs 三种技术构建出来的进程的隔离环境。从这个结构中我们不难看出，一个正在运行的 Linux 容器，其实可以被“一分为二”地看待：
 1. 一组联合挂载在 /var/lib/docker/aufs/mnt 上的 rootfs，这一部分我们称为**容器镜像**（Container Image），是容器的静态视图；
 2. 一个由 Namespace + Cgroups 构成的隔离环境，这一部分我们称为**容器运行时**（Container Runtime），是容器的动态视图；
@@ -13,6 +14,7 @@ tags:
 
 从一个开发者和单一的容器镜像，到无数开发者和庞大的容器集群，容器技术实现了从“容器”到“容器云”的飞跃，标志着它真正得到了市场和生态的认可。这样，容器就从一个开发者手里的小工具，一跃成为了云计算领域的绝对主角；而**能够定义容器组织和管理规范的“容器编排”技术，则当仁不让地坐上了容器技术领域的“头把交椅”**。相比于“小打小闹”的 Docker 公司、“旧瓶装新酒”的 Mesos 社区，Kubernetes 项目从一开始就比较幸运地站上了一个他人难以企及的高度：在它的成长阶段，这个项目每一个核心特性的提出，几乎都脱胎于 Borg/Omega 系统的设计与经验。更重要的是，这些特性在开源社区落地的过程中，又在整个社区的合力之下得到了极大的改进，修复了很多当年遗留在 Borg 体系中的缺陷和问题。所以，尽管在发布之初被批评是“曲高和寡”，但是在逐渐觉察到 Docker 技术栈的“稚嫩”和 Mesos 社区的“老迈”之后，这个社区很快就明白了：Kubernetes 项目在 Borg 体系的指导下，体现出了一种独有的“先进性”与“完备性”，而这些特质才是一个基础设施领域开源项目赖以生存的核心价值。
 
+## Kubernetes 项目的架构
 实际上，在定义核心功能的过程中，Kubernetes 项目正是依托着 Borg 项目的理论优势，才在短短几个月内迅速站稳了脚跟，进而确定了一个如下图所示的全局架构：
 ![](https://raw.githubusercontent.com/umarellyh/mPOST/master/Kubernetes/00.png)
 
@@ -30,6 +32,7 @@ tags:
 
 当然，如果只做到“封装微服务、调度单容器”这一层次，Docker Swarm 项目就已经绰绰有余了。如果再加上 Compose 项目，你甚至还具备了处理一些简单依赖关系的能力，比如：一个“Web 容器”和它要访问的数据库“DB 容器”。在 Compose 项目中，你可以为这样的两个容器定义一个“link”，而 Docker 项目则会负责维护这个“link”关系。可是，如果我们现在的需求是，要求这个项目能够处理前面提到的所有类型的关系，甚至还要能够支持未来可能出现的更多种类的关系呢？这时，“link”这种单独针对一种案例设计的解决方案就太过简单了。如果你做过架构方面的工作，就会深有感触：**一旦要追求项目的普适性，那就一定要从顶层开始做好设计**。
 
+## Kubernetes 项目的设计思想
 Kubernetes 项目最主要的设计思想是，从更宏观的角度，以统一的方式来定义任务之间的各种关系，并且为将来支持更多种类的关系留有余地：
 - 比如，Kubernetes 项目对容器间的“访问”进行了分类，首先总结出了一类非常常见的“紧密交互”的关系，即：这些应用之间需要非常频繁的交互和访问；又或者，它们会直接通过本地文件进行信息交换。在常规环境下，这些应用往往会被直接部署在同一台机器上，通过 localhost 通信，通过本地磁盘目录交换文件。而在 Kubernetes 项目中，这些容器则会被划分为一个“Pod”，**Pod 里的容器共享同一个 Network Namespace、同一组数据卷**，从而达到高效率交换信息的目的；
 - 而对于另外一种更为常见的需求，比如 Web 应用与数据库之间的访问关系，Kubernetes 项目则提供了一种叫作“Service”的服务。像这样的两个应用，往往故意不部署在同一台机器上，这样即使 Web 应用所在的机器宕机了，数据库也完全不受影响。可是，我们知道，对于一个容器来说，它的 IP 地址等信息不是固定的，那么 Web 应用又怎么找到数据库容器的 Pod 呢？所以，Kubernetes 项目的做法是**给 Pod 绑定一个 Service 服务，而 Service 服务声明的 IP 地址等信息是“终生不变”的**。这个 Service 服务的主要作用，就是作为 Pod 的代理入口（Portal），从而代替 Pod 对外暴露一个固定的网络地址；
@@ -47,5 +50,40 @@ Kubernetes 项目最主要的设计思想是，从更宏观的角度，以统一
 
 这种使用方法，就是所谓的“声明式 API”。这种 API **对应的“编排对象”和“服务对象”，都是 Kubernetes 项目中的 API 对象**。
 
+最后，我来回答一个更直接的问题：Kubernetes 项目如何启动一个容器化任务呢？比如，我现在已经制作好了一个 Nginx 容器镜像，希望让平台帮我启动这个镜像。并且，我要求平台帮我**运行两个完全相同的 Nginx 副本，以负载均衡的方式共同对外提供服务**。
+
+如果是自己 DIY 的话，可能需要启动两台虚拟机，分别安装两个 Nginx，然后使用 _Keepalived_ 为这两个虚拟机做一个虚拟 IP；而如果使用 Kubernetes 项目呢？你需要做的则是编写如下这样一个 YAML 文件（比如名叫 nginx-deployment.yaml）：
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.7.9
+        ports:
+        - containerPort: 80
+```
+
+在上面这个 YAML 文件中，我们定义了一个 Deployment 对象，它的主体部分（spec.template 部分）是一个使用 Nginx 镜像的 Pod，而这个 Pod 的副本数是 2（replicas=2）。然后执行：
+```
+$ kubectl create -f nginx-deployment.yaml
+```
+
+这样，两个完全相同的 Nginx 容器副本就被启动了。
+
+## 总结
 实际上，过去很多的集群管理项目（比如 Yarn、Mesos，以及 Swarm）所擅长的，都是把一个容器，按照某种规则，放置在某个最佳节点上运行起来。这种功能，我们称为**调度**。而 Kubernetes 项目所擅长的，是按照用户的意愿和整个系统的规则，完全自动化地处理好容器之间的各种关系。这种功能，就是我们经常听到的一个概念：**编排**。所以说，Kubernetes 项目的本质，是为用户提供一个具有普遍意义的容器编排工具。不过，更重要的是，Kubernetes 项目为用户提供的不仅限于一个工具。它真正的价值，乃在于提供了一套基于容器构建分布式系统的基础依赖：
 ![](https://raw.githubusercontent.com/umarellyh/mPOST/master/Kubernetes/04.png)
