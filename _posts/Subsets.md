@@ -31,7 +31,7 @@ from functools import lru_cache
 
 
 def generate_trees(n: int) -> List[TreeNode]:
-    @lru_cache(maxsize=None)
+    @lru_cache(None)
     def dfs(start, end):
         if start > end:
             return [None]
