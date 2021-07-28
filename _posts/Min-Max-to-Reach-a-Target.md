@@ -1,5 +1,5 @@
 ---
-title: Min/Max Path to Reach a Target
+title: Min/Max to Reach a Target
 date: 2021-03-01 14:01:33
 tags:
   - CodingInterview

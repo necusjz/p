@@ -1,5 +1,5 @@
 ---
-title: Merging Intervals
+title: Interval Merging
 date: 2021-03-01 14:48:39
 tags:
   - CodingInterview

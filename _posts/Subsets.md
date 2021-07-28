@@ -12,8 +12,8 @@ A huge number of coding interview problems involve dealing with _Permutations_ a
 Iteration
 """
 def subsets_with_dup(nums: List[int]) -> List[List[int]]:
-    nums.sort()
     ans = [[]]
+    nums.sort()
     for i in range(len(nums)):
         start = 0
         # handle duplicates
@@ -42,7 +42,7 @@ def generate_trees(n: int) -> List[TreeNode]:
             r = dfs(i + 1, end)
             for x in l:
                 for y in r:
-                    root = TreeNode(val=i)
+                    root = TreeNode(i)
                     root.left = x
                     root.right = y
                     ret.append(root)

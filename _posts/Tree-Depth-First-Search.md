@@ -14,31 +14,31 @@ We will be using recursion (or we can also use a **Stack** for the iterative app
 No Return Value
 """
 def path_sum(root: TreeNode, target: int) -> List[List[int]]:
-    def dfs(node, path):
-        if not node:
+    def dfs(root, path):
+        if not root:
             return
         # deep copy
-        path = path + [node.val]
-        if not node.left and not node.right and sum(path) == target:
-            self.ans.append(path)
-        dfs(node.left, path)
-        dfs(node.right, path)
+        path = path + [root.val]
+        if not root.left and not root.right and sum(path) == target:
+            ans.append(path)
+        dfs(root.left, path)
+        dfs(root.right, path)
     
-    self.ans = []
+    ans = []
     dfs(root, [])
-    return self.ans
+    return ans
 """
 Has a Return Value
 """
 def max_path_sum(root: TreeNode) -> int:
-    def dfs(node):
-        if not node:
+    def dfs(root):
+        if not root:
             return 0
         # obtain intermediate results
-        l = max(dfs(node.left), 0)
-        r = max(dfs(node.right), 0)
-        self.ans = max(self.ans, l + r + node.val)
-        return max(l, r) + node.val
+        l = max(dfs(root.left), 0)
+        r = max(dfs(root.right), 0)
+        self.ans = max(self.ans, l + r + root.val)
+        return max(l, r) + root.val
     
     self.ans = -sys.maxsize
     dfs(root)

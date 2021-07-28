@@ -19,7 +19,7 @@ def average_of_levels(root: TreeNode) -> List[float]:
     ans = []
     queue = deque([root])
     while queue:
-        total = 0.0
+        total = 0
         curr_len = len(queue)
         for _ in range(curr_len):
             node = queue.popleft()

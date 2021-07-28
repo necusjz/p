@@ -77,33 +77,19 @@ Following are some important properties of XOR to remember:
 ## Snippet
 ```python
 def single_number(nums: List[int]) -> List[int]:
-    n1xn2 = nums[0]
-    for num in nums[1:]:
-        n1xn2 = n1xn2 ^ num
-    last = 1
-    # obtain last one
-    while not last & n1xn2:
-        last = last << 1
-    num1 = num2 = 0
+    n1xn2 = 0
+    for num in nums:
+        n1xn2 ^= num
+    # obtain low bit
+    low_bit = n1xn2 & -n1xn2
+    n1 = n2 = 0
     # divide into two parts
     for num in nums:
-        if num & last:
-            num1 = num1 ^ num
+        if num & low_bit:
+            n1 ^= num
         else:
-            num2 = num2 ^ num
-    return [num1, num2]
-"""
-Two's Complement
-"""
-def find_complement(num: int) -> int:
-    n = num
-    bit_cnt = 0
-    # obtain bit count
-    while n:
-        bit_cnt += 1
-        n = n >> 1
-    all_sets = 2 ** bit_cnt - 1
-    return num ^ all_sets
+            n2 ^= num
+    return [n1, n2]
 ```
 
 ## LeetCode
