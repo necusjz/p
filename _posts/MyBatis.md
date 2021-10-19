@@ -126,7 +126,7 @@ public class SqlCostTimeInterceptor implements Interceptor {
 ```
 
 我们知道，**不管是拦截器、过滤器还是插件，都需要明确地标明拦截的目标方法**。@Intercepts 注解实际上就是起了这个作用。其中，@Intercepts 注解又可以嵌套 @Signature 注解。一个 @Signature 注解标明一个要拦截的目标方法。如果要拦截多个方法，我们可以像例子中那样，编写多条 @Signature 注解。@Signature 注解包含三个元素：type、method、args。其中，type 指明要拦截的类、method 指明方法名、args 指明方法的参数列表。通过指定这三个元素，我们就能完全确定一个要拦截的方法。默认情况下，MyBatis Plugin 允许拦截的方法有下面这样几个：
-![](https://raw.githubusercontent.com/necusjz/mPOST/master/OpenSource/geek/26.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/OpenSource/geek/26.png)
 
 MyBatis 底层是通过 Executor 类来执行 SQL 的。Executor 类会创建 StatementHandler、ParameterHandler、ResultSetHandler 三个对象，并且，首先使用 ParameterHandler 设置 SQL 中的占位符参数，然后使用 StatementHandler 执行 SQL 语句，最后使用 ResultSetHandler 封装执行结果。所以，我们**只需要拦截 Executor、ParameterHandler、ResultSetHandler、StatementHandler 这几个类的方法，基本上就能满足我们对整个 SQL 执行流程的拦截了**。
 
@@ -225,7 +225,7 @@ public interface SqlNode {
 ```
 
 整个解释器的调用入口在 DynamicSqlSource.getBoundSql 方法中，它调用了 rootSqlNode.apply(context) 方法。对于不同的语法小单元，MyBatis 定义不同的 SqlNode 实现类：
-![](https://raw.githubusercontent.com/necusjz/mPOST/master/OpenSource/geek/27.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/OpenSource/geek/27.png)
 
 ## ErrorContext：如何实现一个线程唯一的单例模式？
 在 MyBatis 中，ErrorContext 这个类就是标准单例的变形：线程唯一的单例。它**基于 Java 中的 ThreadLocal 来实现**：
@@ -395,7 +395,7 @@ public interface Log {
 ```
 
 针对 Log 接口，MyBatis 还提供了各种不同的实现类，分别使用不同的日志框架来实现 Log 接口：
-![](https://raw.githubusercontent.com/necusjz/mPOST/master/OpenSource/geek/28.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/OpenSource/geek/28.png)
 
 我们知道，在适配器模式中，传递给适配器构造函数的是被适配的类对象，而这里是 clazz（相当于日志名称 name），所以，从代码实现上来讲，它并非标准的适配器模式。但是，**从应用场景上来看，这里确实又起到了适配的作用，是典型的适配器模式的应用场景**：
 ```java

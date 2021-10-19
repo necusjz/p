@@ -119,12 +119,12 @@ $ curl http://localhost:4000
 
 否则，我就得先用 docker inspect 命令查看容器的 IP 地址，然后访问 `http://<Container IP Address>:80` 才可以看到容器内应用的返回。至此，我**已经使用容器完成了一个应用的开发与测试，如果现在想要把这个容器的镜像上传到 DockerHub 上分享给更多的人，我要怎么做呢**？为了能够上传镜像，我首先需要注册一个 Docker Hub 账号，然后使用 docker login 命令登录。接下来，我要用 docker tag 命令给容器镜像起一个完整的名字：
 ```
-$ docker tag helloworld necusjz/helloworld:v1
+$ docker tag helloworld umarellyh/helloworld:v1
 ```
 
-其中，necusjz 是我在 Docker Hub 上的用户名，它的“学名”叫镜像仓库（Repository）；“/”后面的 helloworld 是这个镜像的名字，而“v1”则是我给这个镜像分配的版本号。然后，我执行 docker push：
+其中，umarellyh 是我在 Docker Hub 上的用户名，它的“学名”叫镜像仓库（Repository）；“/”后面的 helloworld 是这个镜像的名字，而“v1”则是我给这个镜像分配的版本号。然后，我执行 docker push：
 ```
-$ docker push necusjz/helloworld:v1
+$ docker push umarellyh/helloworld:v1
 ```
 
 这样，我就可以把这个镜像上传到 Docker Hub 上了。此外，我还可以使用 docker commit 指令，把一个正在运行的容器，直接提交为一个镜像。一般来说，需要这么操作原因是：这个**容器运行起来后，我又在里面做了一些操作，并且要把操作结果保存到镜像里**，比如：
@@ -132,7 +132,7 @@ $ docker push necusjz/helloworld:v1
 $ docker exec -it 4ddf4638572d /bin/sh
 root@4ddf4638572d:/app# touch test.txt
 root@4ddf4638572d:/app# exit
-$ docker commit 4ddf4638572d necusjz/helloworld:v2
+$ docker commit 4ddf4638572d umarellyh/helloworld:v2
 ```
 
 ## docker exec
@@ -173,7 +173,7 @@ $ docker run -it --net container:4ddf4638572d busybox ifconfig
 
 而正如前所说，**Init 层的存在，就是为了避免你执行 docker commit 时，把 Docker 自己对 /etc/hosts 等文件做的修改，也一起提交掉**。有了新的镜像，我们就可以把它推送到 Docker Hub 上了：
 ```
-$ docker push necusjz/helloworld:v2
+$ docker push umarellyh/helloworld:v2
 ```
 
 你可能还会有这样的问题：我在企业内部，能不能也搭建一个跟 Docker Hub 类似的镜像上传系统呢？当然可以，这个统一存放镜像的系统，就叫作 _Docker Registry_ 。
@@ -189,7 +189,7 @@ $ docker push necusjz/helloworld:v2
 > 注意：这里提到的"容器进程"，是 Docker 创建的一个**容器初始化进程**（dockerinit），而不是应用进程 (ENTRYPOINT + CMD)。dockerinit 会负责完成根目录的准备、挂载设备和目录、配置 hostname 等一系列需要在容器内进行的初始化操作。最后，它**通过 execv() 系统调用，让应用进程取代自己，成为容器里的 PID=1 的进程**。
 
 而这里要使用到的挂载技术，就是 Linux 的**绑定挂载**（Bind Mount）机制。它的主要作用就是，允许你将一个目录或者文件，而不是整个设备，挂载到一个指定的目录上。并且，这时你**在该挂载点上进行的任何操作，只是发生在被挂载的目录或者文件上，而原挂载点的内容则会被隐藏起来且不受影响**。其实，如果你了解 Linux 内核的话，就会明白，绑定挂载实际上是一个 _inode_ 替换的过程。在 Linux 操作系统中，inode 可以理解为存放文件内容的“对象”，而 _dentry_ ，也叫目录项，就是访问这个 inode 所使用的“指针”：
-![](https://raw.githubusercontent.com/necusjz/mPOST/master/Docker/00.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/Docker/00.png)
 
 正如上图所示，`mount --bind /home /test`，会将 /home 挂载到 /test 上。其实相当于将 /test 的 dentry，重定向到了 /home 的 inode。这样当我们修改 /test 目录时，实际修改的是 /home 目录的 inode。这也就是为何，一旦执行 umount 命令，/test 目录原先的内容就会恢复：因为修改真正发生在的，是 /home 目录里。所以，在一个正确的时机，进行一次绑定挂载，Docker 就可以成功地将一个宿主机上的目录或文件，不动声色地挂载到容器中。这样，**进程在容器里对这个 /test 目录进行的所有操作，都实际发生在宿主机的对应目录（比如，/home）里，而不会影响容器镜像的内容**。
 
@@ -197,6 +197,6 @@ $ docker push necusjz/helloworld:v2
 
 ## 总结
 借助这种思考问题的方法，最后的 Docker 容器，我们实际上就可以用下面这个全景图描述出来：
-![](https://raw.githubusercontent.com/necusjz/mPOST/master/Docker/01.png)
+![](https://raw.githubusercontent.com/umarellyh/mPOST/master/Docker/01.png)
 
 这个容器进程“python app.py”，运行在由 Linux Namespace 和 Cgroups 构成的隔离环境里；而它运行所需要的各种文件，比如 python、app.py 以及整个操作系统文件，则由多个联合挂载在一起的 rootfs 层提供。这些 rootfs 层的最下层，是来自 Docker 镜像的只读层。在只读层之上，是 Docker 自己添加的 Init 层，用来存放被临时修改过的 /etc/hosts 等文件。而 **rootfs 的最上层是一个可读写层，它以 copy-on-write 的方式存放任何对只读层的修改，容器声明的 Volume 的挂载点，也出现在这一层**。
