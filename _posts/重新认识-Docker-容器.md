@@ -189,7 +189,7 @@ $ docker push necusjz/helloworld:v2
 > 注意：这里提到的"容器进程"，是 Docker 创建的一个**容器初始化进程**（dockerinit），而不是应用进程 (ENTRYPOINT + CMD)。dockerinit 会负责完成根目录的准备、挂载设备和目录、配置 hostname 等一系列需要在容器内进行的初始化操作。最后，它**通过 execv() 系统调用，让应用进程取代自己，成为容器里的 PID=1 的进程**。
 
 而这里要使用到的挂载技术，就是 Linux 的**绑定挂载**（Bind Mount）机制。它的主要作用就是，允许你将一个目录或者文件，而不是整个设备，挂载到一个指定的目录上。并且，这时你**在该挂载点上进行的任何操作，只是发生在被挂载的目录或者文件上，而原挂载点的内容则会被隐藏起来且不受影响**。其实，如果你了解 Linux 内核的话，就会明白，绑定挂载实际上是一个 _inode_ 替换的过程。在 Linux 操作系统中，inode 可以理解为存放文件内容的“对象”，而 _dentry_ ，也叫目录项，就是访问这个 inode 所使用的“指针”：
-![](https://raw.githubusercontent.com/necusjz/mPOST/master/Docker/00.png)
+![](https://raw.githubusercontent.com/necusjz/p/master/Docker/00.png)
 
 正如上图所示，`mount --bind /home /test`，会将 /home 挂载到 /test 上。其实相当于将 /test 的 dentry，重定向到了 /home 的 inode。这样当我们修改 /test 目录时，实际修改的是 /home 目录的 inode。这也就是为何，一旦执行 umount 命令，/test 目录原先的内容就会恢复：因为修改真正发生在的，是 /home 目录里。所以，在一个正确的时机，进行一次绑定挂载，Docker 就可以成功地将一个宿主机上的目录或文件，不动声色地挂载到容器中。这样，**进程在容器里对这个 /test 目录进行的所有操作，都实际发生在宿主机的对应目录（比如，/home）里，而不会影响容器镜像的内容**。
 
@@ -197,6 +197,6 @@ $ docker push necusjz/helloworld:v2
 
 ## 总结
 借助这种思考问题的方法，最后的 Docker 容器，我们实际上就可以用下面这个全景图描述出来：
-![](https://raw.githubusercontent.com/necusjz/mPOST/master/Docker/01.png)
+![](https://raw.githubusercontent.com/necusjz/p/master/Docker/01.png)
 
 这个容器进程“python app.py”，运行在由 Linux Namespace 和 Cgroups 构成的隔离环境里；而它运行所需要的各种文件，比如 python、app.py 以及整个操作系统文件，则由多个联合挂载在一起的 rootfs 层提供。这些 rootfs 层的最下层，是来自 Docker 镜像的只读层。在只读层之上，是 Docker 自己添加的 Init 层，用来存放被临时修改过的 /etc/hosts 等文件。而 **rootfs 的最上层是一个可读写层，它以 copy-on-write 的方式存放任何对只读层的修改，容器声明的 Volume 的挂载点，也出现在这一层**。
