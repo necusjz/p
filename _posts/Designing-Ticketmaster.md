@@ -1,8 +1,9 @@
 ---
 title: Designing Ticketmaster
-date: 2021-02-28 00:32:58
 tags:
   - SystemDesign
+abbrlink: 3434091281
+date: 2021-02-28 00:32:58
 ---
 ## What is an Online Movie Ticket Booking System?
 A movie ticket booking system provides its customers the ability to purchase theatre seats online. E-ticketing systems allow the customers to browse through movies currently being played and to book seats, anywhere anytime.

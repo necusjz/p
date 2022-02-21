@@ -1,8 +1,9 @@
 ---
 title: Telephoning
-date: 2019-12-05 00:48:12
 tags:
   - SPEAKING
+abbrlink: 294155228
+date: 2019-12-05 00:48:12
 ---
 ## Cold calling
 > Do you have a moment to speak to me?

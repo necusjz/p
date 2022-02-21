@@ -1,8 +1,9 @@
 ---
 title: Two Pointers
-date: 2021-01-30 15:49:52
 tags:
   - CodingInterview
+abbrlink: 1858691252
+date: 2021-01-30 15:49:52
 ---
 In problems where we deal with sorted arrays (or LinkedLists) and need to find a set of elements that fulfill certain constraints, the _Two Pointers_ approach becomes quite useful. The set of elements could be a pair, a triplet or even a subarray. For example, take a look at the following problem:
 > Given an array of sorted numbers and a target sum, find a pair in the array whose sum is equal to the given target.

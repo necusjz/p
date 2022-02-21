@@ -1,8 +1,9 @@
 ---
 title: Liskov Substitution Principle (LSP)
-date: 2020-09-28 00:39:47
 tags:
   - GoF
+abbrlink: 56919811
+date: 2020-09-28 00:39:47
 ---
 ## 如何理解 LSP
 里式替换原则的英文翻译是：Liskov Substitution Principle，缩写为 LSP。这个原则最早是在 1986 年由 Barbara Liskov 提出，他是这么描述这条原则的：

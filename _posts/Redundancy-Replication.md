@@ -1,8 +1,9 @@
 ---
 title: Redundancy & Replication
-date: 2021-02-06 11:33:35
 tags:
   - SystemDesign
+abbrlink: 2468951811
+date: 2021-02-06 11:33:35
 ---
 `Redundancy` is the duplication of critical components or functions of a system with the intention of increasing the reliability of the system, usually in the form of a backup or fail-safe, or to improve actual system performance. For example, if there is only one copy of a file stored on a single server, then losing that server means losing the file. Since losing data is seldom a good thing, we can create duplicate or redundant copies of the file to solve this problem.
 

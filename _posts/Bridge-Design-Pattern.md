@@ -1,8 +1,9 @@
 ---
 title: Bridge Design Pattern
-date: 2020-12-05 01:27:29
 tags:
   - GoF
+abbrlink: 154021461
+date: 2020-12-05 01:27:29
 ---
 ## 桥接模式的原理解析
 `桥接模式`（Bridge Design Pattern）的定义：

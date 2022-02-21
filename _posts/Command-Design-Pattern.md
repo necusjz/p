@@ -1,8 +1,9 @@
 ---
 title: Command Design Pattern
-date: 2020-12-24 14:58:54
 tags:
   - GoF
+abbrlink: 1916394879
+date: 2020-12-24 14:58:54
 ---
 ## 命令模式的原理解读
 `命令模式`的英文翻译是 Command Design Pattern。它是这么定义的：

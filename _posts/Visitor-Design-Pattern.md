@@ -1,8 +1,9 @@
 ---
 title: Visitor Design Pattern
-date: 2020-12-23 20:48:55
 tags:
   - GoF
+abbrlink: 2388994398
+date: 2020-12-23 20:48:55
 ---
 ## 带你“发明”访问者模式
 假设我们从网站上爬取了很多资源文件，它们的格式有三种：PDF、PPT、WORD。我们现在要开发一个工具来处理这批资源文件。这个工具的其中一个功能是，**把这些资源文件中的文本内容抽取出来放到 txt 文件中**。其中，ResourceFile 是一个抽象类，包含一个抽象函数 extract2txt()。PDFFile、PPTFile、WORDFile 都继承 ResourceFile 类，并且重写了 extract2txt() 函数。在 ToolApplication 中，我们可以利用`多态特性`，根据对象的实际类型，来决定执行哪个方法：

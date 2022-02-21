@@ -1,8 +1,9 @@
 ---
 title: Additional Resources
-date: 2021-02-28 01:44:04
 tags:
   - SystemDesign
+abbrlink: 522404174
+date: 2021-02-28 01:44:04
 ---
 Here are some useful links for further reading:
 - [Dynamo](https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf) - Highly available key-value store;

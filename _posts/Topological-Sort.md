@@ -1,8 +1,9 @@
 ---
 title: Topological Sort
-date: 2021-01-31 23:14:52
 tags:
   - CodingInterview
+abbrlink: 352721995
+date: 2021-01-31 23:14:52
 ---
 _Topological Sort_ is used to find a linear ordering of elements that have dependencies on each other. For example, if event "B" is dependent on event "A", "A" comes before "B" in topological ordering.
 

@@ -1,8 +1,9 @@
 ---
 title: SQL vs. NoSQL
-date: 2021-02-06 12:45:33
 tags:
   - SystemDesign
+abbrlink: 2149259335
+date: 2021-02-06 12:45:33
 ---
 In the world of databases, there are two main types of solutions: SQL and NoSQL (or relational databases and non-relational databases). Both of them differ in the way they were built, the kind of information they store, and the storage method they use.
 

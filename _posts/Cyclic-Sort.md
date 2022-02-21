@@ -1,8 +1,9 @@
 ---
 title: Cyclic Sort
-date: 2021-01-30 16:55:01
 tags:
   - CodingInterview
+abbrlink: 1292284163
+date: 2021-01-30 16:55:01
 ---
 This pattern describes an interesting approach to deal with problems involving arrays containing numbers in a given range. For example, take the following problem:
 > You are given an unsorted array containing numbers taken from the range "1" to "n". The array can have duplicates, which means that some numbers will be missing. Find all the missing numbers.

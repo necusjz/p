@@ -1,8 +1,9 @@
 ---
 title: Unix
-date: 2021-03-25 15:05:00
 tags:
   - OpenSource
+abbrlink: 1967124294
+date: 2021-03-25 15:05:00
 ---
 ## 封装与抽象
 在 Unix、Linux 系统中，有一句经典的话：“Everything is a file”，翻译成中文就是：“一切皆文件”。这句话的意思就是，在 Unix、Linux 系统中，很多东西都被抽象成`文件`这样一个概念，比如 Socket、驱动、硬盘、系统信息等。它们使用文件系统的路径作为统一的命名空间（namespace），使用统一的 read、write 标准函数来访问。比如，我们要查看 CPU 的信息，在 Linux 系统中，我们只需要使用编辑器像打开其他文件一样，打开 /proc/cpuinfo，就能查看到相应的信息。除此之外，我们还可以通过查看 /proc/uptime 文件，了解系统运行了多久，查看 /proc/version 了解系统的内核版本等。

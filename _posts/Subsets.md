@@ -1,8 +1,9 @@
 ---
 title: Subsets
-date: 2021-01-31 20:35:10
 tags:
   - CodingInterview
+abbrlink: 2189758150
+date: 2021-01-31 20:35:10
 ---
 A huge number of coding interview problems involve dealing with _Permutations_ and _Combinations_ of a given set of elements. This pattern describes an efficient **Breadth-First Search** approach to handle all these problems.
 

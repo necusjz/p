@@ -1,8 +1,9 @@
 ---
 title: 重新认识 Docker 容器
-date: 2021-05-28 01:16:39
 tags:
   - Docker
+abbrlink: 122526936
+date: 2021-05-28 01:16:39
 ---
 剖析 Linux 容器的核心实现原理：
 1. 基于 Namespace 的视图隔离；

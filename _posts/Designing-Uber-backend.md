@@ -1,8 +1,9 @@
 ---
 title: Designing Uber backend
-date: 2021-02-27 22:10:31
 tags:
   - SystemDesign
+abbrlink: 2387701916
+date: 2021-02-27 22:10:31
 ---
 ## What is Uber?
 Uber enables its customers to book drivers for taxi rides. Uber drivers use their personal cars to drive customers around. Both customers and drivers communicate with each other through their smartphones using the Uber app.

@@ -1,8 +1,9 @@
 ---
 title: Kubernetes - 生产级容器集群平台
-date: 2019-09-04 22:33:23
 tags:
   - Kubernetes
+abbrlink: 440362476
+date: 2019-09-04 22:33:23
 ---
 Kubernetes 是 Google 团队发起并维护的开源容器集群管理系统，底层**基于 Docker、rkt 等容器技术**，提供强大的应用管理和资源调度能力。
 ## 简介

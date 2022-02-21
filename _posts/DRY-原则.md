@@ -1,8 +1,9 @@
 ---
 title: DRY 原则
-date: 2020-11-03 23:29:22
 tags:
   - GoF
+abbrlink: 3581356533
+date: 2020-11-03 23:29:22
 ---
 DRY 原则的英文描述为：
 > Don't Repeat Yourself.
@@ -109,8 +110,8 @@ public class UserAuthenticatorV2
 
     private boolean isValidUsernameOrPassword(String usernameOrPassword) 
     {
-        //省略实现逻辑
-        //跟原来的 isValidUsername() 或 isValidPassword() 的实现逻辑一样...
+        // 省略实现逻辑
+        // 跟原来的 isValidUsername() 或 isValidPassword() 的实现逻辑一样...
         return true;
     }
 }

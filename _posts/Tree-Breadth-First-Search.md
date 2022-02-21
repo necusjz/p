@@ -1,8 +1,9 @@
 ---
 title: Tree Breadth-First Search
-date: 2021-01-30 17:22:57
 tags:
   - CodingInterview
+abbrlink: 2304129997
+date: 2021-01-30 17:22:57
 ---
 This pattern is based on the _Breadth-First Search_ technique to traverse a tree.
 

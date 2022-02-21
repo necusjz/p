@@ -1,8 +1,9 @@
 ---
 title: Designing Dropbox
-date: 2021-02-14 12:02:07
 tags:
   - SystemDesign
+abbrlink: 1999142518
+date: 2021-02-14 12:02:07
 ---
 ## Why Cloud Storage?
 Cloud file storage services have become very popular recently as they simplify the storage and exchange of digital resources among multiple devices. The shift from using single personal computers to using multiple devices with different platforms and operating systems such as smartphones and tablets each with portable access from various geographical locations at any time, is believed to be accountable for the huge popularity of cloud storage services. Following are some of the top benefits of such services:

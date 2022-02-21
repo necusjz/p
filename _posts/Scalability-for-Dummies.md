@@ -1,8 +1,9 @@
 ---
 title: Scalability for Dummies
-date: 2019-12-18 22:54:52
 tags:
   - SystemDesign
+abbrlink: 559995679
+date: 2019-12-18 22:54:52
 ---
 ![](https://raw.githubusercontent.com/necusjz/p/master/SystemDesign/01/00.jpg)
 Just recently I was asked what it would take to **make a web service massively scalable**. My answer was lengthy and maybe it is also for other people interesting. So I share it with you here in my blog and split it into parts to make it easier to read. New parts are released on a regular basis. Have fun and your comments are always welcomed!

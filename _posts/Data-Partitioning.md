@@ -1,8 +1,9 @@
 ---
 title: Data Partitioning
-date: 2021-02-02 21:04:15
 tags:
   - SystemDesign
+abbrlink: 4221293206
+date: 2021-02-02 21:04:15
 ---
 Data partitioning is a technique to break up a big database (DB) into many smaller parts. It is the process of splitting up a DB/table across multiple machines to improve the manageability, performance, availability, and load balancing of an application. The justification for data partitioning is that, after a certain scale point, it is cheaper and more feasible to scale horizontally by adding more machines than to grow it vertically by adding beefier servers.
 

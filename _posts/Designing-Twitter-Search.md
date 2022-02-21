@@ -1,8 +1,9 @@
 ---
 title: Designing Twitter Search
-date: 2021-02-24 22:37:32
 tags:
   - SystemDesign
+abbrlink: 3819033204
+date: 2021-02-24 22:37:32
 ---
 ## What is Twitter Search?
 Twitter users can update their status whenever they like. Each status (called tweet) consists of plain text and our goal is to design a system that allows searching over all the user tweets.

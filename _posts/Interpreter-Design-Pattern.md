@@ -1,8 +1,9 @@
 ---
 title: Interpreter Design Pattern
-date: 2020-12-24 17:45:49
 tags:
   - GoF
+abbrlink: 1938437709
+date: 2020-12-24 17:45:49
 ---
 ## 解释器模式的原理和实现
 `解释器模式`的英文翻译是 Interpreter Design Pattern。它是这样定义的：

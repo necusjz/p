@@ -1,8 +1,9 @@
 ---
 title: Distinct Ways
-date: 2021-03-01 14:20:31
 tags:
   - CodingInterview
+abbrlink: 2842312158
+date: 2021-03-01 14:20:31
 ---
 ## Statement
 Given a target find a number of distinct ways to reach the target.

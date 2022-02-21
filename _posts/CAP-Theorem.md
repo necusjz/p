@@ -1,8 +1,9 @@
 ---
 title: CAP Theorem
-date: 2021-02-06 19:09:18
 tags:
   - SystemDesign
+abbrlink: 2737299582
+date: 2021-02-06 19:09:18
 ---
 CAP theorem states that it is impossible for a distributed software system to simultaneously provide more than two out of three of the following guarantees (CAP): Consistency, Availability, and Partition tolerance. When we design a distributed system, trading off among CAP is almost the first thing we want to consider. CAP theorem says while designing a distributed system we can pick only two of the following three options:
 ![](https://raw.githubusercontent.com/necusjz/p/master/SystemDesign/educative/07.png)

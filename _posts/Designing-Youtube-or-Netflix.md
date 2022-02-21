@@ -1,8 +1,9 @@
 ---
 title: Designing Youtube or Netflix
-date: 2021-02-18 14:00:29
 tags:
   - SystemDesign
+abbrlink: 3903474270
+date: 2021-02-18 14:00:29
 ---
 ## Why Youtube?
 Youtube is one of the most popular video sharing websites in the world. Users of the service can upload, view, share, rate, and report videos as well as add comments on videos.

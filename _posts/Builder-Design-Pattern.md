@@ -1,8 +1,9 @@
 ---
 title: Builder Design Pattern
-date: 2020-11-29 00:07:47
 tags:
   - GoF
+abbrlink: 2450189022
+date: 2020-11-29 00:07:47
 ---
 ## 为什么需要建造者模式？
 假设有这样一道设计面试题：我们需要定义一个资源池配置类 ResourcePoolConfig。这里的资源池，你可以简单理解为**线程池、连接池、对象池等**。在这个资源池配置类中，有以下几个成员变量，也就是可配置项。现在，请你编写代码实现这个 ResourcePoolConfig 类：

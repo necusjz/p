@@ -1,8 +1,9 @@
 ---
 title: Simple Strategy for Delivering Better Talks
-date: 2020-09-12 11:41:41
 tags:
   - SPEAKING
+abbrlink: 2155408797
+date: 2020-09-12 11:41:41
 ---
 Giving a talk can open doors to new collaborations, increase your chances of funding success and make it more likely that other people will respond to your ideas. But **scientific presentations are too often confusing, boring and overstuffed**. Here are some suggestions, based on our experience as speakers, audience members and presentation trainers, that could make your next conference talk or seminar more enjoyable, engaging and effective.
 

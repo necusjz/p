@@ -1,8 +1,9 @@
 ---
 title: Top K Elements
-date: 2021-01-31 22:56:12
 tags:
   - CodingInterview
+abbrlink: 1492973727
+date: 2021-01-31 22:56:12
 ---
 Any problem that asks us to find the _Top K Elements_ among a given set falls under this pattern.
 

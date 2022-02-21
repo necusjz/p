@@ -1,8 +1,9 @@
 ---
 title: Designing Yelp or Nearby Friends
-date: 2021-02-27 16:41:34
 tags:
   - SystemDesign
+abbrlink: 4052390726
+date: 2021-02-27 16:41:34
 ---
 ## Why Yelp or Proximity Server?
 Proximity servers are used to discover nearby attractions like places, events, etc. If you haven't used [yelp.com](https://www.yelp.com/) before, please try it before proceeding (you can search for nearby restaurants, theaters, etc.) and spend some time understanding different options that the website offers. This will help you a lot in understanding this chapter better.

@@ -1,8 +1,9 @@
 ---
 title: Fast & Slow Pointers
-date: 2021-01-30 16:11:29
 tags:
   - CodingInterview
+abbrlink: 3580079225
+date: 2021-01-30 16:11:29
 ---
 The _Fast & Slow Pointers_ approach is a pointer algorithm that uses two pointers which move through the array (or sequence/LinkedList) at different speeds. This approach is quite useful when dealing with cyclic LinkedLists or arrays.
 

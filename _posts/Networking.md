@@ -1,8 +1,9 @@
 ---
 title: Networking
-date: 2019-08-12 00:36:32
 tags:
   - SPEAKING
+abbrlink: 2380387870
+date: 2019-08-12 00:36:32
 ---
 ## Starting a conversation
 > Where do you come from then?

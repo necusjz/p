@@ -1,8 +1,9 @@
 ---
 title: SLAM
-date: 2017-11-29 21:25:46
 tags:
   - SLAM
+abbrlink: 1618167965
+date: 2017-11-29 21:25:46
 ---
 ## 本书讲什么
 SLAM 是 **S**imultaneous **L**ocalization **A**nd **M**apping 的缩写，中文译作：同时定位与地图构建。

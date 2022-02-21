@@ -1,8 +1,9 @@
 ---
 title: Facade Design Pattern
-date: 2020-12-07 22:53:33
 tags:
   - GoF
+abbrlink: 2664295702
+date: 2020-12-07 22:53:33
 ---
 ## 门面模式的原理与实现
 `门面模式`（Facade Design Pattern）是这样定义的：

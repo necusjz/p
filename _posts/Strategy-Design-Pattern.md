@@ -1,8 +1,9 @@
 ---
 title: Strategy Design Pattern
-date: 2020-12-19 15:40:31
 tags:
   - GoF
+abbrlink: 3861717191
+date: 2020-12-19 15:40:31
 ---
 ## 策略模式的原理与实现
 `策略模式`，英文全称是 Strategy Design Pattern。它是这样定义的：

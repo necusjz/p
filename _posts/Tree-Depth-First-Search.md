@@ -1,8 +1,9 @@
 ---
 title: Tree Depth-First Search
-date: 2021-01-30 17:34:51
 tags:
   - CodingInterview
+abbrlink: 2074145294
+date: 2021-01-30 17:34:51
 ---
 This pattern is based on the _Depth-First Search_ technique to traverse a tree.
 

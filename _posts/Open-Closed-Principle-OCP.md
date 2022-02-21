@@ -1,8 +1,9 @@
 ---
 title: Open Closed Principle (OCP)
-date: 2020-09-18 22:28:06
 tags:
   - GoF
+abbrlink: 2806156097
+date: 2020-09-18 22:28:06
 ---
 ## 如何理解 OCP
 开闭原则的英文全称是 Open Closed Principle，简写为 OCP。它的英文描述是：

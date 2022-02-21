@@ -1,8 +1,9 @@
 ---
 title: Scalability
-date: 2019-12-18 08:54:26
 tags:
   - SystemDesign
+abbrlink: 3572802795
+date: 2019-12-18 08:54:26
 ---
 > [CS75 Lecture 9: Scalability](https://www.youtube.com/watch?v=-W9F__D3oY4)
 

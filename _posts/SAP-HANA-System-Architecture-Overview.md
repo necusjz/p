@@ -1,8 +1,9 @@
 ---
 title: SAP HANA System Architecture Overview
-date: 2019-07-04 00:21:10
 tags:
   - HANA
+abbrlink: 4217441451
+date: 2019-07-04 00:21:10
 ---
 ## The SAP HANA System
 The SAP HANA system consists of multiple servers:

@@ -1,8 +1,9 @@
 ---
 title: 初识 Docker 与容器
-date: 2019-06-07 22:10:07
 tags:
   - Docker
+abbrlink: 1118975575
+date: 2019-06-07 22:10:07
 ---
 从 20 世纪 60 年代 IBM 推出的大型主机虚拟化，到后来以 Xen、KVM 为代表的虚拟机虚拟化，再到现在以 Docker 为代表的容器技术。
 ## 什么是 Docker

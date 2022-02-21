@@ -1,8 +1,9 @@
 ---
 title: Bitwise XOR
-date: 2021-01-31 20:56:43
 tags:
   - CodingInterview
+abbrlink: 836241768
+date: 2021-01-31 20:56:43
 ---
 _Bitwise XOR_ returns 0 (false) if both bits are the same and returns 1 (true) otherwise. In other words, it only returns 1 if exactly one bit is set to 1 out of the two bits in comparison:
 ![](https://raw.githubusercontent.com/necusjz/p/master/CodingInterview/educative/04.png)

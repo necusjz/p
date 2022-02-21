@@ -1,8 +1,9 @@
 ---
 title: Interface Segregation Principle (ISP)
-date: 2020-10-11 16:43:39
 tags:
   - GoF
+abbrlink: 1238106533
+date: 2020-10-11 16:43:39
 ---
 ## 如何理解 ISP
 接口隔离原则的英文翻译是“ Interface Segregation Principle”，缩写为 ISP。Robert Martin 在 SOLID 原则中是这样定义它的：

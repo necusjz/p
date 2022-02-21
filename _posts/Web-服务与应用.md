@@ -1,8 +1,9 @@
 ---
 title: Web 服务与应用
-date: 2019-08-24 21:56:36
 tags:
   - OpenSource
+abbrlink: 2378783909
+date: 2019-08-24 21:56:36
 ---
 Web 服务和应用是目前互联网技术领域的热门技术。重点介绍如何使用 Docker 来运行常见的 Web 服务器（包括 Apache、Nginx、Tomcat 等），以及一些常见应用（包括 `LAMP` 和 `CI/CD`）。
 包括 Web 服务在内的**中间件领域十分适合引入容器技术**：

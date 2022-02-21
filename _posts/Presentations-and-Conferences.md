@@ -1,8 +1,9 @@
 ---
 title: Presentations and Conferences
-date: 2019-10-21 21:55:51
 tags:
   - SPEAKING
+abbrlink: 336071984
+date: 2019-10-21 21:55:51
 ---
 ## Presenting a product or service
 > I want to tell you today about...

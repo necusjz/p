@@ -1,8 +1,9 @@
 ---
 title: Two Heaps
-date: 2021-01-30 17:46:46
 tags:
   - CodingInterview
+abbrlink: 3727509945
+date: 2021-01-30 17:46:46
 ---
 In many problems, where we are given a set of elements such that we can divide them into two parts. To solve the problem, we are interested in knowing the largest element in one part and the smallest element in the other part. This pattern is an efficient approach to solve such problems.
 

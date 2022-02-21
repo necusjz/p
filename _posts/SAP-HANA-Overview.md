@@ -1,8 +1,9 @@
 ---
 title: SAP HANA Overview
-date: 2019-06-30 23:00:43
 tags:
   - HANA
+abbrlink: 1407296568
+date: 2019-06-30 23:00:43
 ---
 SAP HANA is a **data management platform** that is deploy as an appliance or in the cloud.
 And its core is the `SAP HANA database`, an innovative in-memory database management system which makes full use of the capabilities of current hardware to increase application performance, to reduce cost of ownership and to enable new scenarios and applications that were not possible before.

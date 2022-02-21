@@ -1,8 +1,9 @@
 ---
 title: Mediator Design Pattern
-date: 2020-12-24 18:29:49
 tags:
   - GoF
+abbrlink: 3288547492
+date: 2020-12-24 18:29:49
 ---
 ## 中介模式的原理和实现
 `中介模式`的英文翻译是 Mediator Design Pattern。它是这样定义的：

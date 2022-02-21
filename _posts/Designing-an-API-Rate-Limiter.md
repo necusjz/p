@@ -1,8 +1,9 @@
 ---
 title: Designing an API Rate Limiter
-date: 2021-02-20 18:52:28
 tags:
   - SystemDesign
+abbrlink: 399501003
+date: 2021-02-20 18:52:28
 ---
 ## What is a Rate Limiter?
 Imagine we have a service which is receiving a huge number of requests, but it can only serve a limited number of requests per second. To handle this problem we would need some kind of throttling or rate limiting mechanism that would allow only a certain number of requests so our service can respond to all of them. A rate limiter, at a high level, limits the number of events an entity (user, device, IP, etc.) can perform in a particular time window. For example:

@@ -1,8 +1,9 @@
 ---
 title: Designing Twitter
-date: 2021-02-17 18:41:07
 tags:
   - SystemDesign
+abbrlink: 1116262314
+date: 2021-02-17 18:41:07
 ---
 ## What is Twitter?
 Twitter is an online social networking service where users post and read short 140-character messages called "tweets". Registered users can post and read tweets, but those who are not registered can only read them. Users access Twitter through their website interface, SMS, or mobile app.

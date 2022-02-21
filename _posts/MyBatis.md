@@ -1,8 +1,9 @@
 ---
 title: MyBatis
-date: 2021-03-31 11:14:09
 tags:
   - OpenSource
+abbrlink: 469711973
+date: 2021-03-31 11:14:09
 ---
 ## MyBatis 和 ORM 框架介绍
 MyBatis 是一个 ORM（Object-Relational Mapping）框架。ORM 框架主要是根据类和数据库表之间的映射关系，帮助程序员自动实现对象与数据库中数据之间的互相转化。说得更具体点就是，**ORM 负责将程序中的对象存储到数据库中、将数据库中的数据转化为程序中的对象**。实际上，Java 中的 ORM 框架有很多，除了刚刚提到的 MyBatis 之外，还有 Hibernate、TopLink 等。
@@ -311,7 +312,7 @@ public class PerpetualCache implements Cache {
     public ReadWriteLock getReadWriteLock() {
         return null;
     }
-    //省略部分代码...
+    //...省略部分代码...
 }
 ```
 

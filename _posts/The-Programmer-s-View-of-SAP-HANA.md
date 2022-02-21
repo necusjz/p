@@ -1,8 +1,9 @@
 ---
 title: The Programmer's View of SAP HANA
-date: 2019-07-09 21:44:58
 tags:
   - HANA
+abbrlink: 2587689479
+date: 2019-07-09 21:44:58
 ---
 ## Introduction
 This chapter presents the application developer's view of SAP HANA. It gives an overview of both the **programming languages** for writing code that runs inside SAP HANA, and the **client libraries** used by client applications to connect to SAP HANA.

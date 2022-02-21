@@ -1,8 +1,9 @@
 ---
 title: 使用 Dockerfile 创建镜像
-date: 2019-08-04 17:17:13
 tags:
   - Docker
+abbrlink: 1660105416
+date: 2019-08-04 17:17:13
 ---
 Dockerfile 是一个文本格式的配置文件，用户可以使用 Dockerfile 来快速创建自定义的镜像，本文会介绍使用 Dockerfile 的一些**最佳实践**。
 ## 基本结构

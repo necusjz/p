@@ -1,8 +1,9 @@
 ---
 title: Designing TinyURL
-date: 2021-02-08 21:38:19
 tags:
   - SystemDesign
+abbrlink: 1408711108
+date: 2021-02-08 21:38:19
 ---
 ## Why do We Need URL Shortening?
 URL shortening is used to create shorter aliases for long URLs. We call these shortened aliases "short links". Users are redirected to the original URL when they hit these short links. Short links save a lot of space when displayed, printed, messaged, or tweeted. Additionally, users are less likely to mistype shorter URLs.

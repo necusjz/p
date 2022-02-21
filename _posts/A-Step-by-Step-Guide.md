@@ -1,8 +1,9 @@
 ---
 title: A Step by Step Guide
-date: 2021-02-07 14:13:17
 tags:
   - SystemDesign
+abbrlink: 2297695313
+date: 2021-02-07 14:13:17
 ---
 A lot of software engineers struggle with System Design Interviews (SDIs) primarily because of three reasons:
 1. The unstructured nature of SDIs, where the candidates are asked to work on an open-ended design problem that doesn't have a standard answer;

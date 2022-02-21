@@ -1,8 +1,9 @@
 ---
 title: Java Development Kit
-date: 2021-03-24 15:45:41
 tags:
   - OpenSource
+abbrlink: 247514921
+date: 2021-03-24 15:45:41
 ---
 ## 工厂模式在 Calendar 类中的应用
 Calendar 类提供了大量跟日期相关的功能代码，同时，又提供了一个 getInstance() 工厂方法，用来根据不同的 TimeZone 和 Locale 创建不同的 Calendar 子类对象。也就是说，功能代码和工厂方法代码耦合在了一个类中。所以，即便我们去查看它的源码，如果不细心的话，也很难发现它用到了工厂模式。同时，因为它不单单是一个工厂类，所以，它并没有以 Factory 作为后缀来命名。从代码中，我们可以看出，getInstance() 方法可以根据不同 TimeZone 和 Locale，创建不同的 Calendar 子类对象，比如 BuddhistCalendar、JapaneseImperialCalendar、GregorianCalendar，这些**细节完全封装在工厂方法中，使用者只需要传递当前的时区和地址**，就能够获得一个 Calendar 类对象来使用，而获得的对象具体是哪个 Calendar 子类的对象，使用者在使用的时候并不关心：

@@ -1,8 +1,9 @@
 ---
 title: KISS vs. YAGNI
-date: 2020-11-03 22:05:30
 tags:
   - GoF
+abbrlink: 990570322
+date: 2020-11-03 22:05:30
 ---
 ## 如何理解 KISS 原则
 KISS 原则的英文描述：

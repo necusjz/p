@@ -1,8 +1,9 @@
 ---
 title: Factory Design Pattern
-date: 2020-11-22 16:32:49
 tags:
   - GoF
+abbrlink: 1250907357
+date: 2020-11-22 16:32:49
 ---
 ## 简单工厂（Simple Factory）
 在下面这段代码中，我们根据配置文件的后缀（json、xml...），选择不同的解析器（JsonRuleConfigParser、XmlRuleConfigParser...），将存储在文件中的配置解析成内存对象 RuleConfig：

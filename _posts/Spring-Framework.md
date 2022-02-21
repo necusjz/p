@@ -1,8 +1,9 @@
 ---
 title: Spring Framework
-date: 2021-03-29 15:45:20
 tags:
   - OpenSource
+abbrlink: 2270072152
+date: 2021-03-29 15:45:20
 ---
 ## Spring 框架简单介绍
 我们常说的 Spring 框架，是指 Spring Framework 基础框架。**Spring Framework 是整个 Spring 生态（也被称作 Spring 全家桶）的基石**。除了 Spring Framework，Spring 全家桶中还有更多基于 Spring Framework 开发出来的、整合更多功能的框架，比如 Spring Boot、Spring Cloud。在 Spring 全家桶中，Spring Framework 是最基础、最底层的一部分。它提供了最基础、最核心的 IoC 和 AOP 功能。当然，它包含的功能还不仅如此，还有其他比如事务管理（Transactions）、MVC 框架（Spring MVC）等很多功能：

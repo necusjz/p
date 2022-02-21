@@ -1,8 +1,9 @@
 ---
 title: Dependency Inversion Principle (DIP)
-date: 2020-10-26 23:29:04
 tags:
   - GoF
+abbrlink: 330733646
+date: 2020-10-26 23:29:04
 ---
 ## 控制反转（IoC）
 控制反转的英文翻译是 Inversion of Control，缩写为 IoC。我们先通过一个例子来看一下，什么是控制反转：

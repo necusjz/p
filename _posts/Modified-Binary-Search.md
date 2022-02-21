@@ -1,8 +1,9 @@
 ---
 title: Modified Binary Search
-date: 2021-01-31 20:46:57
 tags:
   - CodingInterview
+abbrlink: 581537989
+date: 2021-01-31 20:46:57
 ---
 As we know, whenever we are given a sorted **Array** or **LinkedList** or **Matrix**, and we are asked to find a certain element, the best algorithm we can use is the _Binary Search_.
 

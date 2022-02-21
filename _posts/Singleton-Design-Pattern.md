@@ -1,8 +1,9 @@
 ---
 title: Singleton Design Pattern
-date: 2020-11-21 14:32:44
 tags:
   - GoF
+abbrlink: 1857033827
+date: 2020-11-21 14:32:44
 ---
 ## 为什么要使用单例？
 单例设计模式（Singleton Design Pattern）理解起来非常简单。**一个类只允许创建一个对象（或者实例）**，那这个类就是一个单例类，这种设计模式就叫作单例设计模式，简称单例模式。

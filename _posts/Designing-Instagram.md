@@ -1,8 +1,9 @@
 ---
 title: Designing Instagram
-date: 2021-02-13 13:04:32
 tags:
   - SystemDesign
+abbrlink: 2933063913
+date: 2021-02-13 13:04:32
 ---
 ## What is Instagram?
 Instagram is a social networking service that enables its users to upload and share their photos and videos with other users. Instagram users can choose to share information either publicly or privately. Anything shared publicly can be seen by any other user, whereas privately shared content can only be accessed by the specified set of people. Instagram also enables its users to share through many other social networking platforms, such as Facebook, Twitter, Flickr, and Tumblr.

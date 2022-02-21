@@ -1,8 +1,9 @@
 ---
 title: Meetings
-date: 2019-08-18 16:42:58
 tags:
   - SPEAKING
+abbrlink: 3179819188
+date: 2019-08-18 16:42:58
 ---
 ## Running a face-to-face meeting
 > So, let's get started.

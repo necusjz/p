@@ -1,8 +1,9 @@
 ---
 title: Designing a Web Crawler
-date: 2021-02-26 11:08:41
 tags:
   - SystemDesign
+abbrlink: 2593767960
+date: 2021-02-26 11:08:41
 ---
 ## What is a Web Crawler?
 A web crawler is a software program which browses the World Wide Web in a methodical and automated manner. It collects documents by recursively fetching links from a set of starting pages. Many sites, particularly search engines, use web crawling as a means of providing up-to-date data. Search engines download all the pages to create an index on them to perform faster searches.

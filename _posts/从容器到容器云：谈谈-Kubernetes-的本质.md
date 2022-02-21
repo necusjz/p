@@ -1,8 +1,9 @@
 ---
 title: 从容器到容器云：谈谈 Kubernetes 的本质
-date: 2021-05-25 19:13:33
 tags:
   - Kubernetes
+abbrlink: 1666378453
+date: 2021-05-25 19:13:33
 ---
 ## 容器的核心知识
 一个容器，实际上是一个由 Linux Namespace、Linux Cgroups 和 rootfs 三种技术构建出来的进程的隔离环境。从这个结构中我们不难看出，一个正在运行的 Linux 容器，其实可以被“一分为二”地看待：

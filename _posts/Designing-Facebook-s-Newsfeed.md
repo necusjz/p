@@ -1,8 +1,9 @@
 ---
 title: Designing Facebook's Newsfeed
-date: 2021-02-26 16:28:27
 tags:
   - SystemDesign
+abbrlink: 2182986560
+date: 2021-02-26 16:28:27
 ---
 ## What is Facebook's Newsfeed?
 A Newsfeed is the constantly updating list of stories in the middle of Facebook’s homepage. It includes status updates, photos, videos, links, app activity, and "likes" from people, pages, and groups that a user follows on Facebook. In other words, it is a compilation of a complete scrollable version of your friends' and your life story from photos, videos, locations, status updates, and other activities.

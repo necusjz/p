@@ -1,8 +1,9 @@
 ---
 title: Composite Design Pattern
-date: 2020-12-08 23:17:46
 tags:
   - GoF
+abbrlink: 3814025770
+date: 2020-12-08 23:17:46
 ---
 ## 组合模式的原理与实现
 `组合模式`（Composite Design Pattern）是这样定义的：

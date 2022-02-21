@@ -1,8 +1,9 @@
 ---
 title: Single Responsibility Principle (SRP)
-date: 2020-09-17 23:19:08
 tags:
   - GoF
+abbrlink: 1696831211
+date: 2020-09-17 23:19:08
 ---
 ## 如何理解 SRP
 `单一职责原则`的英文是 Single Responsibility Principle，缩写为 SRP。这个原则的英文描述是这样的：

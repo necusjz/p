@@ -1,8 +1,9 @@
 ---
 title: Basic In-Memory Database Concepts
-date: 2019-07-01 23:50:05
 tags:
   - HANA
+abbrlink: 2294393036
+date: 2019-07-01 23:50:05
 ---
 `In-memory database technology` is a core feature of the SAP HANA database, which enables new applications that were not possible before.
 ## Impact of Modern Hardware on Database System Architecture

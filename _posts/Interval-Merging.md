@@ -1,8 +1,9 @@
 ---
 title: Interval Merging
-date: 2021-03-01 14:48:39
 tags:
   - CodingInterview
+abbrlink: 3299276735
+date: 2021-03-01 14:48:39
 ---
 ## Statement
 Given a set of numbers find an optimal solution for a problem considering the current number and the best you can get from the left and right sides.

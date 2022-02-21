@@ -1,8 +1,9 @@
 ---
 title: Designing Facebook Messenger
-date: 2021-02-14 23:23:35
 tags:
   - SystemDesign
+abbrlink: 1494138080
+date: 2021-02-14 23:23:35
 ---
 ## What is Facebook Messenger?
 Facebook Messenger is a software application which provides text-based instant messaging services to its users. Messenger users can chat with their Facebook friends both from cell-phones and Facebook's website.

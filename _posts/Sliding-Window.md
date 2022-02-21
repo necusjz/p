@@ -1,8 +1,9 @@
 ---
 title: Sliding Window
-date: 2021-01-30 14:36:43
 tags:
   - CodingInterview
+abbrlink: 3659857917
+date: 2021-01-30 14:36:43
 ---
 In many problems dealing with an array (or a LinkedList), we are asked to find or calculate something among all the contiguous subarrays (or sublists) of a given size. For example, take a look at this problem:
 > Given an array, find the average of all contiguous subarrays of size "K" in it.

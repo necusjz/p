@@ -1,8 +1,9 @@
 ---
 title: Designing Pastebin
-date: 2021-02-12 22:24:47
 tags:
   - SystemDesign
+abbrlink: 681315069
+date: 2021-02-12 22:24:47
 ---
 ## What is Pastebin?
 Pastebin like services enable users to store plain text or images over the network (typically the Internet) and generate unique URLs to access the uploaded data. Such services are also used to share data over the network quickly, as users would just need to pass the URL to let other users see it.

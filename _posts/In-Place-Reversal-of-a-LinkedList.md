@@ -1,8 +1,9 @@
 ---
 title: In-Place Reversal of a LinkedList
-date: 2021-01-30 17:09:24
 tags:
   - CodingInterview
+abbrlink: 3232636938
+date: 2021-01-30 17:09:24
 ---
 In a lot of problems, we are asked to reverse the links between a set of nodes of a LinkedList. Often, the constraint is that we need to do this in-place, i.e., using the existing node objects and without using extra memory.
 

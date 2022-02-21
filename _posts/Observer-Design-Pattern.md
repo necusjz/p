@@ -1,8 +1,9 @@
 ---
 title: Observer Design Pattern
-date: 2020-12-13 17:59:38
 tags:
   - GoF
+abbrlink: 982846763
+date: 2020-12-13 17:59:38
 ---
 ## 原理及应用场景剖析
 `观察者模式`（Observer Design Pattern）的定义是这样的：

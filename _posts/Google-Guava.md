@@ -1,8 +1,9 @@
 ---
 title: Google Guava
-date: 2021-03-25 17:25:21
 tags:
   - OpenSource
+abbrlink: 24993952
+date: 2021-03-25 17:25:21
 ---
 ## Google Guava 介绍
 Google Guava 是 Google 公司内部 Java 开发工具库的开源版本。Google 内部的很多 Java 项目都在使用它。它提供了一些 JDK 没有提供的功能，以及对 JDK 已有功能的增强功能。其中就包括：集合（Collections）、缓存（Caching）、原生类型支持（Primitives Support）、并发库（Concurrency Libraries）、通用注解（Common Annotation）、字符串处理（Strings Processing）、数学计算（Math）、I/O、事件总线（EventBus）等等：

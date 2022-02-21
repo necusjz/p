@@ -1,8 +1,9 @@
 ---
 title: Decorator Design Pattern
-date: 2020-12-05 19:25:33
 tags:
   - GoF
+abbrlink: 2790089948
+date: 2020-12-05 19:25:33
 ---
 ## Java IO 类的“奇怪”用法
 Java IO 类库非常庞大和复杂，有几十个类，负责 IO 数据的读取和写入。如果对 Java IO 类做一下分类，我们可以从下面两个维度将它划分为四类：

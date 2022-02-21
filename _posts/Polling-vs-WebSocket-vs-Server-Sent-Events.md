@@ -1,8 +1,9 @@
 ---
 title: Polling vs. WebSocket vs. Server-Sent Events
-date: 2021-02-07 01:49:43
 tags:
   - SystemDesign
+abbrlink: 2211167691
+date: 2021-02-07 01:49:43
 ---
 Polling, WebSocket, and Server-Sent Events are popular communication protocols between a client like a web browser and a web server. First, let's start with understanding what a standard HTTP web request looks like. Following are a sequence of events for regular HTTP request:
 1. The client opens a connection and requests data from the server;

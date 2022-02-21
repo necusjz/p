@@ -1,8 +1,9 @@
 ---
 title: K-Way Merge
-date: 2021-01-31 23:08:23
 tags:
   - CodingInterview
+abbrlink: 3169449011
+date: 2021-01-31 23:08:23
 ---
 This pattern helps us solve problems that involve a list of sorted arrays.
 

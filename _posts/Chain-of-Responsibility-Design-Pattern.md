@@ -1,8 +1,9 @@
 ---
 title: Chain of Responsibility Design Pattern
-date: 2020-12-20 00:34:22
 tags:
   - GoF
+abbrlink: 3695826069
+date: 2020-12-20 00:34:22
 ---
 ## 职责链模式的原理和实现
 `职责链模式`的英文翻译是 Chain of Responsibility Design Pattern。它是这么定义的：

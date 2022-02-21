@@ -1,8 +1,9 @@
 ---
 title: Proxies
-date: 2021-02-04 20:12:13
 tags:
   - SystemDesign
+abbrlink: 3678059815
+date: 2021-02-04 20:12:13
 ---
 A `Proxy Server` is an intermediate server between the client and the back-end server. Clients connect to proxy servers to make a request for a service like a web page, file, connection, etc. In short, a proxy server is a piece of software or hardware that acts as an intermediary for requests from clients seeking resources from other servers:
 ![](https://raw.githubusercontent.com/necusjz/p/master/SystemDesign/educative/05.png)

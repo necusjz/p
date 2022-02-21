@@ -1,8 +1,9 @@
 ---
 title: Min/Max to Reach a Target
-date: 2021-03-01 14:01:33
 tags:
   - CodingInterview
+abbrlink: 3410525220
+date: 2021-03-01 14:01:33
 ---
 ## Statement
 Given a target find minimum (maximum) cost/path/sum to reach the target.

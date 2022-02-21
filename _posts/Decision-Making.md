@@ -1,8 +1,9 @@
 ---
 title: Decision Making
-date: 2021-03-01 15:12:37
 tags:
   - CodingInterview
+abbrlink: 3468801964
+date: 2021-03-01 15:12:37
 ---
 ## Statement
 Given a set of values find an answer with an option to choose or ignore the current value.

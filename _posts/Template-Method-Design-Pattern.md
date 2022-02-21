@@ -1,8 +1,9 @@
 ---
 title: Template Method Design Pattern
-date: 2020-12-16 23:24:34
 tags:
   - GoF
+abbrlink: 691459856
+date: 2020-12-16 23:24:34
 ---
 ## 模板模式的原理与实现
 `模板模式`，全称是模板方法设计模式，英文是 Template Method Design Pattern。它是这么定义的：
