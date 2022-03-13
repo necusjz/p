@@ -1,5 +1,5 @@
 ---
-title: DP on Strings
+title: Dynamic Programming on Strings
 tags:
   - CodingInterview
 abbrlink: 1675068398
