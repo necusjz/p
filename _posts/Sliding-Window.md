@@ -5,11 +5,11 @@ tags:
 abbrlink: 3659857917
 date: 2021-01-30 14:36:43
 ---
-In many problems dealing with an array (or a LinkedList), we are asked to find or calculate something among all the contiguous subarrays (or sublists) of a given size. For example, take a look at this problem:
+In many problems dealing with an array (or a linked list), we are asked to find or calculate something among all the contiguous subarrays (or sublists) of a given size. For example, take a look at this problem:
 > Given an array, find the average of all contiguous subarrays of size "K" in it.
 
 Let's understand this problem with a real input:
-```python
+```text
 Array: [1, 3, 2, 6, -1, 4, 1, 8, 2], K=5
 ```
 
@@ -20,23 +20,22 @@ Here, we are asked to find the average of all contiguous subarrays of size "5" i
 4. ...
 
 Here is the final output containing the averages of all contiguous subarrays of size 5:
-```python
+```text
 Output: [2.2, 2.8, 2.4, 3.6, 2.8]
 ```
 <!--more-->
-
 A brute-force algorithm will calculate the sum of every 5-element contiguous subarray of the given array and divide the sum by "5" to find the average. This is what the algorithm will look like:
 ```python
-def find_averages_of_subarrays(k, arr):
-    result = []
+def find_average_of_subarrays(k, arr):
+    ans = []
     for i in range(len(arr) - k + 1):
+        # find sum of next k elements
         element_sum = 0.0
-        # find sum of next `K` elements
         for j in range(i, i + k):
             element_sum += arr[j]
-            # calculate average
-            result.append(element_sum / k)
-    return result
+
+        ans.append(element_sum / k)
+    return ans
 ```
 
 **Time Complexity**: Since for every element of the input array, we are calculating the sum of its next "K" elements, the time complexity of the above algorithm will be O(N\*K) where "N" is the number of elements in the input array.
@@ -51,54 +50,57 @@ The efficient way to solve this problem would be to visualize each contiguous su
 
 Here is the algorithm for the _Sliding Window_ approach:
 ```python
-def find_averages_of_subarrays(k, arr):
-    result = []
-    window_sum, start = 0.0, 0
+def find_average_of_subarrays(k, arr):
+    ans = []
+    start, window_sum = 0, 0.0
+
     for end in range(len(arr)):
         window_sum += arr[end]
         # shrink
         if end >= k - 1:
-            result.append(window_sum / k)
+            ans.append(window_sum / k)
             window_sum -= arr[start]
-            start += 1
-    return result
-```
-
-In some problems, the size of the sliding window is not fixed. We have to expand or shrink the window based on the problem constraints.
-
-## Snippet
-```python
-def min_window(s: str, t: str) -> str:
-    freq = dict()
-    for char in t:
-        freq[char] = freq.get(char, 0) + 1
-    ans = ""
-    start, matched = 0, 0
-    # sliding window
-    for end in range(len(s)):
-        if s[end] in freq:
-            freq[s[end]] -= 1
-            if freq[s[end]] == 0:
-                matched += 1
-        # shrink
-        while matched == len(freq):
-            if not ans or end - start + 1 < len(ans):
-                ans = s[start:end+1]
-            if s[start] in freq:
-                if freq[s[start]] == 0:
-                    matched -= 1
-                freq[s[start]] += 1
             start += 1
     return ans
 ```
 
+In some problems, the size of the sliding window is not fixed. We have to **expand or shrink the window based on the problem constraints**.
+
+## Snippets
+```python
+freq = dict()
+for char in t:
+    freq[char] = freq.get(char, 0) + 1
+
+ans = ""
+start, matched = 0, 0
+
+for end in range(len(s)):
+    if s[end] in freq:
+        freq[s[end]] -= 1
+        if freq[s[end]] == 0:
+            matched += 1
+    # shrink
+    while matched == len(freq):
+        if not ans or end - start + 1 < len(ans):
+            ans = s[start:end+1]
+        if s[start] in freq:
+            if freq[s[start]] == 0:
+                matched -= 1
+            freq[s[start]] += 1
+        start += 1
+return ans
+```
+
 ## LeetCode
-[Minimum Size Subarray Sum](https://leetcode.com/problems/minimum-size-subarray-sum/)
-[Fruit Into Baskets](https://leetcode.com/problems/fruit-into-baskets/)
-[Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/)
-[Longest Repeating Character Replacement](https://leetcode.com/problems/longest-repeating-character-replacement/)
-[Max Consecutive Ones III](https://leetcode.com/problems/max-consecutive-ones-iii/)
-[Permutation in String](https://leetcode.com/problems/permutation-in-string/)
-[Find All Anagrams in a String](https://leetcode.com/problems/find-all-anagrams-in-a-string/)
-[Minimum Window Substring](https://leetcode.com/problems/minimum-window-substring/)
-[Substring with Concatenation of All Words](https://leetcode.com/problems/substring-with-concatenation-of-all-words/)
+[53. Maximum Subarray](https://leetcode.com/problems/maximum-subarray/)
+[209. Minimum Size Subarray Sum](https://leetcode.com/problems/minimum-size-subarray-sum/)
+[340. Longest Substring with At Most K Distinct Characters](https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/)
+[904. Fruit Into Baskets](https://leetcode.com/problems/fruit-into-baskets/)
+[3. Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/)
+[424. Longest Repeating Character Replacement](https://leetcode.com/problems/longest-repeating-character-replacement/)
+[1004. Max Consecutive Ones III](https://leetcode.com/problems/max-consecutive-ones-iii/)
+[567. Permutation in String](https://leetcode.com/problems/permutation-in-string/)
+[438. Find All Anagrams in a String](https://leetcode.com/problems/find-all-anagrams-in-a-string/)
+[76. Minimum Window Substring](https://leetcode.com/problems/minimum-window-substring/)
+[30. Substring with Concatenation of All Words](https://leetcode.com/problems/substring-with-concatenation-of-all-words/)

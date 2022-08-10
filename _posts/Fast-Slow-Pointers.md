@@ -5,37 +5,34 @@ tags:
 abbrlink: 3580079225
 date: 2021-01-30 16:11:29
 ---
-The _Fast & Slow Pointers_ approach is a pointer algorithm that uses two pointers which move through the array (or sequence/LinkedList) at different speeds. This approach is quite useful when dealing with cyclic LinkedLists or arrays.
+The _Fast & Slow Pointers_ approach is a pointer algorithm that uses two pointers which move through the array (or linked list) at different speeds. This approach is quite useful when dealing with cyclic linked lists or arrays.
 
-By moving at different speeds (say, in a cyclic LinkedList), the algorithm proves that the two pointers are bound to meet. The fast pointer should catch the slow pointer once both the pointers are in a cyclic loop.
+By moving at different speeds (say, in a cyclic linked list), the algorithm proves that **the two pointers are bound to meet**. The fast pointer should catch the slow pointer once both the pointers are in a cyclic loop.
 
-## Snippet
+## Snippets
 ```python
-def is_palindrome(head: ListNode) -> bool:
-    l = r = head
-    # obtain middle pointer
-    while r and r.next:
-        l = l.next
-        r = r.next.next
-    stack = []
-    # push second half to stack
-    while l:
-        stack.append(l.val)
-        l = l.next
-    r = head
-    # compare with first half
-    while stack:
-        if stack.pop() != r.val:
-            return False
-        r = r.next
-    return True
+def _next(num):
+    ret = 0
+    while num:
+        num, mod = divmod(num, 10)
+        ret += mod * mod
+    return ret
+
+l = r = n  
+while r != 1 and _next(r) != 1:
+    l = _next(l)
+    r = _next(_next(r))
+    if l == r:
+        return False
+
+return True
 ```
 
 ## LeetCode
-[Linked List Cycle](https://leetcode.com/problems/linked-list-cycle/)
-[Linked List Cycle II](https://leetcode.com/problems/linked-list-cycle-ii/)
-[Happy Number](https://leetcode.com/problems/happy-number/)
-[Middle of the Linked List](https://leetcode.com/problems/middle-of-the-linked-list/)
-[Palindrome Linked List](https://leetcode.com/problems/palindrome-linked-list/)
-[Reorder List](https://leetcode.com/problems/reorder-list/)
-[Circular Array Loop](https://leetcode.com/problems/circular-array-loop/)
+[141. Linked List Cycle](https://leetcode.com/problems/linked-list-cycle/)
+[142. Linked List Cycle II](https://leetcode.com/problems/linked-list-cycle-ii/)
+[202. Happy Number](https://leetcode.com/problems/happy-number/)
+[876. Middle of the Linked List](https://leetcode.com/problems/middle-of-the-linked-list/)
+[234. Palindrome Linked List](https://leetcode.com/problems/palindrome-linked-list/)
+[143. Reorder List](https://leetcode.com/problems/reorder-list/)
+[457. Circular Array Loop](https://leetcode.com/problems/circular-array-loop/)

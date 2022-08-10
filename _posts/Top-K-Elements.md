@@ -7,46 +7,49 @@ date: 2021-01-31 22:56:12
 ---
 Any problem that asks us to find the _Top K Elements_ among a given set falls under this pattern.
 
-The best data structure that comes to mind to keep track of "K" elements is **Heap**. This pattern will make use of the Heap to solve multiple problems dealing with "K" elements at a time from a set of given elements.
+The best data structure that comes to mind to keep track of "K" elements is **heap**. This pattern will make use of the heap to solve multiple problems dealing with "K" elements at a time from a set of given elements.
 
-## Snippet
+## Snippets
 ```python
-from heapq import heappush, heappop
+freq = dict()
+for char in s:
+    freq[char] = freq.get(char, 0) + 1
 
+max_heap = []
+for char in freq:
+    heappush(max_heap, (-freq[char], char))
 
-def reorganize_string(s: str) -> str:
-    freq = dict()
-    for char in s:
-        freq[char] = freq.get(char, 0) + 1
-    max_heap = []
-    for char in freq:
-        heappush(max_heap, (-freq[char], char))
-    ans = ""
-    while max_heap:
-        # store popped elements
-        queue, n = [], 2
-        while n > 0 and max_heap:
-            count, char = heappop(max_heap)
-            count = -count - 1
-            if count > 0:
-                queue.append((-count, char))
-            ans += char
-            n -= 1
-        if n > 0:
-            break
-        # push back
-        for element in queue:
-            heappush(max_heap, element)
-    return ans if len(ans) == len(s) else ""
+ans = ""
+while max_heap:
+    # store popped elements
+    queue, k = [], 2
+    while k > 0 and max_heap:
+        count, char = heappop(max_heap)
+        ans += char
+        if -count - 1 > 0:
+            queue.append((count + 1, char))
+        k -= 1
+    
+    if k != 0 and queue:
+        return ""
+    # push back
+    for element in queue:
+        heappush(max_heap, element)
+return ans
 ```
 
 ## LeetCode
-[Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/)
-[K Closest Points to Origin](https://leetcode.com/problems/k-closest-points-to-origin/)
-[Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/)
-[Sort Characters By Frequency](https://leetcode.com/problems/sort-characters-by-frequency/)
-[Kth Largest Element in a Stream](https://leetcode.com/problems/kth-largest-element-in-a-stream/)
-[Find K Closest Elements](https://leetcode.com/problems/find-k-closest-elements/)
-[Reorganize String](https://leetcode.com/problems/reorganize-string/)
-[Task Scheduler](https://leetcode.com/problems/task-scheduler/)
-[Maximum Frequency Stack](https://leetcode.com/problems/maximum-frequency-stack/)
+[692. Top K Frequent Words](https://leetcode.com/problems/top-k-frequent-words/)
+[215. Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/)
+[973. K Closest Points to Origin](https://leetcode.com/problems/k-closest-points-to-origin/)
+[1167. Minimum Cost to Connect Sticks](https://leetcode.com/problems/minimum-cost-to-connect-sticks/)
+[347. Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/)
+[451. Sort Characters By Frequency](https://leetcode.com/problems/sort-characters-by-frequency/)
+[703. Kth Largest Element in a Stream](https://leetcode.com/problems/kth-largest-element-in-a-stream/)
+[658. Find K Closest Elements](https://leetcode.com/problems/find-k-closest-elements/)
+[1481. Least Number of Unique Integers after K Removals](https://leetcode.com/problems/least-number-of-unique-integers-after-k-removals/)
+[1508. Range Sum of Sorted Subarray Sums](https://leetcode.com/problems/range-sum-of-sorted-subarray-sums/)
+[767. Reorganize String](https://leetcode.com/problems/reorganize-string/)
+[358. Rearrange String k Distance Apart](https://leetcode.com/problems/rearrange-string-k-distance-apart/)
+[621. Task Scheduler](https://leetcode.com/problems/task-scheduler/)
+[895. Maximum Frequency Stack](https://leetcode.com/problems/maximum-frequency-stack/)
