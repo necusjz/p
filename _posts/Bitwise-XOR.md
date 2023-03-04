@@ -51,12 +51,12 @@ Here is what the algorithm will look like:
 def find_missing_number(nums):
     n = len(nums) + 1
     # x1 represents XOR of all values from 1 to n
-    x1 = 1
-    for num in range(2, n + 1):
+    x1 = 0
+    for num in range(1, n + 1):
         x1 = x1 ^ num
     # x2 represents XOR of all values in array
-    x2 = nums[0]
-    for num in nums[1:]:
+    x2 = 0
+    for num in nums:
         x2 = x2 ^ num
     # missing number is the XOR of x1 and x2
     return x1 ^ x2
@@ -70,7 +70,7 @@ Following are some important properties of XOR to remember:
     - 29 ^ 29 = 0
 - Taking XOR of a number with 0 returns the same number, e.g.,
     - 1 ^ 0 = 1
-    - 31 ^ 0 = 31
+    - 29 ^ 0 = 29
 - XOR is Associative & Commutative, which means:
     - (a ^ b) ^ c = a ^ (b ^ c)
     - a ^ b = b ^ a

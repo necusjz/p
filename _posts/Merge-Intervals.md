@@ -15,12 +15,14 @@ Understanding the above six cases will help us in solving all intervals related 
 ## Snippets
 ```python
 ans = []
-idx, n = 0, len(intervals)
+n = len(intervals)
+
+idx = 0
 # case 1
 while idx < n and intervals[idx][1] < new_interval[0]:
     ans.append(intervals[idx])
     idx += 1
-# case 2 ~ 5
+# case 2-5
 while idx < n and intervals[idx][0] <= new_interval[1]:
     new_interval[0] = min(new_interval[0], intervals[idx][0])
     new_interval[1] = max(new_interval[1], intervals[idx][1])
@@ -30,6 +32,7 @@ ans.append(new_interval)
 while idx < n:
     ans.append(intervals[idx])
     idx += 1
+
 return ans
 ```
 

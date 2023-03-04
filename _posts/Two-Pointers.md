@@ -11,8 +11,8 @@ In problems where we deal with sorted arrays (or linked lists) and need to find 
 To solve this problem, we can consider each element one by one (pointed out by the first pointer) and iterate through the remaining elements (pointed out by the second pointer) to find a pair with the given sum. The time complexity of this algorithm will be O(N^2) where "N" is the number of elements in the input array.
 
 Given that the input array is **sorted**, an efficient way would be to start with one pointer in the beginning and another pointer at the end. At every step, we will see if the numbers pointed by the two pointers add up to the target sum. If they do not, we will do one of two things:
-- If the sum of the two numbers pointed by the two pointers is greater than the target sum, this means that we need a pair with a smaller sum. So, to try more pairs, we can decrement the end-pointer;
-- If the sum of the two numbers pointed by the two pointers is smaller than the target sum, this means that we need a pair with a larger sum. So, to try more pairs, we can increment the start-pointer;
+- If the sum of the two numbers pointed by the two pointers is greater than the target sum, this means that we need a pair with a less sum. So, to try more pairs, we can decrement the end-pointer;
+- If the sum of the two numbers pointed by the two pointers is less than the target sum, this means that we need a pair with a greater sum. So, to try more pairs, we can increment the start-pointer;
 
 <!--more-->
 Here is the visual representation of this algorithm:
@@ -47,6 +47,7 @@ for idx in range(n):
             l += 1
         else:
             r -= 1
+
 return ans
 ```
 

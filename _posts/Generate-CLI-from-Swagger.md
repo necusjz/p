@@ -115,16 +115,16 @@ from azure.cli.testsdk import (
 )
 
 
-class DnsResolverClientTest(ScenarioTest):
+class DnsResolverScenarioTest(ScenarioTest):
     @ResourceGroupPreparer(name_prefix="cli_test_dns_resolver_", location="westus")
     def test_dns_resolver_crud(self):
         self.kwargs.update({
             "dns_resolver_name": self.create_random_name("dns-resolver-", 20),
-            "vnet_name": self.create_random_name("vnet-", 12)
+            "vnet_name": self.create_random_name("vnet-", 12),
         })
         ...
 ```
 
-Remaining work to be done:
+Remaining works to be done:
 - Update *README.rst* and *HISTORY.rst*;
 - Update *CODEOWNERS* and *service_name.json*;

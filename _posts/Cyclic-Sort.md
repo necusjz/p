@@ -17,11 +17,12 @@ n = len(nums)
 i = 0
 while i < n:
     j = nums[i] - 1
-    # prevent index out of bounds
+    # avoid index out of bounds
     if 0 <= j < n and nums[i] != nums[j]:
         nums[i], nums[j] = nums[j], nums[i]
-    else:
-        i += 1
+        continue
+
+    i += 1
 
 for idx in range(n):
     if nums[idx] != idx + 1:

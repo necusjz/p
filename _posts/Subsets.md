@@ -15,27 +15,27 @@ queue = deque([[]])
 for num in sorted(nums):
     curr_len = len(queue)
     for _ in range(curr_len):
-        element = queue.popleft()
-        cand = element + [num]
+        item = queue.popleft()
+        cand = item + [num]
         # skip duplicates
         if cand not in queue:
             queue.append(cand)
-        
-        queue.append(element)
+
+        queue.append(item)
 
 return queue
 ```
 ```python
 """Recursion"""
 @cache
-def build(start, end):
-    if start > end:
+def build(beg, end):
+    if beg > end:
         return [None]
     
     ret = []
-    for val in range(start, end + 1):
+    for val in range(beg, end + 1):
         # divide & conquer
-        l = build(start, val - 1)
+        l = build(beg, val - 1)
         r = build(val + 1, end)
         for x in l:
             for y in r:

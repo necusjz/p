@@ -5,14 +5,13 @@ tags:
 abbrlink: 581537989
 date: 2021-01-31 20:46:57
 ---
-As we know, whenever we are given **a sorted array or linked list or matrix**, and we are asked to find a certain element, the best algorithm we can use is the _Binary Search_.
+As we know, whenever we are given **a sorted array or linked list or matrix**, and we are asked to find a certain element, the best algorithm we can use is _Binary Search_.
 
 This pattern describes an efficient way to handle all problems involving _Binary Search_. We will go through a set of problems that will help us build an understanding of this pattern so that we can apply this technique to other problems we might come across in the interviews.
 
 ## Snippets
 ```python
 lo, hi = 0, len(nums) - 1
-
 while lo <= hi:
     mid = lo + ((hi - lo) >> 1)
     
@@ -24,6 +23,7 @@ while lo <= hi:
         hi = mid - 1
     else:
         lo = mid + 1
+
 return len(nums)
 ```
 

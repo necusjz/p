@@ -30,10 +30,10 @@ def find_average_of_subarrays(k, arr):
     ans = []
     for i in range(len(arr) - k + 1):
         # find sum of next k elements
-        element_sum = 0.0
+        element_sum = 0
         for j in range(i, i + k):
             element_sum += arr[j]
-
+        
         ans.append(element_sum / k)
     return ans
 ```
@@ -52,15 +52,17 @@ Here is the algorithm for the _Sliding Window_ approach:
 ```python
 def find_average_of_subarrays(k, arr):
     ans = []
-    start, window_sum = 0, 0.0
+    window_sum = 0
 
+    beg = 0
     for end in range(len(arr)):
         window_sum += arr[end]
         # shrink
         if end >= k - 1:
             ans.append(window_sum / k)
-            window_sum -= arr[start]
-            start += 1
+            window_sum -= arr[beg]
+            beg += 1
+    
     return ans
 ```
 
@@ -73,8 +75,9 @@ for char in t:
     freq[char] = freq.get(char, 0) + 1
 
 ans = ""
-start, matched = 0, 0
+matched = 0
 
+beg = 0
 for end in range(len(s)):
     if s[end] in freq:
         freq[s[end]] -= 1
@@ -82,13 +85,15 @@ for end in range(len(s)):
             matched += 1
     # shrink
     while matched == len(freq):
-        if not ans or end - start + 1 < len(ans):
-            ans = s[start:end+1]
-        if s[start] in freq:
-            if freq[s[start]] == 0:
+        if not ans or end - beg + 1 < len(ans):
+            ans = s[beg:end+1]
+
+        if s[beg] in freq:
+            if freq[s[beg]] == 0:
                 matched -= 1
-            freq[s[start]] += 1
-        start += 1
+            freq[s[beg]] += 1
+        beg += 1
+
 return ans
 ```
 

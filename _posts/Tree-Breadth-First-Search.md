@@ -15,7 +15,6 @@ if not root:
     return None
 
 queue = deque([root])
-
 while queue:
     curr_len = len(queue)
     for idx in range(curr_len):
@@ -27,6 +26,7 @@ while queue:
             queue.append(node.left)
         if node.right:
             queue.append(node.right)
+
 return root
 ```
 
@@ -36,7 +36,7 @@ return root
 [103. Binary Tree Zigzag Level Order Traversal](https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/)
 [637. Average of Levels in Binary Tree](https://leetcode.com/problems/average-of-levels-in-binary-tree/)
 [111. Minimum Depth of Binary Tree](https://leetcode.com/problems/minimum-depth-of-binary-tree/)
-[285. Inorder Successor in BST](https://leetcode.com/problems/inorder-successor-in-bst/)
+[429. N-ary Tree Level Order Traversal](https://leetcode.com/problems/n-ary-tree-level-order-traversal/)
 [117. Populating Next Right Pointers in Each Node II](https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/)
 [116. Populating Next Right Pointers in Each Node](https://leetcode.com/problems/populating-next-right-pointers-in-each-node/)
 [199. Binary Tree Right Side View](https://leetcode.com/problems/binary-tree-right-side-view/)

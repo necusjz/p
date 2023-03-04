@@ -24,7 +24,7 @@ class MedianFinder:
         # re-balance
         if len(self.max_heap) > len(self.min_heap) + 1:
             heappush(self.min_heap, -heappop(self.max_heap))
-        elif len(self.min_heap) > len(self.max_heap):
+        if len(self.min_heap) > len(self.max_heap):
             heappush(self.max_heap, -heappop(self.min_heap))
 
     def find_median(self) -> float:
