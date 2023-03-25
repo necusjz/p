@@ -36,7 +36,7 @@ def dfs(root):
     l = max(0, dfs(root.left))
     r = max(0, dfs(root.right))
     nonlocal ans
-    ans = max(ans, root.val + l + r)
+    ans = max(ans, l + root.val + r)
     
     return root.val + max(l, r)
 

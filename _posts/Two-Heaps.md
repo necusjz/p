@@ -31,7 +31,7 @@ class MedianFinder:
         if len(self.max_heap) == len(self.min_heap):
             return (-self.max_heap[0] + self.min_heap[0]) / 2
         
-        return -self.max_heap[0] / 1
+        return -self.max_heap[0]
 ```
 
 ## LeetCode

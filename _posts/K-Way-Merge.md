@@ -13,8 +13,7 @@ Whenever we are given "K" sorted arrays, we can use a **min heap** to efficientl
 ```python
 min_heap = []
 for row in matrix:
-    # keep track by index
-    heappush(min_heap, (row[0], 0, row))
+    heappush(min_heap, (row[0], 0, row))  # keep track by index
 
 n = len(matrix)
 for _ in range(k - 1):

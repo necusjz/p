@@ -21,9 +21,8 @@ for char in freq:
 
 ans = ""
 while max_heap:
-    # store popped elements
-    queue, k = [], 2
-    while k > 0 and max_heap:
+    queue, k = [], 2  # store pop-up items
+    while max_heap and k > 0:
         count, char = heappop(max_heap)
         ans += char
         if -count - 1 > 0:
@@ -33,8 +32,8 @@ while max_heap:
     if k != 0 and queue:
         return ""
     # push back
-    for element in queue:
-        heappush(max_heap, element)
+    for item in queue:
+        heappush(max_heap, item)
 return ans
 ```
 

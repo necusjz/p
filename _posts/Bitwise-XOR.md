@@ -80,8 +80,7 @@ Following are some important properties of XOR to remember:
 n1xn2 = 0
 for num in nums:
     n1xn2 ^= num
-# isolate rightmost 1-bit
-low_bit = n1xn2 & -n1xn2
+low_bit = n1xn2 & -n1xn2  # isolate rightmost 1-bit
 
 n1, n2 = 0, 0
 for num in nums:

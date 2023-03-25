@@ -11,7 +11,7 @@ By moving at different speeds (say, in a cyclic linked list), the algorithm prov
 
 ## Snippets
 ```python
-def _next(num):
+def next_(num):
     ret = 0
     while num:
         num, mod = divmod(num, 10)
@@ -19,9 +19,9 @@ def _next(num):
     return ret
 
 l = r = n  
-while r != 1 and _next(r) != 1:
-    l = _next(l)
-    r = _next(_next(r))
+while r != 1 and next_(r) != 1:
+    l = next_(l)
+    r = next_(next_(r))
     if l == r:
         return False
 

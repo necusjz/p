@@ -11,8 +11,7 @@ _In-Place Reversal of a Linked List_ pattern describes an efficient way to solve
 
 ## Snippets
 ```python
-# set sentinel
-dummy, dummy.next = ListNode(), head
+dummy, dummy.next = ListNode(), head  # set sentinel
 ptr = dummy
 
 for _ in range(left - 1):
