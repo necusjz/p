@@ -35,6 +35,7 @@ def find_average_of_subarrays(k, arr):
             element_sum += arr[j]
         
         ans.append(element_sum / k)
+
     return ans
 ```
 
@@ -54,14 +55,14 @@ def find_average_of_subarrays(k, arr):
     ans = []
     window_sum = 0
 
-    beg = 0
+    start = 0
     for end in range(len(arr)):
         window_sum += arr[end]
         # shrink
         if end >= k - 1:
             ans.append(window_sum / k)
-            window_sum -= arr[beg]
-            beg += 1
+            window_sum -= arr[start]
+            start += 1
     
     return ans
 ```
@@ -77,22 +78,24 @@ for char in t:
 ans = ""
 matched = 0
 
-beg = 0
+start = 0
 for end in range(len(s)):
     if s[end] in freq:
         freq[s[end]] -= 1
         if freq[s[end]] == 0:
             matched += 1
+
     # shrink
     while matched == len(freq):
-        if not ans or end - beg + 1 < len(ans):
-            ans = s[beg:end+1]
+        if not ans or end - start + 1 < len(ans):
+            ans = s[start:end+1]
 
-        if s[beg] in freq:
-            if freq[s[beg]] == 0:
+        if s[start] in freq:
+            if freq[s[start]] == 0:
                 matched -= 1
-            freq[s[beg]] += 1
-        beg += 1
+            freq[s[start]] += 1
+
+        start += 1
 
 return ans
 ```

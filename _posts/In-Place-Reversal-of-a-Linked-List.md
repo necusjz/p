@@ -19,10 +19,8 @@ for _ in range(left - 1):
 
 prev, curr = None, ptr.next
 for _ in range(right - left + 1):
-    temp = curr.next
-    curr.next = prev
-    prev = curr
-    curr = temp
+    curr.next, prev, curr = prev, curr, curr.next
+
 # link
 ptr.next.next = curr
 ptr.next = prev

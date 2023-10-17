@@ -1,5 +1,5 @@
 ---
-title: 迪米特法则（LoD）
+title: 迪米特法则 (LoD)
 tags:
   - GoF
 abbrlink: 2349017152

@@ -1,5 +1,5 @@
 ---
-title: Python 语言精要-1
+title: Python 语言精要 Ⅰ
 tags:
   - Python
 abbrlink: 3697041086

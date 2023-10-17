@@ -25,6 +25,7 @@ def dfs(root, path):
 
 ans = []
 dfs(root, [])
+
 return ans
 ```
 ```python
@@ -35,13 +36,15 @@ def dfs(root):
     
     l = max(0, dfs(root.left))
     r = max(0, dfs(root.right))
-    nonlocal ans
-    ans = max(ans, l + root.val + r)
-    
-    return root.val + max(l, r)
 
-ans = float("-INF")
+    nonlocal ans
+    ans = max(ans, l + r + root.val)
+    
+    return max(l, r) + root.val
+
+ans = root.val
 dfs(root)
+
 return ans
 ```
 
