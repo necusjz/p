@@ -127,8 +127,8 @@ To wrap up, we summarize a list of the Dos and Don’ts:
     - Don’t be unprepared for typical interview questions.
     - Don’t jump into a solution without clarifying the requirements and assumptions.
     - Don’t go into too much detail on a single component in the beginning. Give the high-level design first then drills down.
-    - If you get stuck, don't hesitate to ask for hints.
-    - Again, communicate. Don't think in silence.
+    - If you get stuck, don’t hesitate to ask for hints.
+    - Again, communicate. Don’t think in silence.
     - Don’t think your interview is done once you give the design. You are not done until your interviewer says you are done. Ask for feedback early and often.
 
 ## Time allocation on each step
