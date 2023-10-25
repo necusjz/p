@@ -6,5 +6,5 @@ rm -fr $dir/*
 cp -r ../BLOG/source/$dir/* $dir/
 
 git add $dir
-git commit -m "chore: sync _posts"
+git commit -m "chore: synchronize _posts"
 git push
