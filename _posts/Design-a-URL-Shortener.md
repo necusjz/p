@@ -26,7 +26,7 @@ Here are the basic use cases:
 3. High availability, scalability, and fault tolerance considerations.
 
 <!--more-->
-### Back of the envelope estimation
+### Back-of-the-envelope estimation
 - Write operation: 100 million URLs are generated per day.
 - Write operation per second: 100 million / 24 /3600 = 1160.
 - Read operation: Assuming ratio of read operation to write operation is 10:1, read operation per second: 1160 * 10 = 11,600.
@@ -87,7 +87,7 @@ In the high-level design, everything is stored in a hash table. This is a good s
 Hash function is used to hash a long URL to a short URL, also known as hashValue.
 
 #### Hash value length
-The hashValue consists of characters from [0-9, a-z, A-Z], containing 10 + 26 + 26 = 62 possible characters. To figure out the length of hashValue, find the smallest n such that 62^n >= 365 billion. The system must support up to 365 billion URLs based on the back of the envelope estimation. Table 1 shows the length of hashValue and the corresponding maximal number of URLs it can support:
+The hashValue consists of characters from [0-9, a-z, A-Z], containing 10 + 26 + 26 = 62 possible characters. To figure out the length of hashValue, find the smallest n such that 62^n >= 365 billion. The system must support up to 365 billion URLs based on the back-of-the-envelope estimation. Table 1 shows the length of hashValue and the corresponding maximal number of URLs it can support:
 
 |n|Maximal number of URLs|
 |:-|:-|
