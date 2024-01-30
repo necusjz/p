@@ -1,20 +1,19 @@
 ---
 title: Meetings
-tags:
-  - SPEAKING
+tags: SPEAKING
 abbrlink: 3179819188
 date: 2019-08-18 16:42:58
 ---
 ## Running a face-to-face meeting
 > So, let's get started.
 
-### USEFUL TIPS
-- **Go through the agenda** at the start of the meeting and check no items are missing;
-- **Ensure good timekeeping** during the meeting, making sure that participants stick to the agenda and don't get sidetracked;
-- **Control the discussion**, making sure all participants contribute where relevant and that no one person dominates the whole meeting;
-- **Summarize key decisions** at the end of each agenda point;
-<!--more-->
+### Useful Tips
+- **Go through the agenda** at the start of the meeting and check no items are missing.
+- **Ensure good timekeeping** during the meeting, making sure that participants stick to the agenda and don't get sidetracked.
+- **Control the discussion,** making sure all participants contribute where relevant and that no one person dominates the whole meeting.
+- **Summarize key decisions** at the end of each agenda point.
 
+<!--more-->
 ### Track 45
 Janette: Everybody is here now. **So, let's get stared.** Now, we're here to discuss the rollout of the new SAP customer relationship program. You are the people who'll have to implement it and we need to decide what you need for the rollout. **So, let's look at point number one on the agenda:** resources. **Fabian, would you like to start?**
 Fabian: Right, at the moment there's a shortage of human resources to...
@@ -50,11 +49,11 @@ J: Excellent! So, now we just need to decide which people will be most suited...
 ## Assigning action points
 > Who would like to take responsibility for this?
 
-### USEFUL TIPS
-- Ask people to **agree to action points** rather than simply telling them to do something;
-- For a general action point, e.g. organizing somebody to look after visitors to company, **offer the opportunity to anybody** from the team. It may be seen as attractive, especially if it involves entertaining the visitors;
-- If the action point is unattractive, such as writing the minutes of a meeting, and nobody volunteers, then **ask the most qualified person**. If necessary, ask if they can reprioritize other tasks;
-- Summarize who is responsible for what and **when they have agreed to deliver**;
+### Useful Tips
+- Ask people to **agree to action points** rather than simply telling them to do something.
+- For a general action point, e.g., organizing somebody to look after visitors to company, **offer the opportunity to anybody** from the team. It may be seen as attractive, especially if it involves entertaining the visitors.
+- If the action point is unattractive, such as writing the minutes of a meeting, and nobody volunteers, then **ask the most qualified person.** If necessary, ask if they can reprioritize other tasks.
+- **Summarize** who is responsible for what and when they have agreed to deliver.
 
 ### Track 55
 Janette: ...and we need to work together with SAP experts on this if we want to get the rollout to work properly, right?
@@ -84,12 +83,12 @@ J: Thanks. **Can you send me the report by Friday midday?** Then you can relax o
 ## Running a teleconference
 > Hi, this is Lee Ming here.
 
-### USEFUL TIPS
-- One person should take the role of the facilitator. The facilitator should lay out the ground rules for the meeting at the start and control the participants. **Only the facilitator should interrupt another speaker.** Otherwise, it can get very confusing;
-- As with regular meetings, there should be a clear agenda, if possible with **strict time limits for each item**;
-- The facilitator should ask people by name to contribute to specific topics. Each speaker should **give their name before speaking**;
-- Clarity is essential in a teleconference, so native speakers should aim to **speak clearly**, for example minimizing the use of difficult idioms, and non-native speakers should ask if anything is unclear;
-- The facilitator should **do a summary** of all points discussed at the end of the teleconference;
+### Useful Tips
+- One person should take the role of the facilitator. The facilitator should lay out the ground rules for the meeting at the start and control the participants. **Only the facilitator should interrupt another speaker.** Otherwise, it can get very confusing.
+- As with regular meetings, there should be **a clear agenda,** if possible with strict time limits for each item.
+- The facilitator should ask people by name to contribute to specific topics. Each speaker should **give their name before speaking.**
+- **Clarity is essential** in a teleconference, so native speakers should aim to speak clearly, for example minimizing the use of difficult idioms, and non-native speakers should ask if anything is unclear.
+- The facilitator should **do a summary** of all points discussed at the end of the teleconference.
 
 ### Track 59
 Janette: ...so that's Petra, Carlo, Sanjay. We're just waiting for Lee Ming and then...

@@ -5,6 +5,8 @@ tags:
 abbrlink: 2304129997
 date: 2021-01-30 17:22:57
 ---
+> 基本就是 deque 一把梭，不过需要单纯处理 root 为 None 的情况。借助同层节点的 index 可实现更细微的操作。
+
 This pattern is based on the _Breadth-First Search_ (BFS) technique to traverse a tree.
 
 Any problem involving the traversal of a tree in a level-by-level order can be efficiently solved using this approach. We will use a **queue** to keep track of all the nodes of a level before we jump onto the next level. This also means that the space complexity of the algorithm will be O(W), where "W" is **the maximum number of nodes on any level**.
@@ -16,11 +18,11 @@ if not root:
 
 queue = deque([root])
 while queue:
-    curr_len = len(queue)
-    for idx in range(curr_len):
+    for idx in range(len(queue)):
         node = queue.popleft()
         if idx != curr_len - 1:
             node.next = queue[0]
+
         # bfs
         if node.left:
             queue.append(node.left)

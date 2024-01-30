@@ -5,7 +5,9 @@ tags:
 abbrlink: 581537989
 date: 2021-01-31 20:46:57
 ---
-As we know, whenever we are given **a sorted array or linked list or matrix**, and we are asked to find a certain element, the best algorithm we can use is _Binary Search_.
+> 无处不在的二分思想。往往通过外部变量 track 中间结果，元素不是 distinct 时需要单独处理。有时仅为解法的一小步，bisect_left 第一个大于等于；bisect_right 第一个大于。
+
+As we know, whenever we are given **a sorted array or linked list or matrix**, and we are asked to find a certain element, the best algorithm we can use is binary search.
 
 This pattern describes an efficient way to handle all problems involving _Binary Search_. We will go through a set of problems that will help us build an understanding of this pattern so that we can apply this technique to other problems we might come across in the interviews.
 

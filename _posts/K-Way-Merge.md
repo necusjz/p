@@ -5,6 +5,8 @@ tags:
 abbrlink: 3169449011
 date: 2021-01-31 23:08:23
 ---
+> min_heap 的应用，特别之处在于借助 index 对元素进行 track。
+
 This pattern helps us solve problems that involve a list of sorted arrays.
 
 Whenever we are given "K" sorted arrays, we can use a **min heap** to efficiently perform a sorted traversal of all the elements of all arrays. We can push the smallest (first) element of each sorted array in a min heap to get the overall minimum. While inserting elements to the min heap we **keep track of which array the element came from**. We can, then, remove the top element from the heap to get the smallest element and push the next element from the same array, to which this smallest element belonged, to the heap. We can repeat this process to make a sorted traversal of all elements.
@@ -20,6 +22,7 @@ for _ in range(k - 1):
     _, idx, row = heappop(min_heap)
     if idx + 1 < n:
         heappush(min_heap, (row[idx+1], idx + 1, row))
+
 return min_heap[0][0]
 ```
 

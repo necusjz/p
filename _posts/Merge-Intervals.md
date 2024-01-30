@@ -5,6 +5,8 @@ tags:
 abbrlink: 1924995809
 date: 2021-01-30 16:38:37
 ---
+> 两个区间之间存在 6 种可能情况。取交集时，start = max(a.start, b.start); end = min(a.end, b.end)。
+
 This pattern describes an efficient technique to deal with overlapping intervals. In a lot of problems involving intervals, we either need to find overlapping intervals or merge intervals if they overlap.
 
 Given two intervals ("a" and "b"), there will be **six different ways** the two intervals can relate to each other:
@@ -14,20 +16,23 @@ Understanding the above six cases will help us in solving all intervals related 
 
 ## Snippets
 ```python
-ans = []
 n = len(intervals)
+ans = []
 
 idx = 0
 # case 1
 while idx < n and intervals[idx][1] < new_interval[0]:
     ans.append(intervals[idx])
     idx += 1
+
 # case 2-5
 while idx < n and intervals[idx][0] <= new_interval[1]:
     new_interval[0] = min(new_interval[0], intervals[idx][0])
     new_interval[1] = max(new_interval[1], intervals[idx][1])
     idx += 1
+
 ans.append(new_interval)
+
 # case 6
 while idx < n:
     ans.append(intervals[idx])

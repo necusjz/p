@@ -5,6 +5,8 @@ tags:
 abbrlink: 836241768
 date: 2021-01-31 20:56:43
 ---
+> 四两拨千斤的位运算，比如：剥离最右边的 1、将最右边的 1 置 0 等等。更多技巧可以参考 [Low Level Bit Hacks](https://catonmat.net/low-level-bit-hacks)。
+
 _Bitwise XOR_ returns 0 (false) if both bits are the same and returns 1 (true) otherwise. In other words, it only returns 1 if exactly one bit is set to 1 out of the two bits in comparison:
 ![](https://raw.githubusercontent.com/necusjz/p/master/CodingInterview/educative/04.png)
 
@@ -26,13 +28,16 @@ This is what the algorithm will look like:
 ```python
 def find_missing_number(nums):
     n = len(nums) + 1
+
     # find sum of all numbers from 1 to n
     s1 = 0
     for num in range(1, n + 1):
         s1 += num
+
     # subtract all numbers in input from sum
     for num in nums:
         s1 -= num
+
     # s1, now, is the missing number
     return s1
 ```
@@ -50,19 +55,22 @@ Here is what the algorithm will look like:
 ```python
 def find_missing_number(nums):
     n = len(nums) + 1
+
     # x1 represents XOR of all values from 1 to n
     x1 = 0
     for num in range(1, n + 1):
         x1 = x1 ^ num
+
     # x2 represents XOR of all values in array
     x2 = 0
     for num in nums:
         x2 = x2 ^ num
+
     # missing number is the XOR of x1 and x2
     return x1 ^ x2
 ```
 
-**Time & Space Complexity**: The time complexity of the above algorithm is O(n) and the space complexity is O(1). The time and space complexities are the same as that of the previous solution but, in this algorithm, we will not have any integer overflow problem.
+**Time & Space Complexity**: The time complexity of the above algorithm is O(n) and the space complexity is O(1). The time and space complexities are the same as that of the previous solution, but, in this algorithm, we will not have any integer overflow problem.
 
 Following are some important properties of XOR to remember:
 - Taking XOR of a number with itself returns 0, e.g.,
@@ -80,6 +88,7 @@ Following are some important properties of XOR to remember:
 n1xn2 = 0
 for num in nums:
     n1xn2 ^= num
+
 low_bit = n1xn2 & -n1xn2  # isolate rightmost 1-bit
 
 n1, n2 = 0, 0
@@ -88,6 +97,7 @@ for num in nums:
         n1 ^= num
     else:
         n2 ^= num
+
 return [n1, n2]
 ```
 

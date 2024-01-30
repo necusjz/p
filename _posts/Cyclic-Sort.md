@@ -5,6 +5,8 @@ tags:
 abbrlink: 1292284163
 date: 2021-01-30 16:55:01
 ---
+> 常用但鲜为人知的循环排序。核心理念是：将元素交换到正确的位置，继而获取某个 range 内缺失的数字。其中，缺失数字为索引值，已有数字为元素值。警惕 desired index 可能造成的数组越界。
+
 This pattern describes an interesting approach to deal with problems involving arrays **containing numbers in a given range**. For example, take the following problem:
 > You are given an unsorted array containing numbers taken from the range "1" to "n". The array can have duplicates, which means that some numbers will be missing. Find all the missing numbers.
 
@@ -24,9 +26,9 @@ while i < n:
 
     i += 1
 
-for idx in range(n):
-    if nums[idx] != idx + 1:
-        return idx + 1
+for i in range(n):
+    if nums[i] != i + 1:
+        return i + 1
 
 return n + 1
 ```

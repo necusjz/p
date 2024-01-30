@@ -1,30 +1,29 @@
 ---
 title: Networking
-tags:
-  - SPEAKING
+tags: SPEAKING
 abbrlink: 2380387870
 date: 2019-08-12 00:36:32
 ---
 ## Starting a conversation
 > Where do you come from then?
 
-### USEFUL TIPS
-- Successful small talk is not about saying brilliant things. It's about commenting on and asking about **ordinary things** with conviction, interest, and enthusiasm;
-- **Match the mood** of your conversation partner. If they are smiling and cheerful, be ready to laugh. If they seem serious, be serious too;
-- Ask where your partner comes from and, when somebody asks you the same thing, be ready to add **something interesting** about the place;
-- Ask what your partner does and, when you're asked the same question, **don't only give a title**. Add a small piece of interesting or amusing information about the job or responsibility;
+### Useful Tips
+- Successful small talk is not about saying brilliant things. It's about commenting on and asking about **ordinary things** with conviction, interest, and enthusiasm.
+- **Match the mood** of your conversation partner. If they are smiling and cheerful, be ready to laugh. If they seem serious, be serious too.
+- Ask where your partner comes from and, when somebody asks you the same thing, be ready to add **something interesting** about the place.
+- Ask what your partner does and, when you're asked the same question, **don't only give a title.** Add a small piece of interesting or amusing information about the job or responsibility.
 
+<!--more-->
 ### Track 01
-#### 1
+**1**
 A: That was really interesting what the last speaker said about opening bank accounts in the Cayman Islands.
 B: Yes, it was. **So, what do you do exactly?**
 A: **I'm an auditor, a forensic auditor.**
 B: Ah, um, you're a forensic, um, auditor?
 A: Yes, that's right.
 B: Right, oh. I see. Look at the time! I must get to the next presentation...
-<!--more-->
 
-#### 2
+**2**
 C: Mmm, lovely coffee! I needed that. I just flew in from London very early this morning. **How did you get here?**
 D: I came on the TGV train from Paris.
 C: Really? I've never been on the TGV. **How long did that take?**
@@ -32,7 +31,7 @@ D: Oh, about 4 hours. But I was able to have breakfast and do some reading.
 C: That sounds nice. I must try it sometime. **Marseilles's really beautiful, isn't it?**
 D: Yes, it is. **Have you been here before?** If you haven't, you must...
 
-#### 3
+**3**
 E: ...I'm certainly looking forward to the dinner this evening.
 F: I am too. Especially the fish. We don't have much fish where I live.
 E: Really? **Where do you come from then?**
@@ -40,7 +39,7 @@ F: Garmisch-Partenkirchen. It's in the mountains just near Munich. What about yo
 E: I'm from Cork in Ireland. The high street is supposed to have more pubs than any other town in Ireland.
 F: Really? I'm going there on a business trip soon to visit the Apple factory. I must see if I can find time to visit some...
 
-#### 4
+**4**
 G: ...and then I went jogging early this morning along by the sea. Fantastic sunrise coming up over the sea.
 H: Really? Sunrise, you say?
 G: Yes, amazing! Do you like jogging? You should try it, you know. It makes you feel really great all day long. Just set the alarm for 5:30, jump out of bed and after you've been running for about an hour or so, go back, have a shower and...
@@ -49,13 +48,13 @@ H: **Sorry, but do you know where I can smoke?** I think I want a cigarette befo
 ## Talking about jobs
 > It's a very challenging profession.
 
-### USEFUL TIPS
+### Useful Tips
 When telling people about your job:
-- **Be brief** and precise;
-- Show how your job **benefits people** or organizations;
-- Make sure that your description is **relevant to the person** you are talking to;
-- **Avoid technical terms** or abbreviations unless talking to a fellow expert;
-- **Emphasize the positive aspects** rather than the negative;
+- **Be brief** and precise.
+- Show how your job **benefits people** or organizations.
+- Make sure that your description is **relevant to the person** you are talking to.
+- **Avoid technical terms** or abbreviations unless talking to a fellow expert.
+- **Accentuate the positive aspects** rather than the negative.
 
 ### Track 07
 Student: Excuse me, are you working on the Foodaid stand?
@@ -80,11 +79,11 @@ J: That's fine. Here's some more information about what we do and my card. If yo
 ## Showing interest in other people
 > Oh, I know what you mean.
 
-### USEFUL TIPS
+### Useful Tips
 When you are in conversation:
-- **Echo the key information** to encourage further explanation, for example, _I'm allergic to shellfish. To shellfish?_;
-- Empathize. Use phrases to show that you **understand how your partner feels**, for example, _That's amazing!_ or _Really?_;
-- Paraphrase. **Reformulate in your own words** what has been said to show that you are listening, for example, _So what you're telling me is..._;
+- **Echo the key information** to encourage further explanation, for example, _I'm allergic to shellfish. To shellfish?_
+- Empathize. Use phrases to show that you **understand how your partner feels**, for example, _That's amazing!_ or _Really?_
+- Paraphrase. **Reformulate in your own words** what has been said to show that you are listening, for example, _So what you're telling me is..._
 
 ### Track 10
 Casper: It's very different way to do business here in Singapore, compared to Germany.
@@ -113,11 +112,11 @@ E: **That's terrible!**
 ## Exchanging information
 > I heard it on the grapevine.
 
-### USEFUL TIPS
+### Useful Tips
 Here are 3 ways to get the information you want within your organization:
-- **First offer appropriate information** yourself. If you want to find out about a particular area, offer information of your own first to show you can be trusted. Think carefully about what information is appropriate to pass on to others;
-- **Ask questions indirectly.** If you want to ask about sb or sth, use statements with question tags rather than direct questions, for example, _You know John, don't you?_ rather than _Do you know John?_ A direct question may frighten someone into remaining silent but a statement that sounds more like speculation will often be confirmed or corrected by sb with better information;
-- **Create intimacy.** If you don't know sb very well, but want to exchange information with that person, you can use these techniques: Drop their name into conversation more than usual and use _we, us_ and _our_ as often as possible, for example, _I think we're going to see a lot of changes in our department soon, Peter._;
+- **First offer appropriate information** yourself. If you want to find out about a particular area, offer information of your own first to show you can be trusted. Think carefully about what information is appropriate to pass on to others.
+- **Ask questions indirectly.** If you want to ask about somebody or something, use statements with question tags rather than direct questions, for example, _You know John, don't you?_ rather than _Do you know John?_ A direct question may frighten someone into remaining silent but a statement that sounds more like speculation will often be confirmed or corrected by somebody with better information.
+- **Create intimacy.** If you don't know somebody very well, but want to exchange information with that person, you can use these techniques: Drop their name into conversation more than usual and use _we, us_ and _our_ as often as possible, for example, _I think we're going to see a lot of changes in our department soon, Peter._
 
 ### Track 18
 Candy: I really want to thank you, Michael, for taking me with you to the meeting. I just can't get used to driving on the left!
@@ -130,5 +129,5 @@ C: That's so true, Michael. She always picks good people to work with her. By th
 M: Yes, I heard that too. **I wonder how** her husband feels about it. He's journalist, I think.
 C: Well, **according to** Christine's assistant, Mrs Weber, that's not a problem. He's going to write articles about New York nightlife. Although **I can't imagine** who's going to look after the children then.
 M: **Apparently,** they're going to have a nanny. **I overheard** Christine talking to the boss about it this morning. It must be very expensive, but they'll have enough money.
-C: **I suppose** they might appoint sb from Christine's team to carry on her work.
+C: **I suppose** they might appoint somebody from Christine's team to carry on her work.
 M: Ah, no! **It seems that** Christine didn't want to recommend any of them to the boss, so Gabriele from the commercial department will take over. Christine's team was really angry!

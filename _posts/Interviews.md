@@ -1,21 +1,20 @@
 ---
 title: Interviews
-tags:
-  - SPEAKING
+tags: SPEAKING
 abbrlink: 1965565266
 date: 2019-11-10 18:04:10
 ---
 ## The successful job interviewer
 > What makes you suitable for this job, do you think?
 
-### USEFUL TIPS
-When interviewing for a job, there are `4 main areas` to ask about:
-- work history;
-- personality;
-- suitability for the company and the specific job;
-- goals and ambitions;
+### Useful Tips
+When interviewing for a job, there are **4 main areas** to ask about:
+- Work history.
+- Personality.
+- Suitability for the company and the specific job.
+- Goals and ambitions.
 
-Note that it is not appropriate to ask the candidate questions about **race, age, marital status, or sexual preferences**. These questions are potentially discriminatory.
+Note that it is not appropriate to ask the candidate questions about race, age, marital status, or sexual preferences. These questions are potentially discriminatory.
 <!--more-->
 
 ### Track 83
@@ -44,22 +43,22 @@ MK: Well, I'm sure that a mixture of...
 ## The successful interview candidate
 > So, tell me about yourself.
 
-### USEFUL TIPS
-- Answer questions fully. **Avoid very short answers**;
-- Be sure about the details on your resume, and be prepared to talk about your achievements and experience **in depth**;
-- **Research the background** of the company or organization;
-- Listen carefully to the questions you are asked. Answer them with **relevant information**;
+### Useful Tips
+- Answer questions fully. **Avoid very short answers.**
+- Be sure about **the details on your résumé,** and be prepared to talk about your achievements and experience in depth.
+- **Research the background** of the company or organization.
+- **Listen carefully** to the questions you are asked. Answer them with relevant information.
 
 ### Track 88
-#### 1
-Karl: **I see from your resume** that you have web design experience as well as in sales.
+**1**
+Karl: **I see from your résumé** that you have web design experience as well as in sales.
 Candidate 1: Yes, that's right.
 K: Hmm. That could be interesting for the development of our Internet presence in Europe. Our website is very US-oriented at the moment.
 C1: Well, it's something I really enjoy doing. In my current job I was part of a team that did a redesign of the company website and I learned a lot.
 K: What software can you work with?
 C1: Well, I can use Dreamweaver, which is the classic web design tool of course, but I've also got experience of using...
 
-#### 2
+**2**
 K: So, **do you think you can make a useful contribution** to this company?
 Candidate 2: Oh, yes.
 K: I see.
@@ -72,14 +71,14 @@ K: Really?
 C2: No, not at all.
 K: Right.
 
-#### 3
+**3**
 K: Perhaps you could tell me, **what do you know about this company?**
 Candidate 3: Well, I know you have been very active in India over the last 5 years with the Mumbai City Transit System. What was it now? A 2 billion-dollar contract to provide not only the trains but also all the electronic equipment for the system, I think.
 K: Yes, quite a difficult project. We had a lot of trouble with subcontractors.
 C3: Yes, I understand it was very challenging. But in the end of the project was completed on time and within budget. So you must have been pleased with the final result.
 K: That's true and, of course, it is an excellent reference project for us...
 
-#### 4
+**4**
 K: Now, could you tell me, **what are your greatest strengths and weakness,** in your opinion?
 Candidate 4: Hmm, that's an interesting question. Well, I think my greatest strength is that I never give up. In my experience, in order to win a customer you just have to really go on and on looking for a way to give them what they want and then you get the sale.
 K: True. And what about weaknesses?
@@ -87,7 +86,7 @@ C4: Well, I need to improve my team player skills. Like many salespeople I don't
 K: Right. Well, here at Bergerbild, teamwork is very important.
 C4: Yes, yes, I agree. I'm just telling you what I think is my greatest weakness. And I'm working on it.
 
-#### 5
+**5**
 K: So, perhaps you could tell me, **what has been your biggest achievement to date?**
 Candidate 5: Oh well, I took part in this quiz competition a few years ago when I was at university. I was the head of the team and we got to the final of the national tournament. And we only just missed out on the top prize. So, there we were in the final round and the other team came from Cambridge...
 K: Sorry, I meant more in the way of...
@@ -98,11 +97,11 @@ C5: Oh, sorry, yes. Um, well, in my current job we have a team which takes part 
 ## Carrying out performance reviews
 > How do you feel about your performance this year?
 
-### USEFUL TIPS
+### Useful Tips
 The purpose of the performance review is for the line manager to review what the employee does, evaluate how well they perform, and discuss objectives for the next year. The line manager should:
-- **discuss the scope of the job**, for example the job description, the employee's responsibilities, and any changes to them;
-- find out the employee's opinion of their performance, and then present **their own assessment supported by evidence**;
-- set `SMART` - **S**pecific, **M**easurable, **A**ttainable, **R**elevant, and **T**imed - objects for the coming year.
+- **Discuss the scope of the job,** for example the job description, the employee's responsibilities, and any changes to them.
+- **Find out the employee's opinion** of their performance, and then present their own assessment supported by evidence.
+- Set **SMART** - **S**pecific, **M**easurable, **A**ttainable, **R**elevant, and **T**imed - objects for the coming year.
 
 ### Track 92
 Caterina: So, first of all, I'd like to check if we're on the same page regarding your responsibilities. You supervise the sales staff for the whole south-eastern region, you're a member of the European sales committee, and you coordinate the cooperation between the production team and marketing. **Have I missed anything?**
@@ -131,12 +130,12 @@ E: Definitely. I mean I would really appreciate any opportunities I get to impro
 ## Persuading your manager
 > Would you be willing to support my request?
 
-### USEFUL TIPS
-If you want to ask for something special from your manager, you need to **be well prepared**.
-- Be proactive. **Ask your manager for a meeting** to discuss what is on your mind;
-- Persuade, don't threaten. Decide what exactly you want and be prepared to justify your demands **with logical arguments, rather than emotional ones**;
-- Be ready to negotiate. Think in advance about **the best alternative** to your preferred solution;
-- **Remain polite**. Whatever the result, always thank your manager for their time at the end of the meeting. You still have to work with them;
+### Useful Tips
+If you want to ask for something special from your manager, you need to be well prepared:
+- **Be proactive.** Ask your manager for a meeting to discuss what is on your mind.
+- Persuade, don't threaten. Decide what exactly you want and be prepared to justify your demands with **logical arguments, rather than emotional ones.**
+- Be ready to negotiate. **Think in advance about the best alternative** to your preferred solution.
+- **Remain polite.** Whatever the result, always thank your manager for their time at the end of the meeting. You still have to work with them.
 
 ### Track 96
 Candy: Hi John! Do you have a moment?
@@ -148,7 +147,8 @@ C: Fine. I'll do that.
 J: Come in, Candy, take a seat. Now, what can I do for you?
 C: Well, **I'd like to discuss my compensation package with you.**
 J: Really? I thought you were happy with the increase we gave you last year!
-C: Yes, but **I hope you'll agree that** since last year I've achieved such a lot and we need to consider these achievements. For example, I was responsible for organizing the conference in Astana last month and... and finally, I managed the IOS 9001 audit, which we successfully completed. So, **wouldn't you agree that my performance this year has been** very successful?
+C: Yes, but **I hope you'll agree that** since last year I've achieved such a lot and we need to consider these achievements. For example, I was responsible for organizing the conference in Astana last month and...
+...and finally, I managed the IOS 9001 audit, which we successfully completed. So, **wouldn't you agree that my performance this year has been** very successful?
 J: Well, yes. But what exactly do you want?
 C: I understand that this year the pay increase is between 3 and 8 percent. **I would like to ask** for a raise at the top end of that scale.
 J: Ooh! I don't know about that, Candy, I mean, what about the others?

@@ -5,6 +5,8 @@ tags:
 abbrlink: 1492973727
 date: 2021-01-31 22:56:12
 ---
+> heapq 的大型应用现场，常与 freq 配合使用。借助 index 可以实现对复杂 object 的比较，也可以通过 total_ordering 定义数据类。有时需要用队列暂存 heappop 的元素。
+
 Any problem that asks us to find the _Top K Elements_ among a given set falls under this pattern.
 
 The best data structure that comes to mind to keep track of "K" elements is **heap**. This pattern will make use of the heap to solve multiple problems dealing with "K" elements at a time from a set of given elements.
@@ -25,15 +27,19 @@ while max_heap:
     while max_heap and k > 0:
         count, char = heappop(max_heap)
         ans += char
+
         if -count - 1 > 0:
             queue.append((count + 1, char))
+
         k -= 1
     
     if k != 0 and queue:
         return ""
+    
     # push back
     for item in queue:
         heappush(max_heap, item)
+
 return ans
 ```
 

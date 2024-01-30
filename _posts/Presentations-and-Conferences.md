@@ -1,38 +1,45 @@
 ---
 title: Presentations and Conferences
-tags:
-  - SPEAKING
+tags: SPEAKING
 abbrlink: 336071984
 date: 2019-10-21 21:55:51
 ---
 ## Presenting a product or service
 > I want to tell you today about...
 
-### USEFUL TIPS
-When presenting a product or service, an effective way to convince your audience is to follow the `FAB` approach:
-- **Feature:** highlight the features of the product or service you want the audience to focus on;
-- **Advantage:** show how these features make the product or service better than its predecessors or competitors;
-- **Benefit:** show how this product or service will improve the user's life;
+### Useful Tips
+When presenting a product or service, an effective way to convince your audience is to follow the **FAB** approach:
+- **F**eature: Highlight the features of the product or service you want the audience to focus on.
+- **A**dvantage: Show how these features make the product or service better than its predecessors or competitors.
+- **B**enefit: Show how this product or service will improve the user's life.
 
-This approach can be grouped into a 3-step presentation structure:
-1. **Introduction:** summarize what you are going to tell the audience;
-2. **Main body:** tell them;
-3. **Conclusion:** tell them what they should do next;
+This approach can be grouped into a _3-step_ presentation structure:
+1. Introduction: Summarize what you are going to tell the audience.
+2. Main body: Tell them.
+3. Conclusion: Tell them what they should do next.
+
 <!--more-->
-
 ### Track 64
-Steve: Well, **good afternoon, ladies and gentlemen.** I'm Steve Dunn **and I want to tell you today about** Compix's new CRM application for your iPhone, the iCustomer. **Firstly, I'll demonstrate** exactly what this software is capable of doing. **Then, I'll outline** the advantages this has over conventional CRM systems. **Finally, I'll show** you how this can help boost the productivity of your salesforce significantly. **So, first of all,** as a salesman I can tell you what we all want is up-to-the-minute information about our customers. iCustomer links your salespeople directly with your central customer database so that at anytime they can check what exactly the... without any time lost. **Moving on to my next point, what are the advantages of** the real-time information provided by iCustomer over other CRM systems? Well, it means that for the first time ever your salespeople always have up-to-date details about your customers. Current credit ratings for example, any problems with recent orders or maybe a new special offer that headquarters wants... of course, because it has a phone function. **So, finally, what are the real benefits** for your salespeople? 2 words: increased productivity. Our research shows that salespeople are able to make at least 15 percent more customer visits per week, leading to an increased sales volume of up to 30 percent and that's not all. With... **In conclusion,** if you commit to using iCustomer, we are offering a free consultancy service for your business. Our experts will visit your company and... Thank you for listening. **If anyone has any questions, I'd be happy to answer them.**
+Steve: Well, **good afternoon, ladies and gentlemen.** I'm Steve Dunn **and I want to tell you today about** Compix's new CRM application for your iPhone, the iCustomer.
+**Firstly, I'll demonstrate** exactly what this software is capable of doing.
+**Then, I'll outline** the advantages this has over conventional CRM systems.
+**Finally, I'll show** you how this can help boost the productivity of your salesforce significantly.
+**So, first of all,** as a salesman I can tell you what we all want is up-to-the-minute information about our customers. iCustomer links your salespeople directly with your central customer database so that at anytime they can check what exactly the...
+...without any time lost. **Moving on to my next point, what are the advantages of** the real-time information provided by iCustomer over other CRM systems? Well, it means that for the first time ever your salespeople always have up-to-date details about your customers. Current credit ratings for example, any problems with recent orders or maybe a new special offer that headquarters wants...
+...of course, because it has a phone function. **So, finally, what are the real benefits** for your salespeople? 2 words: increased productivity. Our research shows that salespeople are able to make at least 15 percent more customer visits per week, leading to an increased sales volume of up to 30 percent and that's not all. With...
+**In conclusion,** if you commit to using iCustomer, we are offering a free consultancy service for your business. Our experts will visit your company and...
+Thank you for listening. **If anyone has any questions, I'd be happy to answer them.**
 Customer: Yes, I do. Do you provide software training for users as part of the package?
 Steve: **I'm pleased that you asked that question.** We don't provide training ourselves, but our sister company is responsible for that and I'm sure we could discuss ways that we could incorporate that into the package...
 
 ## Working on a stand
 > Would you be interested in finding out more about this?
 
-### USEFUL TIPS
+### Useful Tips
 When working on a stand, **ask questions** rather than simply presenting products. This will give the stand visitor the feeling that the focus is on their interests and needs.
-- Find out **what business** the visitor is in and who their customers are;
-- Find out what their **customers want**;
-- Find out what would **make the visitor's life easier** and suggest ways to help them achieve that goal;
+- Find out what business the visitor is in and who their customers are.
+- Find out what their customers want.
+- Find out what would make the visitor's life easier and suggest ways to help them achieve that goal.
 
 ### Track 67
 Amanda: Hi there. **Can I help you?**
@@ -61,48 +68,49 @@ C: OK. That's better. That way I don't have to carry it around with me all day.
 ## Closing a sale
 > We only have this offer for a short time.
 
-### USEFUL TIPS
-When closing a sale, frame the sales pitch as **an open question** so that, if the customer has any questions or objections, it is still possible for the salesperson to respond. Once the request has been made, **be quiet and let the customer decide!**
+### Useful Tips
+When closing a sale, frame the sales pitch as an open question, so that if the customer has any questions or objections, it is still possible for the salesperson to respond. Once the request has been made, be quiet and let the customer decide!
+
 These are 3 possible styles for closing a sale:
-- Hard close: **assume that the customer wants to buy** the product/service and ask for quantities or delivery dates;
-- Emotional close: point out to the customer **the advantages** of having the product or the disadvantages of not having it and appeal to their emotions;
-- Urgent close: tell the customer that the product is **only available for a short time** due to scarcity, or that the price will soon rise;
+- **Hard close:** Assume that the customer wants to buy the product/service and ask for quantities or delivery dates.
+- **Emotional close:** Point out to the customer the advantages of having the product or the disadvantages of not having it and appeal to their emotions.
+- **Urgent close:** Tell the customer that the product is only available for a short time due to scarcity, or that the price will soon rise.
 
 ### Track 73
-#### 1
+**1**
 Amanda: ...really does the job, so with our PriceChex product scanner, you just scan the price tag of any product in a shop and it does an automatic Internet search and tells you if the price in the shop is fair. But that's not all. It can also tell you where you can buy it cheaper! And it only costs $49.99!
 Customer: Wow! That's so cool! But I want to have a look around at the other stands first and then...
 A: Sure. I understand. But I should tell you, **we only have** 10 of these items here at the trade fair...
 C: Ah, um, I see. And how much did you say it cost?
 
-#### 2
+**2**
 Steve: ...software performs an automatic Internet search and tells you if the price in the shop is fair. But that's not all. It can also tell you where you can buy it cheaper! And it only costs $49.99!
 C: That could be very useful for my team.
 S: Definitely. So, **how many can I put you down for?**
 C: Um, I'm not quite sure. Well, I think I'll take 2 for now and try them out with...
 
-#### 3
+**3**
 A: ...But that's not all. It can also tell you where you can buy it cheaper! And it only costs $49.99!
 C: Really? My brother is always driving me crazy telling me how I paid too much for something.
 A: Sounds like my mother-in-law. Just think. **What will you feel like when** you can scan something he's bought and then tell him he could have got it 50 percent cheaper somewhere else?
 C: That would be awesome! OK, I'll take 2 and I'll give him 1 for his birthday...
 
-#### 4
+**4**
 S: ...It can also tell you where you can buy it cheaper! And it only costs $49.99!
 C: I see. I need to think about it. I'll come back tomorrow.
 S: No problem. Only I wouldn't want you to be disappointed. The PriceChex **is only available at this price today! It's a special promotion for** the trade fair opening...
 C: Oh dear! Well, could I reserve 1 and come back in a few minutes?
 
-## Saying "no" politely
-> Thanks, but I have to say "no".
+## Saying 'no' politely
+> Thanks, but I have to say no.
 
-### USEFUL TIPS
-Saying "no" is difficult for many people. It is, however, quite possible to **say no without causing offence** by adopting these strategies:
-- **Include an apology** and, if possible, a brief explanation;
-- Suggest that saying no is **not your personal wish** but is imposed by outside circumstances, for example, regulations or another appointment;
-- Use emphasizers such as `really`, `so` and `very` with the word "sorry";
+### Useful Tips
+Saying 'no' is difficult for many people. It is, however, quite possible to say no without causing offence by adopting these strategies:
+- **Include an apology** and, if possible, a brief explanation.
+- Suggest that saying no is **not your personal wish** but is imposed by outside circumstances, for example, regulations or another appointment.
+- **Use emphasizers** such as _really_, _so_ and _very_ with the word _sorry_.
 
-#### 1
+**1**
 Steve: ...an automatic Internet search and tells you if the price in the shop is fair. But that's not all. It can also tell you where you can buy a product cheaper! And it only costs $49.99!
 Customer 1: That could be useful for my team.
 S: Definitely. So, would you like to make an order straight away?
@@ -114,7 +122,7 @@ C1: **No, I'm sorry,** I have an appointment in 10 minutes. **I don't really hav
 S: But you really need to see the way this program can slice and dice any information that...
 C1: **Thanks, but I have to say no.** Ah, Terry, there you are, shall we go for that meeting? I was beginning to think that...
 
-#### 2
+**2**
 Amanda: ...an automatic Internet search and tells you if the price in the shop is fair. But that's not all. It can also tell you where you can buy a product cheaper! And it only costs $49.99!
 Customer 2: Well, that is interesting. I work for a computer magazine, which specializes in comparing different products.
 A: Well, that's perfect! And as a journalist we can give you a special discount price if you order 3 licenses. You only need to pay $125!

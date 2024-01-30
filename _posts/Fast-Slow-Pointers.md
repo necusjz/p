@@ -5,6 +5,8 @@ tags:
 abbrlink: 3580079225
 date: 2021-01-30 16:11:29
 ---
+> 掌握判环以及判环的变形。while 循环的条件往往是 r and r.next 存在，过程中可以顺便获取 middle pointer。
+
 The _Fast & Slow Pointers_ approach is a pointer algorithm that uses two pointers which move through the array (or linked list) at different speeds. This approach is quite useful when dealing with cyclic linked lists or arrays.
 
 By moving at different speeds (say, in a cyclic linked list), the algorithm proves that **the two pointers are bound to meet**. The fast pointer should catch the slow pointer once both the pointers are in a cyclic loop.
@@ -16,12 +18,14 @@ def next(num):
     while num:
         num, mod = divmod(num, 10)
         ret += mod * mod
+
     return ret
 
 l = r = n  
 while r != 1 and next(r) != 1:
     l = next(l)
     r = next(next(r))
+    
     if l == r:
         return False
 

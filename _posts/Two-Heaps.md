@@ -5,6 +5,8 @@ tags:
 abbrlink: 3727509945
 date: 2021-01-30 17:46:46
 ---
+> 大多是 max_heap 和 min_heap 的配合使用。在用索引获取堆顶元素时，注意保证 heap 非空。
+
 In many problems, where we are given a set of elements such that we can divide them into two parts. To solve the problem, we are interested in knowing the largest element in one part and the smallest element in the other part. This pattern is an efficient approach to solve such problems.
 
 This pattern uses _Two Heaps_ to solve these problems; A **max heap** to find the largest element and a **min heap** to find the smallest element.
@@ -21,7 +23,8 @@ class MedianFinder:
             heappush(self.max_heap, -num)
         else:
             heappush(self.min_heap, num)
-        # re-balance
+        
+        # rebalance
         if len(self.max_heap) > len(self.min_heap) + 1:
             heappush(self.min_heap, -heappop(self.max_heap))
         if len(self.min_heap) > len(self.max_heap):

@@ -5,6 +5,8 @@ tags:
 abbrlink: 3659857917
 date: 2021-01-30 14:36:43
 ---
+> 难点大概是 shrink 的时机。窗口大小固定时，借助 end - start + 1；不固定时，借助基于 matched 的 while 循环。
+
 In many problems dealing with an array (or a linked list), we are asked to find or calculate something among all the contiguous subarrays (or sublists) of a given size. For example, take a look at this problem:
 > Given an array, find the average of all contiguous subarrays of size "K" in it.
 
@@ -58,6 +60,7 @@ def find_average_of_subarrays(k, arr):
     start = 0
     for end in range(len(arr)):
         window_sum += arr[end]
+        
         # shrink
         if end >= k - 1:
             ans.append(window_sum / k)

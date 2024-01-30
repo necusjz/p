@@ -4,7 +4,7 @@ tags: SystemDesign
 abbrlink: 384409989
 date: 2023-12-21 23:23:05
 ---
-In this chapter, we focus on web crawler design -- an interesting and classic system design interview question.
+In this chapter, we focus on web crawler design - an interesting and classic system design interview question.
 
 A web crawler is known as a robot or spider. It is widely used by search engines to discover new or updated content on the web. Content can be a web page, an image, a video, a PDF file, etc. A web crawler starts by collecting a few web pages and then follows links on those pages to collect new content. Figure 1 shows a visual example of the crawl process.
 ![](https://raw.githubusercontent.com/necusjz/p/master/SystemDesign/bytebytego/10/00.webp)

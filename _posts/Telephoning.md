@@ -1,24 +1,23 @@
 ---
 title: Telephoning
-tags:
-  - SPEAKING
+tags: SPEAKING
 abbrlink: 294155228
-date: 2019-12-05 00:48:12
+date: 2019-08-15 00:48:12
 ---
 ## Cold calling
 > Do you have a moment to speak to me?
 
-### USEFUL TIPS 
-When cold calling (approaching **prospective clients or customers** for the first time), keep the following points in mind:
-- **Be clear and concise** about who you are and the purpose of the call;
-- **Use questions** to help and guide the person you are calling;
-- **Always use titles** (such as Dr., Mr., and Ms.) and never first names;
-- **Don't be offended by hostile behavior.** It's not personal;
+### Useful Tips
+When cold calling (approaching prospective clients or customers for the first time), keep the following points in mind:
+- **Be clear and concise** about who you are and the purpose of the call.
+- **Use questions** to help and guide the person you are calling.
+- **Always use titles** (such as Dr., Mr., and Ms.) and never first names.
+- **Don't be offended by hostile behavior.** It's not personal.
 
+<!--more-->
 ### Track 24
 Macey C: This is Macey Chance from Turner & Young Consultants. Am I speaking to Mr. Given?
 Speaker 1: No.
-<!--more-->
 
 Mr. H: Trancross Power and Gas, project management office.
 MC: Good morning. **Am I speaking to** Mr. Harvey?
@@ -41,14 +40,14 @@ Mr. H: Er, let me just check my appointments. Um, how about Friday this week, 2 
 ## Confirming or rearranging appointments
 > I look forward to seeing you then.
 
-### USEFUL TIPS
-Once you have fixed your appointment with a business partner, **telephone a couple of days beforehand** to confirm the details of your meeting. Keep the following points in mind:
-- Confirm the **topic, date, time and place**;
-- Be ready with **alternative appointment times** if the original time has to be changed;
-- Check to see if the customer has **any new requests**;
+### Useful Tips
+Once you have fixed your appointment with a business partner, telephone a couple of days beforehand to confirm the details of your meeting. Keep the following points in mind:
+- Confirm **the topic, date, time and place.**
+- Be ready with **alternative appointment times** if the original time has to be changed.
+- Check to see if the customer has **any new requests.**
 
 ### Track 29
-#### 1
+**1**
 Sabine G: Sabine Gerland.
 Robbie T: Hello, Ms. Gerland. This is Robbie Taylor from Queensfield Ltd. How are you?
 SG: Fine, thanks. And you?
@@ -60,7 +59,7 @@ RT: Right, 40, OK. And **could you spell Quidde for me?**
 SG: Of course. That's Q-U-I-D-D-E. If you go to our website, you'll find full directions.
 RT: Right. Thanks. So, **I look forward to seeing you then**.
 
-#### 2
+**2**
 RT: Queensifield Ltd. Robbie Taylor.
 Gerhard S: Oh hi, this is Gerhard Schmidt calling from Hipax in Berlin.
 RT: Oh, hello Mr. Schmidt. How are you?
@@ -76,13 +75,13 @@ RT: Of course. Actually, I wanted to call you anyway, Mr. Schmidt. **Would you o
 ## Making a complaint on the telephone
 > I'm afraid I need to make a complaint.
 
-### USEFUL TIPS
+### Useful Tips
 When making a complaint, keep the following points in mind:
-- Make sure you are speaking to **the person who is in a position to help you**. Ask questions to check who exactly you are talking to and take notes;
-- Stay as unemotional as possible. Blaming the person you are calling will not help. **Separate the problem from the person.** Be firm, but polite;
-- State the problem clearly and calmly. **Include as much relevant detail as possible,** including names, times, places, pervious contacts, and so on;
-- **State exactly what you want** the person you are calling to do;
-- Check **when you can expect results/feedback** from the person you are speaking to;
+- Make sure you are speaking to **the person who is in a position to help you.** Ask questions to check who exactly you are talking to and take notes.
+- Stay as unemotional as possible. Blaming the person you are calling will not help. **Separate the problem from the person.** Be firm, but polite.
+- State the problem clearly and calmly. **Include as much relevant detail as possible,** including names, times, places, pervious contacts, and so on.
+- **State exactly what you want** the person you are calling to do.
+- Check **when you can expect results/feedback** from the person you are speaking to.
 
 ### Track 34
 Receptionist: Alpine Executive Events Ltd, London. Priti Makesch speaking. How can I help you?
@@ -114,14 +113,14 @@ GM: Not at all.
 ## Dealing with a complaint on the telephone
 > Oh dear, I'm sorry to hear that.
 
-### USEFUL TIPS
+### Useful Tips
 When dealing with a complaint, keep the following points in mind:
-- Let the caller express their complaint. **Don't interrupt,** but try to get all the details. **Take notes**;
-- Once they have finished complaining, **summarize the complaint,** clarify any unclear details and show empathy;
-- Apologize. **Don't try to make excuses** but provide an explanation if the customer requests one;
-- State **what you are going to do** to resolve the situation;
-- Tell the customer **when they can expect results/feedback**;
-- Stay calm with the customer at all times. **Separate the problem from the person**;
+- Let the caller express their complaint. **Don't interrupt,** but try to get all the details. Take notes.
+- Once they have finished complaining, **summarize the complaint,** clarify any unclear details and show empathy.
+- **Apologize.** Don't try to make excuses but provide an explanation if the customer requests one.
+- State **what you are going to do** to resolve the situation.
+- Tell the customer **when they can expect results/feedback.**
+- **Stay calm** with the customer at all times. Separate the problem from the person.
 
 ### Track 39
 Kelly M: Argonaut Mediterranean Cruises Ltd.

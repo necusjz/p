@@ -5,18 +5,19 @@ tags:
 abbrlink: 2189758150
 date: 2021-01-31 20:35:10
 ---
+> 使用 BFS 解决一系列排列、组合问题。基本上对 queue 进行迭代就可以了（需要 popleft 时选择 deque），但有时需要用到递归。
+
 A huge number of coding interview problems involve dealing with _Permutations_ and _Combinations_ of a given set of elements. This pattern describes an efficient **breadth-first search** approach to handle all these problems.
 
 ## Snippets
 ```python
 """Iteration"""
 queue = deque([[]])
-
 for num in sorted(nums):
-    curr_len = len(queue)
-    for _ in range(curr_len):
+    for _ in range(len(queue)):
         item = queue.popleft()
         cand = item + [num]
+        
         # skip duplicates
         if cand not in queue:
             queue.append(cand)
@@ -31,19 +32,22 @@ return queue
 def build(beg, end):
     if beg > end:
         return [None]
-    
-    ret = []
+
+    trees = []
     for val in range(beg, end + 1):
         # divide & conquer
         l = build(beg, val - 1)
         r = build(val + 1, end)
+        
         for x in l:
             for y in r:
                 root = TreeNode(val)
                 root.left = x
                 root.right = y
-                ret.append(root)
-    return ret
+
+                trees.append(root)
+
+    return trees
 
 return build(1, n)
 ```

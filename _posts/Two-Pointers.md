@@ -5,6 +5,8 @@ tags:
 abbrlink: 1858691252
 date: 2021-01-30 15:49:52
 ---
+> 一个很灵活的模式，有序与否都有应用的场景。需要根据题意来决定，while 循环的条件是 l < r 还是 l <= r。
+
 In problems where we deal with sorted arrays (or linked lists) and need to find a set of elements that fulfill certain constraints, the _Two Pointers_ approach becomes quite useful. The set of elements could be a pair, a triplet or even a subarray. For example, take a look at the following problem:
 > Given an array of sorted numbers and a target sum, find a pair in the array whose sum is equal to the given target.
 
@@ -22,20 +24,21 @@ The time complexity of the above algorithm will be O(N).
 
 ## Snippets
 ```python
-ans = []
 nums.sort()
 n = len(nums)
 
-for idx in range(n):
+ans = []
+for i in range(n):
     # skip duplicates
-    if idx > 0 and nums[idx] == nums[idx-1]:
+    if i > 0 and nums[i] == nums[i-1]:
         continue
     
-    l, r = idx + 1, n - 1
+    l, r = i + 1, n - 1
     while l < r:
-        curr_sum = nums[idx] + nums[l] + nums[r]
+        curr_sum = nums[i] + nums[l] + nums[r]
         if curr_sum == 0:
-            ans.append([nums[idx], nums[l], nums[r]])
+            ans.append([nums[i], nums[l], nums[r]])
+
             # move both pointers
             l += 1
             r -= 1
@@ -43,8 +46,10 @@ for idx in range(n):
                 l += 1
             while l < r and nums[r] == nums[r+1]:
                 r -= 1
+     
         elif curr_sum < 0:
             l += 1
+        
         else:
             r -= 1
 
