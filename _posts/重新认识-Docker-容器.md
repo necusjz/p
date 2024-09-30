@@ -6,9 +6,9 @@ abbrlink: 122526936
 date: 2021-05-28 01:16:39
 ---
 剖析 Linux 容器的核心实现原理：
-1. 基于 Namespace 的视图隔离；
-2. 基于 Cgroups 的资源限制；
-3. 基于 rootfs 的文件系统；
+1. 基于 Namespace 的视图隔离
+2. 基于 Cgroups 的资源限制
+3. 基于 rootfs 的文件系统
 
 ## Docker 容器的核心功能
 在开始实践之前，你需要准备一台 Linux 机器，并安装 Docker。这一次，我要用 Docker 部署一个用 Python 编写的 Web 应用。这个应用的代码部分（app.py）非常简单：

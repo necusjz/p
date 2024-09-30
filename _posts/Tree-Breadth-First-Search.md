@@ -14,11 +14,12 @@ Any problem involving the traversal of a tree in a level-by-level order can be e
 ## Snippets
 ```python
 if not root:
-    return None
+    return
 
 queue = deque([root])
 while queue:
-    for idx in range(len(queue)):
+    curr_len = len(queue)
+    for idx in range(curr_len):
         node = queue.popleft()
         if idx != curr_len - 1:
             node.next = queue[0]

@@ -13,23 +13,21 @@ By moving at different speeds (say, in a cyclic linked list), the algorithm prov
 
 ## Snippets
 ```python
-def next(num):
-    ret = 0
-    while num:
-        num, mod = divmod(num, 10)
-        ret += mod * mod
-
-    return ret
-
-l = r = n  
-while r != 1 and next(r) != 1:
-    l = next(l)
-    r = next(next(r))
-    
+l = r = head
+while r and r.next:
+    l = l.next
+    r = r.next.next
     if l == r:
-        return False
+        break
+else:
+    return
 
-return True
+l = head
+while l != r:
+    l = l.next
+    r = r.next
+
+return l
 ```
 
 ## LeetCode

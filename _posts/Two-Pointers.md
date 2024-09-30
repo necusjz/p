@@ -29,7 +29,7 @@ n = len(nums)
 
 ans = []
 for i in range(n):
-    # skip duplicates
+    # handle duplicates
     if i > 0 and nums[i] == nums[i-1]:
         continue
     
@@ -38,7 +38,7 @@ for i in range(n):
         curr_sum = nums[i] + nums[l] + nums[r]
         if curr_sum == 0:
             ans.append([nums[i], nums[l], nums[r]])
-
+            
             # move both pointers
             l += 1
             r -= 1
@@ -46,10 +46,9 @@ for i in range(n):
                 l += 1
             while l < r and nums[r] == nums[r+1]:
                 r -= 1
-     
+        
         elif curr_sum < 0:
             l += 1
-        
         else:
             r -= 1
 

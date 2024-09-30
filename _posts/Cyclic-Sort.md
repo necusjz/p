@@ -19,8 +19,7 @@ n = len(nums)
 i = 0
 while i < n:
     j = nums[i] - 1
-    # avoid index out of bounds
-    if 0 <= j < n and nums[i] != nums[j]:
+    if 0 <= j < n and nums[i] != nums[j]:  # avoid index out of bounds
         nums[i], nums[j] = nums[j], nums[i]
         continue
 

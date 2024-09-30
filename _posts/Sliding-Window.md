@@ -78,8 +78,8 @@ freq = dict()
 for char in t:
     freq[char] = freq.get(char, 0) + 1
 
-ans = ""
 matched = 0
+ans = ""
 
 start = 0
 for end in range(len(s)):

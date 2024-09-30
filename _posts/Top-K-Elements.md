@@ -30,15 +30,14 @@ while max_heap:
 
         if -count - 1 > 0:
             queue.append((count + 1, char))
-
+        
         k -= 1
     
-    if k != 0 and queue:
+    if k > 0 and queue:
         return ""
     
-    # push back
     for item in queue:
-        heappush(max_heap, item)
+        heappush(max_heap, item)  # push back
 
 return ans
 ```

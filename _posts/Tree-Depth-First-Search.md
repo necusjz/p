@@ -19,7 +19,7 @@ def dfs(root, path):
         return
     
     path = path + [root.val]
-    if not root.left and not root.right and sum(path) == target:
+    if not root.left and not root.right and sum(path) == targetSum:
         ans.append(path)
     
     dfs(root.left, path)

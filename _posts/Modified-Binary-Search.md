@@ -16,17 +16,15 @@ This pattern describes an efficient way to handle all problems involving _Binary
 lo, hi = 0, len(nums) - 1
 while lo <= hi:
     mid = lo + ((hi - lo) >> 1)
-    
     if nums[mid] >= target:
-        # find leftmost element
-        if mid == 0 or nums[mid-1] < target:
+        if mid == 0 or nums[mid-1] < target:  # find leftmost element
             return mid
         
         hi = mid - 1
     else:
         lo = mid + 1
 
-return len(nums)
+return len(nums)  # all less
 ```
 
 ## LeetCode

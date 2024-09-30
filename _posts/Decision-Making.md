@@ -1,31 +1,24 @@
 ---
 title: Decision Making
-tags:
-  - CodingInterview
-abbrlink: 3468801964
-date: 2021-03-01 15:12:37
+abbrlink: 3468801965
+date: 2024-02-29 23:09:03
+tags: BehavioralInterview
 ---
-## Statement
-Given a set of values find an answer with an option to choose or ignore the current value.
+When it comes to decision-making, software engineers are no strangers to making critical choices that can affect the outcome of a project. That’s why many behavioral job interviews include questions about this topic. The purpose of these questions is to assess your ability to think critically, make informed decisions under pressure, and consider the potential consequences of your choices.
 
-## Approach
-If you decide to choose the current value use the previous result where the value was ignored; vice versa, if you decide to ignore the current value use previous result where value was used:
-```cpp
-// i: indexing a set of values
-// j: options to ignore j values
-for (int i = 1; i < n; ++i) {
-    for (int j = 1; j <= k; ++j) {
-        dp[i][j] = max({dp[i][j], dp[i-1][j] + arr[i], dp[i-1][j-1]});
-        dp[i][j-1] = max({dp[i][j-1], dp[i-1][j-1] + arr[i], arr[i]});
-    }
-}
-```
+To ace questions about decision-making, it’s essential to focus on the process you use to make decisions. You should be able to explain the steps you take to gather information, weigh the pros and cons, consider the risks and benefits, and ultimately arrive at a well-informed decision. Additionally, be prepared to share examples of times when you made tough decisions and the impact of your choices. It’s crucial to demonstrate your ability to think strategically and make sound judgments while keeping the company’s goals and values in mind.
 <!--more-->
 
-## LeetCode
-[House Robber](https://leetcode.com/problems/house-robber/)
-[Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
-[Best Time to Buy and Sell Stock with Transaction Fee](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/)
-[Best Time to Buy and Sell Stock with Cooldown](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/)
-[Best Time to Buy and Sell Stock III](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/)
-[Best Time to Buy and Sell Stock IV](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/)
+## “Tell me about a time you had to make a difficult decision”
+
+## “Tell me about a time you had to take a calculated risk”
+
+## “Tell me about a time you had to come to a decision in limited time”
+
+## “Tell me about a time you had to deal with conflicting priorities from multiple stakeholders”
+
+## “Tell me about a time you had to make a decision with incomplete information”
+
+## “Tell me about a time you made a difficult decision not to do something”
+
+## “Tell me about a time that you had to implement a workaround and incur technical debt in order to meet a deadline”

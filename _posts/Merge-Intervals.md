@@ -19,24 +19,21 @@ Understanding the above six cases will help us in solving all intervals related 
 n = len(intervals)
 ans = []
 
-idx = 0
+i = 0
 # case 1
-while idx < n and intervals[idx][1] < new_interval[0]:
-    ans.append(intervals[idx])
-    idx += 1
-
+while i < n and intervals[i][1] < newInterval[0]:
+    ans.append(intervals[i])
+    i += 1
 # case 2-5
-while idx < n and intervals[idx][0] <= new_interval[1]:
-    new_interval[0] = min(new_interval[0], intervals[idx][0])
-    new_interval[1] = max(new_interval[1], intervals[idx][1])
-    idx += 1
-
-ans.append(new_interval)
-
+while i < n and intervals[i][0] <= newInterval[1]:
+    newInterval[0] = min(newInterval[0], intervals[i][0])
+    newInterval[1] = max(newInterval[1], intervals[i][1])
+    i += 1
+ans.append(newInterval)
 # case 6
-while idx < n:
-    ans.append(intervals[idx])
-    idx += 1
+while i < n:
+    ans.append(intervals[i])
+    i += 1
 
 return ans
 ```

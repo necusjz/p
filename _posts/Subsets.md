@@ -13,15 +13,13 @@ A huge number of coding interview problems involve dealing with _Permutations_ a
 ```python
 """Iteration"""
 queue = deque([[]])
-for num in sorted(nums):
+for num in sorted(nums):  # handle duplicates
     for _ in range(len(queue)):
         item = queue.popleft()
         cand = item + [num]
-        
-        # skip duplicates
         if cand not in queue:
             queue.append(cand)
-
+        
         queue.append(item)
 
 return queue
@@ -29,22 +27,21 @@ return queue
 ```python
 """Recursion"""
 @cache
-def build(beg, end):
-    if beg > end:
+def build(start, end):
+    if start > end:
         return [None]
 
     trees = []
-    for val in range(beg, end + 1):
+    for val in range(start, end + 1):
         # divide & conquer
-        l = build(beg, val - 1)
+        l = build(start, val - 1)
         r = build(val + 1, end)
-        
+
         for x in l:
             for y in r:
                 root = TreeNode(val)
                 root.left = x
                 root.right = y
-
                 trees.append(root)
 
     return trees
