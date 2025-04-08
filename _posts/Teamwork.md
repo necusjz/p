@@ -2,7 +2,7 @@
 title: Teamwork
 abbrlink: 3183516040
 date: 2024-02-29 22:41:37
-tags: BehavioralInterview
+tags: BehavioralQuestion
 ---
 The purpose of questions about teamwork is to assess a candidate’s ability to work effectively with others towards common goals. In today’s work environment, teamwork is a critical skill, and employers want to ensure that their potential employees can collaborate with colleagues to deliver projects on time, within budget, and with high quality. Therefore, you should be prepared to discuss your experience working in a team environment and how you contributed to the success of the team.
 

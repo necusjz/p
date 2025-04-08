@@ -2,7 +2,7 @@
 title: Problem Solving
 abbrlink: 274516859
 date: 2024-02-29 21:49:31
-tags: BehavioralInterview
+tags: BehavioralQuestion
 ---
 Problem solving is a critical skill for any software engineer, and it’s not just about finding a solution to a technical challenge. It’s also about identifying the right problem to solve, breaking it down into manageable pieces, and communicating your approach and progress to others. That’s why many job interviews for software engineering positions include questions about problem solving.
 

@@ -2,7 +2,7 @@
 title: Leadership
 abbrlink: 304060958
 date: 2024-02-29 23:35:35
-tags: BehavioralInterview
+tags: BehavioralQuestion
 ---
 Leadership is a crucial skill in the workplace, and employers often ask questions about it to assess your ability to inspire, motivate, and guide others to achieve common goals. The purpose of these questions is to evaluate your potential to take on leadership roles within the organization, and to determine how you can contribute to the success of the team.
 

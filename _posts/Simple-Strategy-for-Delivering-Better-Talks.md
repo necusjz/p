@@ -1,7 +1,7 @@
 ---
 title: Simple Strategy for Delivering Better Talks
 tags:
-  - SPEAKING
+  - English
 abbrlink: 2155408797
 date: 2020-09-12 11:41:41
 ---

@@ -2,7 +2,7 @@
 title: Achievement
 abbrlink: 284160038
 date: 2024-02-29 23:16:21
-tags: BehavioralInterview
+tags: BehavioralQuestion
 ---
 Achievements are like the trophies of our professional lives, and in a job interview, discussing them can showcase your skills, work ethic, and potential to excel. Employers often ask questions about achievements to get a sense of your past successes, your approach to problem-solving, and your ability to contribute to their organization’s goals. The purpose of these questions is to evaluate your potential to make a significant impact on the company and to determine whether you are the right fit for the role.
 

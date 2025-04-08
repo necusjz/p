@@ -2,7 +2,7 @@
 title: Initiative
 abbrlink: 2924010798
 date: 2024-02-29 23:28:03
-tags: BehavioralInterview
+tags: BehavioralQuestion
 ---
 Initiative is a highly valued trait in the workplace, as it demonstrates that you are proactive, independent, and motivated to take on new challenges. Interviewers often ask questions about initiative to gauge your willingness to go above and beyond your job requirements and to take ownership of your work. The purpose of these questions is to determine whether you have a growth mindset, a strong work ethic, and the potential to drive positive change in the organization.
 

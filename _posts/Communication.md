@@ -2,7 +2,7 @@
 title: Communication
 abbrlink: 1255276062
 date: 2024-02-29 22:54:00
-tags: BehavioralInterview
+tags: BehavioralQuestion
 ---
 Questions about communication are asked to evaluate your ability to work effectively with others and articulate technical ideas clearly. In a software development environment, communication plays a critical role in ensuring project success. As such, interviewers want to assess your communication skills to determine if you can collaborate effectively with team members, stakeholders, and clients.
 

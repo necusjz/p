@@ -1,6 +1,6 @@
 ---
 title: Telephoning
-tags: SPEAKING
+tags: English
 abbrlink: 294155228
 date: 2019-08-15 00:48:12
 ---

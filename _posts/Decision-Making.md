@@ -2,7 +2,7 @@
 title: Decision Making
 abbrlink: 3468801965
 date: 2024-02-29 23:09:03
-tags: BehavioralInterview
+tags: BehavioralQuestion
 ---
 When it comes to decision-making, software engineers are no strangers to making critical choices that can affect the outcome of a project. That’s why many behavioral job interviews include questions about this topic. The purpose of these questions is to assess your ability to think critically, make informed decisions under pressure, and consider the potential consequences of your choices.
 
