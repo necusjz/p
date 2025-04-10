@@ -45,7 +45,7 @@ Dr. Dean from Google reveals the length of typical computer operations in 2010 [
 > 1 ms = 10^-3 seconds = 1,000 µs = 1,000,000 ns
 
 A Google software engineer built a tool to visualize Dr. Dean’s numbers. The tool also takes the time factor into consideration. Figures 1 shows the visualized latency numbers as of 2020 [3].
-![](https://raw.githubusercontent.com/necusjz/p/master/SystemDesign/bytebytego/03/00.png)
+![](https://raw.githubusercontent.com/necusjz/p/master/SystemDesign/bytebytego/03/00.svg)
 
 By analyzing the numbers in Figure 1, we get the following conclusions:
 - Memory is fast but the disk is slow.

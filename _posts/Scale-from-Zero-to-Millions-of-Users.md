@@ -44,7 +44,7 @@ GET /users/12 – Retrieve user object for id = 12
 With the growth of the user base, one server is not enough, and we need multiple servers: One for web/mobile traffic, the other for the database (Figure 3). Separating web/mobile traffic (web tier) and database (data tier) servers allows them to be scaled independently.
 ![](https://raw.githubusercontent.com/necusjz/p/master/SystemDesign/bytebytego/02/02.png)
 
-## Which databases to use?
+### Which databases to use?
 You can choose between a traditional relational database and a non-relational database. Let us examine their differences:
 - Relational databases are also called a Relational Database Management System (RDBMS) or SQL database. The most popular ones are MySQL, Oracle database, PostgreSQL, etc. Relational databases represent and store data in tables and rows. You can perform join operations using SQL across different database tables.
 - Non-Relational databases are also called NoSQL databases. Popular ones are CouchDB, Neo4j, Cassandra, HBase, Amazon DynamoDB, etc. [2]. These databases are grouped into four categories: key-value stores, graph stores, column stores, and document stores. Join operations are generally not supported in non-relational databases.
@@ -108,7 +108,7 @@ Now, you have a solid understanding of the web and data tiers, it is time to imp
 ## Cache
 A cache is a temporary storage area that stores the result of expensive responses or frequently accessed data in memory so that subsequent requests are served more quickly. As illustrated in Figure 6, every time a new web page loads, one or more database calls are executed to fetch data. The application performance is greatly affected by calling the database repeatedly. The cache can mitigate this problem.
 
-## Cache tier
+### Cache tier
 The cache tier is a temporary data store layer, much faster than the database. The benefits of having a separate cache tier include better system performance, ability to reduce database workloads, and the ability to scale the cache tier independently. Figure 7 shows a possible setup of a cache server:
 ![](https://raw.githubusercontent.com/necusjz/p/master/SystemDesign/bytebytego/02/06.svg)
 
@@ -121,7 +121,7 @@ cache.set('myKey, 'hi there', 3600 * SECONDS)
 cache.get('myKey')
 ```
 
-## Considerations for using cache
+### Considerations for using cache
 Here are a few considerations for using a cache system:
 - Decide when to use cache. Consider using cache when data is read frequently but modified infrequently. Since cached data is stored in volatile memory, a cache server is not ideal for persisting data. For instance, if a cache server restarts, all the data in memory is lost. Thus, important data should be saved in persistent data stores.
 - Expiration policy. It is a good practice to implement an expiration policy. Once cached data is expired, it is removed from the cache. When there is no expiration policy, cached data will be stored in the memory permanently. It is advisable not to make the expiration date too short as this will cause the system to reload data from the database too frequently. Meanwhile, it is advisable not to make the expiration date too long as the data can become stale.
@@ -148,7 +148,7 @@ Figure 10 demonstrates the CDN workflow:
 5. User B sends a request to get the same image.
 6. The image is returned from the cache as long as the TTL has not expired.
 
-## Considerations of using a CDN
+### Considerations of using a CDN
 - Cost: CDNs are run by third-party providers, and you are charged for data transfers in and out of the CDN. Caching infrequently used assets provides no significant benefits so you should consider moving them out of the CDN.
 - Setting an appropriate cache expiry: For time-sensitive content, setting a cache expiry time is important. The cache expiry time should neither be too long nor too short. If it is too long, the content might no longer be fresh. If it is too short, it can cause repeat reloading of content from origin servers to the CDN.
 - CDN fallback: You should consider how your website/application copes with CDN failure. If there is a temporary CDN outage, clients should be able to detect the problem and request resources from the origin.

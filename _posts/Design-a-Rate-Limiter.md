@@ -21,8 +21,8 @@ Candidate: What kind of rate limiter are we going to design? Is it a client-side
 Interviewer: Great question. We focus on the server-side API rate limiter.
 C: Does the rate limiter throttle API requests based on IP, the user ID, or other properties?
 I: The rate limiter should be flexible enough to support different sets of throttle rules.
-C: Does the rate limiter throttle API requests based on IP, the user ID, or other properties?
-I: The rate limiter should be flexible enough to support different sets of throttle rules.
+C: What is the scale of the system? Is it built for a startup or a big company with a large user base?
+I: The system must be able to handle a large number of requests.
 C: Will the system work in a distributed environment?
 I: Yes.
 C: Is the rate limiter a separate service or should it be implemented in application code?
@@ -55,7 +55,7 @@ Let us use an example in Figure 3 to illustrate how rate limiting works in this 
 
 Cloud microservices [4] have become widely popular and rate limiting is usually implemented within a component called API gateway. API gateway is a fully managed service that supports rate limiting, SSL termination, authentication, IP whitelisting, servicing static content, etc. For now, we only need to know that the API gateway is a middleware that supports rate limiting.
 
-While designing a rate limiter, an important question to ask ourselves is: Where should the rater limiter be implemented, on the server-side or in a gateway? There is no absolute answer. It depends on your company’s current technology stack, engineering resources, priorities, goals, etc. Here are a few general guidelines:
+While designing a rate limiter, an important question to ask ourselves is: Where should the rate limiter be implemented, on the server-side or in a gateway? There is no absolute answer. It depends on your company’s current technology stack, engineering resources, priorities, goals, etc. Here are a few general guidelines:
 - Evaluate your current technology stack, such as programming language, cache service, etc. Make sure your current programming language is efficient to implement rate limiting on the server-side.
 - Identify the rate limiting algorithm that fits your business needs. When you implement everything on the server-side, you have full control of the algorithm. However, your choice might be limited if you use a third-party gateway.
 - If you have already used microservice architecture and included an API gateway in the design to perform authentication, IP whitelisting, etc., you may add a rate limiter to the API gateway.
@@ -80,7 +80,7 @@ The token bucket algorithm work as follows:
     - If there are not enough tokens, the request is dropped.
     ![](https://raw.githubusercontent.com/necusjz/p/master/SystemDesign/bytebytego/05/04.svg)
 
-Figure 6 illustrates how token consumption, refill, and rate limiting logic work. In this example, the token bucket size is 4, and the refill rate is 4 per 1 minute:
+Figure 6 illustrates how token consumption, refill, and rate limiting logic work. In this example, the token bucket size is 4, and the refill rate is 4 per minute:
 ![](https://raw.githubusercontent.com/necusjz/p/master/SystemDesign/bytebytego/05/05.svg)
 
 The token bucket algorithm takes two parameters:
@@ -283,6 +283,7 @@ One possible solution is to use sticky sessions that allow a client to send traf
 Performance optimization is a common topic in system design interviews. We will cover two areas to improve.
 
 First, multi-data center setup is crucial for a rate limiter because latency is high for users located far away from the data center. Most cloud service providers build many edge server locations around the world. For example, as of 5/20 2020, Cloudflare has 194 geographically distributed edge servers [14]. Traffic is automatically routed to the closest edge server to reduce latency.
+![](https://raw.githubusercontent.com/necusjz/p/master/SystemDesign/bytebytego/05/16.webp)
 
 Second, synchronize data with an eventual consistency model. If you are unclear about the eventual consistency model, refer to the “Consistency” section in the “Design a Key-value Store” chapter.
 
@@ -301,7 +302,7 @@ In this chapter, we discussed different algorithms of rate limiting and their pr
 - Sliding window log
 - Sliding window counter
 
-Then, we discussed the system architecture, rate limiter in a distributed environment, performance optimization and monitoring. Similar to any system design interview questions, there are additional talking points you can mention if time allows:
+Then, we discussed the system architecture, rate limiter in a distributed environment, performance optimization and monitoring. Similar to other system design interview questions, there are additional talking points you can mention if time allows:
 - Hard vs. soft rate limiting:
     - Hard: The number of requests cannot exceed the threshold.
     - Soft: Requests can exceed the threshold for a short period.
