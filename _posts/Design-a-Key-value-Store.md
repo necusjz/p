@@ -61,9 +61,11 @@ Nowadays, key-value stores are classified based on the two CAP characteristics t
 
 What you read above is mostly the definition part. To make it easier to understand, let us take a look at some concrete examples. In distributed systems, data is usually replicated multiple times. Assume data are replicated on three replica nodes, n1, n2 and n3 as shown in Figure 2.
 
+#### Ideal situation
 In the ideal world, network partition never occurs. Data written to n1 is automatically replicated to n2 and n3. Both consistency and availability are achieved.
 ![](https://raw.githubusercontent.com/necusjz/p/master/SystemDesign/bytebytego/07/01.svg)
 
+#### Real-world distributed systems
 In a distributed system, partitions cannot be avoided, and when a partition occurs, we must choose between consistency and availability. In Figure 3, n3 goes down and cannot communicate with n1 and n2. If clients write data to n1 or n2, data cannot be propagated to n3. If data is written to n3 but not propagated to n1 and n2 yet, n1 and n2 would have stale data.
 ![](https://raw.githubusercontent.com/necusjz/p/master/SystemDesign/bytebytego/07/02.svg)
 
@@ -73,7 +75,7 @@ However, if we choose availability over consistency (AP system), the system keep
 
 Choosing the right CAP guarantees that fit your use case is an important step in building a distributed key-value store. You can discuss this with your interviewer and design the system accordingly.
 
-## System components
+### System components
 In this section, we will discuss the following core components and techniques used to build a key-value store:
 - Data partition
 - Data replication
@@ -86,12 +88,12 @@ In this section, we will discuss the following core components and techniques us
 
 The content below is largely based on three popular key-value store systems: Dynamo [4], Cassandra [5], and BigTable [6].
 
-### Data partition
+#### Data partition
 For large applications, it is infeasible to fit the complete data set in a single server. The simplest way to accomplish this is to split the data into smaller partitions and store them in multiple servers. There are two challenges while partitioning the data:
 - Distribute data across multiple servers evenly.
 - Minimize data movement when nodes are added or removed.
 
-Consistent hashing discussed in the previous chapter is a great technique to solve these problems. Let us revisit how consistent hashing works at a high-level.
+Consistent hashing discussed in the previous chapter is a great technique to solve these problems. Let us revisit how consistent hashing works at a high-level:
 ![](https://raw.githubusercontent.com/necusjz/p/master/SystemDesign/bytebytego/07/03.svg)
 - First, servers are placed on a hash ring. In Figure 4, eight servers, represented by s0, s1, …, s7, are placed on the hash ring.
 - Next, a key is hashed onto the same ring, and it is stored on the first server encountered while moving in the clockwise direction. For instance, key0 is stored in s1 using this logic.
@@ -100,7 +102,7 @@ Using consistent hashing to partition data has the following advantages:
 - Automatic scaling: Servers could be added and removed automatically depending on the load.
 - Heterogeneity: The number of virtual nodes for a server is proportional to the server capacity. For example, servers with higher capacity are assigned with more virtual nodes.
 
-### Data replication
+#### Data replication
 To achieve high availability and reliability, data must be replicated asynchronously over N servers, where N is a configurable parameter. These N servers are chosen using the following logic: After a key is mapped to a position on the hash ring, walk clockwise from that position and choose the first N servers on the ring to store data copies. In Figure 5 (N=3), key0 is replicated at s1, s2, and s3.
 ![](https://raw.githubusercontent.com/necusjz/p/master/SystemDesign/bytebytego/07/04.svg)
 
@@ -108,7 +110,7 @@ With virtual nodes, the first N nodes on the ring may be owned by fewer than N p
 
 Nodes in the same data center often fail at the same time due to power outages, network issues, natural disasters, etc. For better reliability, replicas are placed in distinct data centers, and data centers are connected through high-speed networks.
 
-### Consistency
+#### Consistency
 Since data is replicated at multiple nodes, it must be synchronized across replicas. Quorum consensus can guarantee consistency for both read and write operations. Let us establish a few definitions first.
 - N: The number of replicas
 - W: A write quorum of size W. For a write operation to be considered as successful, write operation must be acknowledged from W replicas.
@@ -131,7 +133,7 @@ How to configure N, W, and R to fit our use cases? Here are some of the possible
 
 Depending on the requirement, we can tune the values of W, R, N to achieve the desired level of consistency.
 
-#### Consistency models
+##### Consistency models
 Consistency model is other important factor to consider when designing a key-value store. A consistency model defines the degree of data consistency, and a wide spectrum of possible consistency models exist:
 - Strong consistency: Any read operation returns a value corresponding to the result of the most updated write data item. A client never sees out-of-date data.
 - Weak consistency: Subsequent read operations may not see the most updated value.
@@ -139,7 +141,7 @@ Consistency model is other important factor to consider when designing a key-val
 
 Strong consistency is usually achieved by forcing a replica not to accept new reads/writes until every replica has agreed on current write. This approach is not ideal for highly available systems because it could block new operations. Dynamo and Cassandra adopt eventual consistency, which is our recommended consistency model for our key-value store. From concurrent writes, eventual consistency allows inconsistent values to enter the system and force the client to read the values to reconcile. The next section explains how reconciliation works with versioning.
 
-### Inconsistency resolution
+#### Inconsistency resolution
 Replication gives high availability but causes inconsistencies among replicas. Versioning and vector locks are used to solve inconsistency problems. Versioning means treating each data modification as a new immutable version of data. Before we talk about versioning, let us use an example to explain how inconsistency happens: As shown in Figure 7, both replica nodes n1 and n2 have the same value. Let us call this value the original value, server 1 and server 2 get the same value for get(“name”) operation.
 ![](https://raw.githubusercontent.com/necusjz/p/master/SystemDesign/bytebytego/07/06.svg)
 
@@ -170,10 +172,10 @@ Even though vector clocks can resolve conflicts, there are two notable downsides
 
 Second, the [server, version] pairs in the vector clock could grow rapidly. To fix this problem, we set a threshold for the length, and if it exceeds the limit, the oldest pairs are removed. This can lead to inefficiencies in reconciliation because the descendant relationship cannot be determined accurately. However, based on Dynamo paper [4], Amazon has not yet encountered this problem in production; therefore, it is probably an acceptable solution for most companies.
 
-### Handling failures
+#### Handling failures
 As with any large system at scale, failures are not only inevitable but common. Handling failure scenarios is very important. In this section, we first introduce techniques to detect failures. Then, we go over common failure resolution strategies.
 
-#### Failure detection
+##### Failure detection
 In a distributed system, it is insufficient to believe that a server is down because another server says so. Usually, it requires at least two independent sources of information to mark a server down.
 
 As shown in Figure 10, all-to-all multicasting is a straightforward solution. However, this is inefficient when many servers are in the system.
@@ -192,7 +194,7 @@ As shown in Figure 11:
 - Node s0 notices that node s2’s (member ID = 2) heartbeat counter has not increased for a long time.
 - Node s0 sends heartbeats that include s2’s info to a set of random nodes. Once other nodes confirm that s2’s heartbeat counter has not been updated for a long time, node s2 is marked down, and this information is propagated to other nodes.
 
-#### Handling temporary failures
+##### Handling temporary failures
 After failures have been detected through the gossip protocol, the system needs to deploy certain mechanisms to ensure availability. In the strict quorum approach, read and write operations could be blocked as illustrated in the quorum consensus section.
 
 A technique called “sloppy quorum” [4] is used to improve availability. Instead of enforcing the quorum requirement, the system chooses the first W healthy servers for writes and first R healthy servers for reads on the hash ring. Offline servers are ignored.
@@ -200,7 +202,7 @@ A technique called “sloppy quorum” [4] is used to improve availability. Inst
 If a server is unavailable due to network or server failures, another server will process requests temporarily. When the down server is up, changes will be pushed back to achieve data consistency. This process is called hinted handoff. Since s2 is unavailable in Figure 12, reads and writes will be handled by s3 temporarily. When s2 comes back online, s3 will hand the data back to s2.
 ![](https://raw.githubusercontent.com/necusjz/p/master/SystemDesign/bytebytego/07/11.svg)
 
-#### Handling permanent failures
+##### Handling permanent failures
 Hinted handoff is used to handle temporary failures. What if a replica is permanently unavailable? To handle such a situation, we implement an anti-entropy protocol to keep replicas in sync. Anti-entropy involves comparing each piece of data on replicas and updating each replica to the newest version. A Merkle tree is used for inconsistency detection and minimizing the amount of data transferred.
 
 Quoted from Wikipedia [7]: “A hash tree or Merkle tree is a tree in which every non-leaf node is labeled with the hash of the labels or values (in case of leaves) of its child nodes. Hash trees allow efficient and secure verification of the contents of large data structures”.
@@ -219,10 +221,10 @@ To compare two Merkle trees, start by comparing the root hashes. If root hashes 
 
 Using Merkle trees, the amount of data needed to be synchronized is proportional to the differences between the two replicas, and not the amount of data they contain. In real-world systems, the bucket size is quite big. For instance, a possible configuration is one million buckets per one billion keys, so each bucket only contains 1000 keys.
 
-#### Handling data center outage
+##### Handling data center outage
 Data center outage could happen due to power outage, network outage, natural disaster, etc. To build a system capable of handling data center outage, it is important to replicate data across multiple data centers. Even if a data center is completely offline, users can still access data through the other data centers.
 
-### System architecture diagram
+#### System architecture diagram
 Now that we have discussed different technical considerations in designing a key-value store, we can shift our focus on the architecture diagram, shown in Figure 17.
 ![](https://raw.githubusercontent.com/necusjz/p/master/SystemDesign/bytebytego/07/16.svg)
 
@@ -237,20 +239,20 @@ Main features of the architecture are listed as follows:
 As the design is decentralized, each node performs many tasks as presented in Figure 18.
 ![](https://raw.githubusercontent.com/necusjz/p/master/SystemDesign/bytebytego/07/17.svg)
 
-### Write path
+#### Write path
 Figure 19 explains what happens after a write request is directed to a specific node. Please note the proposed designs for write/read paths are primary based on the architecture of Cassandra [8]:
 ![](https://raw.githubusercontent.com/necusjz/p/master/SystemDesign/bytebytego/07/18.svg)
 1. The write request is persisted on a commit log file.
 2. Data is saved in the memory cache.
 3. When the memory cache is full or reaches a predefined threshold, data is flushed to SSTable [9] on disk.
 
-### Read path
+#### Read path
 After a read request is directed to a specific node, it first checks if data is in the memory cache. If so, the data is returned to the client as shown in Figure 20.
 ![](https://raw.githubusercontent.com/necusjz/p/master/SystemDesign/bytebytego/07/19.svg)
 
 If the data is not in memory, it will be retrieved from the disk instead. We need an efficient way to find out which SSTable contains the key. Bloom filter [10] is commonly used to solve this problem.
 
-The read path is shown in Figure 21 when data is not in memory.
+The read path is shown in Figure 21 when data is not in memory:
 ![](https://raw.githubusercontent.com/necusjz/p/master/SystemDesign/bytebytego/07/20.svg)
 1. The system first checks if data is in memory. If not, go to step 2.
 2. If data is not in memory, the system checks the bloom filter.
@@ -270,6 +272,7 @@ This chapter covers many concepts and techniques. To refresh your memory, the fo
 |Incremental scalability|Consistent Hashing|
 |Heterogeneity|Consistent Hashing|
 |Tunable consistency|Quorum consensus|
+|Failure detection|Gossip protocol|
 |Handling temporary failures|Sloppy quorum and hinted handoff|
 |Handling permanent failures|Merkle tree|
 |Handling data center outage|Cross-datacenter replication|

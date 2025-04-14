@@ -10,7 +10,7 @@ In this chapter, we will tackle an interesting and classic system design intervi
 System design interview questions are intentionally left open-ended. To design a well-crafted system, it is critical to ask clarification questions.
 
 Candidate: Can you give an example of how a URL shortener work?
-Interviewer: Assume URL https://www.systeminterview.com/q=chatsystem&c=loggedin&v=v3&l=long is the original URL. Your service creates an alias with shorter length: https://tinyurl.com/y7keocwj. If you click the alias, it redirects you to the original URL.
+Interviewer: Assume https://www.systeminterview.com/q=chatsystem&c=loggedin&v=v3&l=long is the original URL. Your service creates an alias with shorter length: https://tinyurl.com/y7keocwj. If you click the alias, it redirects you to the original URL.
 C: What is the traffic volume?
 I: 100 million URLs are generated per day.
 C: How long is the shortened URL?
@@ -37,20 +37,20 @@ Here are the basic use cases:
 It is important for you to walk through the assumptions and calculations with your interviewer so that both of you are on the same page.
 
 ## Step 2 - Propose high-level design and get buy-in
-In this section, we discuss the API endpoints, URL redirecting, and URL shortening flows.
+In this section, we discuss the API endpoints, URL shortening, and URL redirecting flows.
 
 ### API endpoints
-API endpoints facilitate the communication between clients and servers. We will design the APIs REST-style. If you are unfamiliar with RESTful API, you can consult external materials, such as the one in the reference material [1]. A URL shortener primary needs two API endpoints:
+API endpoints facilitate the communication between clients and servers. We will design the APIs in a REST-style. If you are unfamiliar with RESTful API, you can consult external materials, such as the one in the reference material [1]. A URL shortener primary needs two API endpoints:
 - URL shortening. To create a new short URL, a client sends a POST request, which contains one parameter: the original long URL. The API looks like this:
 _POST api/v1/data/shorten_
     - Request parameter: {longUrl: longURLString}
-    - Return shortURL
+    - Return shortURL.
 - URL redirecting. To redirect a short URL to the corresponding long URL, a client sends a GET request. The API looks like this:
 _GET api/v1/shortUrl_
-    - Return longURL for HTTP redirection
+    - Return longURL for HTTP redirection.
 
 ### URL shortening
-Let us assume the short URL looks like this: www.tinyurl.com/{hashValue}. To support the URL shortening use case, we must find a hash function fx that maps a long URL to the hashValue, as shown in Figure 1.
+Let us assume the short URL looks like this: www.tinyurl.com/{hashValue}. To support the URL shortening use case, we must find a hash function _fx_ that maps a long URL to the hashValue, as shown in Figure 1.
 ![](https://raw.githubusercontent.com/necusjz/p/master/SystemDesign/bytebytego/09/02.svg)
 
 The hash function must satisfy the following requirements:
@@ -77,7 +77,7 @@ The most intuitive way to implement URL redirecting is to use hash tables. Assum
 - Once you get the longURL, perform the URL redirect.
 
 ## Step 3 - Design deep dive
-Up until now, we have discussed the high-level design of URL shortening and URL redirecting. In this section, we dive deep into the following: Data model, hash function, URL shortening and URL redirecting.
+Up until now, we have discussed the high-level design of URL shortening and URL redirecting. In this section, we dive deep into the following: data model, hash function, URL shortening and URL redirecting.
 
 ### Data model
 In the high-level design, everything is stored in a hash table. This is a good starting point; however, this approach is not feasible for real-world systems as memory resources are limited and expensive. A better option is to store <shortURL, longURL> mapping in a relational database. Figure 4 shows a simple database table design. The simplified version of the table contains 3 columns: id, shortURL, longURL.
@@ -123,7 +123,7 @@ This method can eliminate collision; however, it is expensive to query the datab
 #### Base 62 conversion
 Base conversion is another approach commonly used for URL shorteners. Base conversion helps to convert the same number between its different number representation systems. Base 62 conversion is used as there are 62 possible characters for hashValue. Let us use an example to explain how the conversion works: Convert 11157(10) to base 62 representation:
 - From its name, base 62 is a way of using 62 characters for encoding. The mappings are: 0-0, ..., 9-9, 10-a, 11-b, ..., 35-z, 36-A, ..., 61-Z, where "a" stands for 10, "Z" stands for 61, etc.
-- 11157(10) = 62^2 * 2 + 62^1 * 55 + 62^0 * 59 = [2, 55, 59] -> [2, T, X] in base 62 representation. Figure 6 shows the conversation process:
+- 11157(10) = 62^2 * 2 + 62^1 * 55 + 62^0 * 59 = [2, 55, 59] -> [2, T, X] in base 62 representation. Figure 6 shows the conversation process.
 ![](https://raw.githubusercontent.com/necusjz/p/master/SystemDesign/bytebytego/09/05.svg)
 - Thus, the short URL is https://tinyurl.com/2TX
 
@@ -163,7 +163,7 @@ Figure 8 shows the detailed design of the URL redirecting. As there are more rea
 ![](https://raw.githubusercontent.com/necusjz/p/master/SystemDesign/bytebytego/09/07.webp)
 
 The flow of URL redirecting is summarized as follows:
-1. A user clicks a short URL link: https://tinyurl.com/zn9edcu
+1. A user clicks a short URL link: https://tinyurl.com/zn9edcu.
 2. The load balancer forwards the request to web servers.
 3. If a shortURL is already in the cache, return the longURL directly.
 4. If a shortURL is not in the cache, fetch the longURL from the database. If it is not in the database, it is likely a user entered an invalid shortURL.
@@ -173,10 +173,10 @@ The flow of URL redirecting is summarized as follows:
 In this chapter, we talked about the API design, data model, hash function, URL shortening, and URL redirecting.
 
 If there is extra time at the end of the interview, here are a few additional talking points:
-- Rate limiter: A potential security problem we could face is that malicious users send an overwhelmingly large number of URL shortening requests. Rate limiter helps to filter out requests based on IP address or other filtering rules. If you want to refresh your memory about rate limiting, refer to the "Design a rate limiter" chapter.
-- Web server scaling: Since the web tier is stateless, it is easy to scale the web tier by adding or removing web servers.
-- Database scaling: Database replication and sharding are common techniques.
-- Analytics: Data is increasingly important for business success. Integrating an analytics solution to the URL shortener could help to answer important questions like how many people click on a link? When do they click the link? etc.
+- Rate limiter. A potential security problem we could face is that malicious users send an overwhelmingly large number of URL shortening requests. Rate limiter helps to filter out requests based on IP address or other filtering rules. If you want to refresh your memory about rate limiting, refer to the "Design a Rate Limiter" chapter.
+- Web server scaling. Since the web tier is stateless, it is easy to scale the web tier by adding or removing web servers.
+- Database scaling. Database replication and sharding are common techniques.
+- Analytics. Data is increasingly important for business success. Integrating an analytics solution to the URL shortener could help to answer important questions like how many people click on a link? When do they click the link? etc.
 - Availability, consistency, and reliability. These concepts are at the core of any large system's success. We discussed them in detail in the "Scale From Zero To Millions Of Users" chapter, please refresh your memory on these topics.
 
 Congratulations on getting this far! Now give yourself a pat on the back. Good job!

@@ -7,7 +7,8 @@ tags: SystemDesign
 To achieve horizontal scaling, it is important to distribute requests/data efficiently and evenly across servers. Consistent hashing is a commonly used technique to achieve this goal. But first, let us take an in-depth look at the problem.
 
 ## The rehashing problem
-If you have n cache servers, a common way to balance the load is to use the following hash method: _serverIndex = hash(key) % N_, where N is the size of the server pool.
+If you have n cache servers, a common way to balance the load is to use the following hash method:
+_serverIndex = hash(key) % N_, where N is the size of the server pool.
 
 Let us use an example to illustrate how it works. As shown in Table 1, we have 4 servers and 8 string keys with their hashes:
 
