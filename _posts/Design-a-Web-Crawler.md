@@ -4,16 +4,17 @@ tags: SystemDesign
 abbrlink: 384409989
 date: 2023-12-21 23:23:05
 ---
-In this chapter, we focus on web crawler design - an interesting and classic system design interview question.
+In this chapter, we focus on web crawler design—an interesting and classic system design interview question.
 
 A web crawler is known as a robot or spider. It is widely used by search engines to discover new or updated content on the web. Content can be a web page, an image, a video, a PDF file, etc. A web crawler starts by collecting a few web pages and then follows links on those pages to collect new content. Figure 1 shows a visual example of the crawl process.
 ![](https://raw.githubusercontent.com/necusjz/p/master/SystemDesign/bytebytego/10/00.webp)
+
 <!--more-->
 A crawler is used for many purposes:
 - Search Engine Indexing: This is the most common use case. A crawler collects web pages to create a local index for search engines. For example, Googlebot is the web crawler behind the Google search engine.
-- Web Archiving: This is the process of collecting information from the web to preserve data for future uses. For instance, many national libraries run crawlers to archive web sites. Notable examples are Library of Congress [1] and EU Web Archive [2].
+- Web Archiving: This is the process of collecting information from the web to preserve data for future uses. For instance, many national libraries run crawlers to archive websites. Notable examples are Library of Congress [1] and EU Web Archive [2].
 - Web Mining: The explosive growth of the web presents an unprecedented opportunity for data mining. Web mining helps to discover useful knowledge from the internet. For example, top financial firms use crawlers to download shareholder meetings and annual reports to learn key company initiatives.
-- Web Monitoring: The crawlers help to monitor copyright and trademark infringements over the Internet. For example, Digimarc [3] utilizes crawlers to discover pirated works and reports.
+- Web Monitoring: The crawlers help to monitor copyright and trademark infringements over the internet. For example, Digimarc [3] utilizes crawlers to discover pirated works and reports.
 
 The complexity of developing a web crawler depends on the scale we intend to support. It could be either a small school project, which takes only a few hours to complete or a gigantic project that requires continuous improvement from a dedicated engineering team. Thus, we will explore the scale and features to support below.
 
@@ -41,8 +42,8 @@ Above are some of the sample questions that you can ask your interviewer. It is 
 
 Beside functionalities to clarify with your interviewer, it is also important to note down the following characteristics of a good web crawler:
 - Scalability: The web is very large. There are billions of web pages out there. Web crawling should be extremely efficient using parallelization.
-- Robustness: The web is full of traps. Bad HTML, unresponsive servers, crashes, malicious links, etc. are all common. The crawler must handle all those edge cases.
 - Politeness: The crawler should not make too many requests to a website within a short time interval.
+- Robustness: The web is full of traps. Bad HTML, unresponsive servers, crashes, malicious links, etc. are all common. The crawler must handle all those edge cases.
 - Extensibility: The system is flexible so that minimal changes are needed to support new content types. For example, if we want to crawl image files in the future, we should not need to redesign the entire system.
 
 ### Back-of-the-envelope estimation
@@ -66,10 +67,10 @@ A web crawler uses seed URLs as a starting point for the crawl process. For exam
 To crawl the entire web, we need to be creative in selecting seed URLs. A good seed URL serves as a good starting point that a crawler can utilize to traverse as many links as possible. The general strategy is to divide the entire URL space into smaller ones. The first proposed approach is based on locality as different countries may have different popular websites. Another way is to choose seed URLs based on topics; for example, we can divide URL space into shopping, sports, healthcare, etc. Seed URL selection is an open-ended question. You are not expected to give the perfect answer. Just think out loud.
 
 ### URL Frontier
-Most modern web crawlers split the crawl state into two: _to be downloaded_ and _already downloaded_. The component that stores URLs to be downloaded is called the URL Frontier. You can refer to this as a FIFO queue. For detailed information about the URL Frontier, refer to the deep dive.
+Most modern web crawlers split the crawl state into two: _to\_be\_downloaded_ and _already\_downloaded_. The component that stores URLs to be downloaded is called the URL Frontier. You can refer to this as a FIFO queue. For detailed information about the URL Frontier, refer to the deep dive.
 
 ### HTML Downloader
-The HTML downloader downloads web pages from the internet. Those URLs are provided by the URL Frontier.
+The HTML Downloader downloads web pages from the internet. Those URLs are provided by the URL Frontier.
 
 ### DNS Resolver
 To download a web page, a URL must be translated into an IP address. The HTML Downloader calls the DNS Resolver to get the corresponding IP address for the URL. For instance, URL www.wikipedia.org is converted to IP address 198.35.26.96 as of 03/05/2019.
@@ -82,11 +83,11 @@ Online research [6] reveals that 29% of the web pages are duplicated contents, w
 
 ### Content Storage
 It is a storage system for storing HTML content. The choice of storage system depends on factors such as data type, data size, access frequency, life span, etc. Both disk and memory are used:
-- Most of the content is stored on disk because the data set is too big to fit in memory.
+- Most of the content is stored on disk because the dataset is too big to fit in memory.
 - Popular content is kept in memory to reduce latency.
 
 ### URL Extractor
-URL Extractor parses and extracts links from HTML pages. Figure 3 shows an example of a link extraction process. Relative paths are converted to absolute URLs by adding the "https://en.wikipedia.org" prefix.
+URL Extractor parses and extracts links from HTML pages. Figure 3 shows an example of a link extraction process. Relative paths are converted to absolute URLs by adding the https://en.wikipedia.org prefix.
 ![](https://raw.githubusercontent.com/necusjz/p/master/SystemDesign/bytebytego/10/02.svg)
 
 ### URL Filter
@@ -104,16 +105,16 @@ So far, we have discussed every system component. Next, we put them together to 
 ![](https://raw.githubusercontent.com/necusjz/p/master/SystemDesign/bytebytego/10/03.svg)
 1. Add seed URLs to the URL Frontier.
 2. HTML Downloader fetches a list of URLs from URL Frontier.
-3. HTML Downloader gets IP addresses of URLs from DNS resolver and starts downloading.
+3. HTML Downloader gets IP addresses of URLs from DNS Resolver and starts downloading.
 4. Content Parser parses HTML pages and checks if pages are malformed.
 5. After content is parsed and validated, it is passed to the "Content Seen?" component.
-6. "Content Seen" component checks if a HTML page is already in the storage:
+6. "Content Seen?" component checks if a HTML page is already in the storage:
     - If it is in the storage, this means the same content in a different URL has already been processed. In this case, the HTML page is discarded.
     - If it is not in the storage, the system has not processed the same content before. The content is passed to Link Extractor.
-7. Link extractor extracts links from HTML pages.
+7. Link Extractor extracts links from HTML pages.
 8. Extracted links are passed to the URL filter.
 9. After links are filtered, they are passed to the "URL Seen?" component.
-10. "URL Seen" component checks if a URL is already in the storage, if yes, it is processed before, and nothing needs to be done.
+10. "URL Seen?" component checks if a URL is already in the storage, if yes, it is processed before, and nothing needs to be done.
 11. If a URL has not been processed before, it is added to the URL Frontier.
 
 ## Step 3 - Design deep dive
@@ -123,7 +124,7 @@ Up until now, we have discussed the high-level design. Next, we will discuss the
 - HTML Downloader
 - Robustness
 - Extensibility
-- Detect and avoid problematic content.
+- Detect and avoid problematic content
 
 ### DFS vs. BFS
 You can think of the web as a directed graph where web pages serve as nodes and hyperlinks (URLs) as edges. The crawl process can be seen as traversing a directed graph from one web page to others. Two common graph traversal algorithms are DFS and BFS. However, DFS is usually not a good choice because the depth of DFS can be very deep.
@@ -134,7 +135,7 @@ BFS is commonly used by web crawlers and is implemented by a FIFO queue. In a FI
 - Standard BFS does not take the priority of a URL into consideration. The web is large and not every page has the same level of quality and importance. Therefore, we may want to prioritize URLs according to their page ranks, web traffic, update frequency, etc.
 
 ### URL Frontier
-URL frontier helps to address these problems. A URL frontier is a data structure that stores URLs to be downloaded. The URL frontier is an important component to ensure politeness, URL prioritization, and freshness. A few noteworthy papers on URL frontier are mentioned in the reference materials [5] [9]. The findings from these papers are as follows.
+URL Frontier helps to address these problems. A URL Frontier is a data structure that stores URLs to be downloaded. The URL Frontier is an important component to ensure politeness, URL prioritization, and freshness. A few noteworthy papers on URL Frontier are mentioned in the reference materials [5] [9]. The findings from these papers are as follows.
 
 #### Priority
 A random post from a discussion forum about Apple products carries very different weight than posts on the Apple home page. Even though they both have the "Apple" keyword, it is sensible for a crawler to crawl the Apple home page first.
@@ -144,13 +145,13 @@ We prioritize URLs based on usefulness, which can be measured by PageRank [10], 
 Figure 6 shows the design that manages URL priority.
 ![](https://raw.githubusercontent.com/necusjz/p/master/SystemDesign/bytebytego/10/06.svg)
 - Prioritizer: It takes URLs as input and computes the priorities.
-- Queue f1 to fn: Each queue has an assigned priority. Queues with high priority are selected with higher probability.
+- FIFO queues f1 to fn: Each queue has an assigned priority. Queues with high priority are selected with higher probability.
 - Queue selector: Randomly choose a queue with a bias towards queues with higher priority.
 
 #### Politeness
 Generally, a web crawler should avoid sending too many requests to the same hosting server within a short period. Sending too many requests is considered as "impolite" or even treated as Denial-of-Service (DoS) attack. For example, without any constraint, the crawler can send thousands of requests every second to the same website. This can overwhelm the web servers.
 
-The general idea of enforcing politeness is to download one page at a time from the same host. A delay can be added between two download tasks. The politeness constraint is implemented by maintain a mapping from website hostnames to download (worker) threads. Each downloader thread has a separate FIFO queue and only downloads URLs obtained from that queue. Figure 7 shows the design that manages politeness.
+The general idea of enforcing politeness is to download one page at a time from the same host. A delay can be added between two download tasks. The politeness constraint is implemented by maintain a mapping from website hostnames to download (worker) threads. Each downloader thread has a separate FIFO queue and only downloads URLs obtained from that queue. Figure 7 shows the design that manages politeness:
 ![](https://raw.githubusercontent.com/necusjz/p/master/SystemDesign/bytebytego/10/05.svg)
 - Queue router: It ensures that each queue (b1, b2, ..., bn) only contains URLs from the same host.
 - Mapping table: It maps each host to a queue:
@@ -160,18 +161,18 @@ The general idea of enforcing politeness is to download one page at a time from 
 |apple.com|b2|
 |...|...|
 |nike.com|bn|
-- FIFO queues b1, b2 to bn: Each queue contains URLs from the same host.
+- FIFO queues b1 to bn: Each queue contains URLs from the same host.
 - Queue selector: Each worker thread is mapped to a FIFO queue, and it only downloads URLs from that queue. The queue selection logic is done by the Queue selector.
-- Worker thread 1 to N. A worker thread downloads web pages one by one from the same host. A delay can be added between two download tasks.
+- Worker threads 1 to N. A worker thread downloads web pages one by one from the same host. A delay can be added between two download tasks.
 
-Figure 8 presents the URL frontier design, and it contains two modules:
+Figure 8 presents the URL Frontier design, and it contains two modules:
 - Front queues: Manage prioritization.
 - Back queues: Manage politeness.
 
 ![](https://raw.githubusercontent.com/necusjz/p/master/SystemDesign/bytebytego/10/07.svg)
 
 #### Freshness
-Web pages are constantly being added, deleted, and edited. A web crawler must periodically recrawl downloaded pages to keep our data set fresh. Recrawl all the URLs is time-consuming and resource intensive. Few strategies to optimize freshness are listed as follows:
+Web pages are constantly being added, deleted, and edited. A web crawler must periodically recrawl downloaded pages to keep our dataset fresh. Recrawl all the URLs is time-consuming and resource intensive. Few strategies to optimize freshness are listed as follows:
 - Recrawl based on web pages' update history.
 - Prioritize URLs and recrawl important pages first and more frequently.
 
@@ -183,9 +184,9 @@ We adopted a hybrid approach. The majority of URLs are stored on disk, so the st
 ### HTML Downloader
 The HTML Downloader downloads web pages from the internet using the HTTP protocol. Before discussing the HTML Downloader, we look at Robots Exclusion Protocol first.
 
-_robots.txt_, called Robots Exclusion Protocol, is a standard used by websites to communicate with crawlers. It specifies what pages crawlers are allowed to download. Before attempting to crawl a web site, a crawler should check its corresponding robots.txt first and follow its rules.
+_robots.txt_, called Robots Exclusion Protocol, is a standard used by websites to communicate with crawlers. It specifies what pages crawlers are allowed to download. Before attempting to crawl a website, a crawler should check its corresponding _robots.txt_ first and follow its rules.
 
-To avoid repeat downloads of robots.txt file, we cache the results of the file. The file is downloaded and saved to cache periodically. Here is a piece of robots.txt file taken from https://www.amazon.com/robots.txt. Some of the directories like creatorhub are disallowed for Googlebot:
+To avoid repeat downloads of _robots.txt_ file, we cache the results of the file. The file is downloaded and saved to cache periodically. Here is a piece of _robots.txt_ file taken from https://www.amazon.com/robots.txt. Some of the directories like creatorhub are disallowed for Googlebot:
 ```txt
 User-agent: Googlebot
 Disallow: /creatorhub/\*
@@ -195,10 +196,10 @@ Disallow: /gp/cdp/member-reviews/
 Disallow: /gp/aw/cr/
 ```
 
-Besides robots.txt, performance optimization is another important concept we will cover for the HTML downloader.
+Besides _robots.txt_, performance optimization is another important concept we will cover for the HTML Downloader.
 
 #### Performance optimization
-Below is a list of performance optimizations for HTML downloader.
+Below is a list of performance optimizations for HTML Downloader.
 
 ##### Distributed crawl
 To achieve high performance, crawl jobs are distributed into multiple servers, and each server runs multiple threads. The URL space is partitioned into smaller pieces; so, each downloader is responsible for a subset of the URLs. Figure 9 shows an example of a distributed crawl.
@@ -241,8 +242,8 @@ Such spider traps can be avoided by setting a maximal length for URLs. However, 
 Some of the contents have little or no value, such as advertisements, code snippets, spam URLs, etc. Those contents are not useful for crawlers and should be excluded if possible.
 
 ## Step 4 - Wrap up
-In this chapter, we first discussed the characteristics of a good crawler: scalability, politeness, extensibility, and robustness. Then, we proposed a design and discussed key components. Building a scalable web crawler is not a trivial task because the web is enormously large and full of traps. Even though we have covered many topics, we still miss many relevant talking points:
-- Server-side rendering: Numerous websites use scripts like JavaScript, AJAX, etc to generate links on the fly. If we download and parse web pages directly, we will not be able to retrieve dynamically generated links. To solve this problem, we perform server-side rendering (also called dynamic rendering) first before parsing a page [12].
+In this chapter, we first discussed the characteristics of a good crawler: scalability, politeness, robustness, and extensibility. Then, we proposed a design and discussed key components. Building a scalable web crawler is not a trivial task because the web is enormously large and full of traps. Even though we have covered many topics, we still miss many relevant talking points:
+- Server-side rendering: Numerous websites use scripts like JavaScript, Ajax, etc. to generate links on the fly. If we download and parse web pages directly, we will not be able to retrieve dynamically generated links. To solve this problem, we perform server-side rendering (also called dynamic rendering) first before parsing a page [12].
 - Filter out unwanted pages: With finite storage capacity and crawl resources, an anti-spam component is beneficial in filtering out low quality and spam pages [13] [14].
 - Database replication and sharding: Techniques like replication and sharding are used to improve the data layer availability, scalability, and reliability.
 - Horizontal scaling: For large-scale crawl, hundreds or even thousands of servers are needed to perform download tasks. The key is to keep servers stateless.

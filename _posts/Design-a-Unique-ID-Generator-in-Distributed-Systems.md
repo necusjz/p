@@ -21,6 +21,7 @@ C: What is the ID length requirement?
 I: IDs should fit into 64-bit.
 C: What is the scale of the system?
 I: The system should be able to generate 10,000 IDs per second.
+
 <!--more-->
 Above are some of the sample questions that you can ask your interviewer. It is important to understand the requirements and clarify ambiguities. For this interview question, the requirements are listed as follows:
 - IDs must be unique.
@@ -68,7 +69,7 @@ Cons:
 Ticket servers are another interesting way to generate unique IDs. Flicker developed ticket servers to generate distributed primary keys [2]. It is worth mentioning how the system works.
 ![](https://raw.githubusercontent.com/necusjz/p/master/SystemDesign/bytebytego/08/03.svg)
 
-The idea is to use a centralized _auto\_increment_ feature in a single database server (Ticket Server). To learn more about this, refer to Flicker’s engineering blog article [2].
+The idea is to use a centralized _auto\_increment_ feature in a single database server (ticket server). To learn more about this, refer to Flicker’s engineering blog article [2].
 
 Pros:
 - Numeric IDs.
