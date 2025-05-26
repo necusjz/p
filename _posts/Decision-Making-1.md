@@ -1,9 +1,9 @@
 ---
-title: Make Decisions
+title: Decision Making
+abbrlink: 3526634861
+date: 2025-05-27 00:15:31
 tags:
-  - CodingInterview
-abbrlink: 3468801964
-date: 2021-03-01 15:12:37
+  - DynamicProgramming
 ---
 ## Statement
 Given a set of values find an answer with an option to choose or ignore the current value.

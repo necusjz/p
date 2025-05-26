@@ -1,9 +1,9 @@
 ---
-title: Min/Max to Reach a Target
+title: Minimum (Maximum) Path to Reach a Target
+abbrlink: 2170354115
+date: 2025-05-26 23:55:14
 tags:
-  - CodingInterview
-abbrlink: 3410525220
-date: 2021-03-01 14:01:33
+  - DynamicProgramming
 ---
 ## Statement
 Given a target find minimum (maximum) cost/path/sum to reach the target.
@@ -23,8 +23,8 @@ for (int i = 1; i <= target; ++i) {
 }
 return dp[target];
 ```
-<!--more-->
 
+<!--more-->
 ## LeetCode
 [Min Cost Climbing Stairs](https://leetcode.com/problems/min-cost-climbing-stairs/)
 [Minimum Path Sum](https://leetcode.com/problems/minimum-path-sum/)

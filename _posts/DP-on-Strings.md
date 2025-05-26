@@ -1,9 +1,9 @@
 ---
-title: Dynamic Programming on Strings
+title: DP on Strings
+abbrlink: 1675068399
+date: 2025-05-27 00:06:28
 tags:
-  - CodingInterview
-abbrlink: 1675068398
-date: 2021-03-01 15:00:41
+  - DynamicProgramming
 ---
 ## Statement
 Given two strings **s1** and **s2**, return a result.
@@ -35,8 +35,8 @@ for (int l = 1; l < n; ++l) {
     }
 }
 ```
-<!--more-->
 
+<!--more-->
 ## LeetCode
 [Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/)
 [Palindromic Substrings](https://leetcode.com/problems/palindromic-substrings/)

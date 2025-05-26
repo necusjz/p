@@ -1,9 +1,9 @@
 ---
-title: Interval Merging
+title: Merging Intervals
+abbrlink: 2401976836
+date: 2025-05-27 00:04:36
 tags:
-  - CodingInterview
-abbrlink: 3299276735
-date: 2021-03-01 14:48:39
+  - DynamicProgramming
 ---
 ## Statement
 Given a set of numbers find an optimal solution for a problem considering the current number and the best you can get from the left and right sides.
@@ -24,8 +24,8 @@ for (int l = 1; l < n; ++l) {
 }
 return dp[0][n-1];
 ```
-<!--more-->
 
+<!--more-->
 ## LeetCode
 [Minimum Cost Tree From Leaf Values](https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/)
 [Unique Binary Search Trees](https://leetcode.com/problems/unique-binary-search-trees/)

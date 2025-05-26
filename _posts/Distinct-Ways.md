@@ -1,9 +1,9 @@
 ---
 title: Distinct Ways
+abbrlink: 2842312159
+date: 2025-05-27 00:01:36
 tags:
-  - CodingInterview
-abbrlink: 2842312158
-date: 2021-03-01 14:20:31
+  - DynamicProgramming
 ---
 ## Statement
 Given a target find a number of distinct ways to reach the target.
@@ -26,8 +26,8 @@ return dp[target];
 
 **Note**:
 Some questions point out the number of repetitions, in that case, **add one more loop** to simulate every repetition.
-<!--more-->
 
+<!--more-->
 ## LeetCode
 [Climbing Stairs](https://leetcode.com/problems/climbing-stairs/)
 [Unique Paths](https://leetcode.com/problems/unique-paths/)
