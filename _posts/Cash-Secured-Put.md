@@ -1,11 +1,11 @@
 ---
-title: Cash Secured Put
+title: Cash-Secured Put
 tags: Bogleheads
 abbrlink: 454669049
 date: 2026-04-17 20:44:03
 ---
 ## 什么是 CSP
-CSP 全称：Cash Secured Put（现金担保卖权）
+CSP 全称：Cash-Secured Put（现金担保卖权）
 承诺在某个价格买股票，如果没跌到就收权利金
 两种结局：
 1. 低价买入心仪股票
@@ -20,13 +20,13 @@ CSP 全称：Cash Secured Put（现金担保卖权）
 ## 关键指标解读
 Max Return：$1,530（最大收益）
 Max Loss：$38,470（理论最大亏损）
-Break Even：$384.7（盈亏平衡点）
+Breakeven：$384.7（盈亏平衡点）
 Delta：0.3（约 30% 行权概率）
-Thelta：0.44（时间衰减利好卖方）
+Theta：0.44（时间衰减利好卖方）
 Probability of Profit：69.5%（获利概率）
 <!--more-->
 ## 入场逻辑
-偏看涨市场最佳
+偏看涨市场的操作
 VIX > 15
 RSI < 40
 股价在布林带下半区
