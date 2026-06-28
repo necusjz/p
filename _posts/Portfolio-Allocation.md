@@ -1,5 +1,5 @@
 ---
-title: Position Sizing
+title: Portfolio Allocation
 abbrlink: 18064595
 date: 2026-04-22 00:43:22
 tags: Bogleheads
