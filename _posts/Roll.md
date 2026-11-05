@@ -45,7 +45,7 @@ tags: Bogleheads
 ### Roll 三种变体
 - Roll Out：只延期，行权价不变，时间不够时使用
 - Roll Down：不延期，降行权价，行权太危险时使用
-- Roll Out & Down：延期 + 降行权价，最常用，威力最大
+- Roll Down & Out：延期 + 降行权价，最常用，威力最大
 
 ## 止盈基准线：累计权利金
 不要只看最后一次 Roll 收了多少钱
@@ -57,7 +57,7 @@ MU 累计权利金 $1,841，50% 止盈目标 -> 期权跌到 ~$920 时 Buy to Cl
 - 可接受：No Cost，零成本换安全位置
 - 危险：Debit，倒贴钱，远期时间价值不够填坑
 
-决策路径：Roll Out & Down -> 不行 -> Roll Out -> 还不行 -> 认亏出局
+决策路径：Roll Down & Out -> 不行 -> Roll Out -> 还不行 -> 认亏出局
 
 ### 铁律二：只 Roll 优质标的
 基本面破裂，第一时间止损
