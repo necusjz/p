@@ -46,7 +46,7 @@ Long Call 亏损时间价值，Short Put 赚取时间价值
 杠杆是双刃剑，严禁全仓梭哈
 
 ## 选股原则：避开分红陷阱
-首选无分红科技蓝筹：AMZN、GOOG、TSLA
+首选无分红科技蓝筹：AMZN、GOOGL、TSLA
 避免高分红股票：KO、PEP
 
 避免 Short Put 在除息日前被提早行权

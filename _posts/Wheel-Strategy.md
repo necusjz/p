@@ -66,7 +66,7 @@ tags: Bogleheads
 ### 第二档：稳健型配置（Sweet Spot）
 追求资金效率的中产阶级
 
-标的：APPL、GOOG、QQQ（蓝筹科技）
+标的：APPL、GOOGL、QQQ（蓝筹科技）
 本金需求：$60-$80W
 年化收益：15%-20%
 特征：强资产负债表，适度波动率溢价
